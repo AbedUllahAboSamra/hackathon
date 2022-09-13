@@ -80,9 +80,7 @@ class MyApp extends StatelessWidget {
              '/login_screen': (context) => const LoginScreen(),
              '/create_screen': (context) => const CreateAprofileScreen(),
             '/on_boarding_screen': (context) => const OnboardingScreen(),
-
             '/btn_navigation_screen': (context) => const BottomNavigationScreen(),
-
             '/otp_screen': (context) => const OTP(),
             '/details_screen': (context) =>   DetailsScreen(),
             '/acount_screen': (context) =>  AccountScreen(),
