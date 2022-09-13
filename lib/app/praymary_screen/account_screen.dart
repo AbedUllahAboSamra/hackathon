@@ -28,6 +28,7 @@ class AccountScreen extends StatelessWidget {
           return Container(
             color: Color(0xfffafafa),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+
               Container(
                 height: 120.h,
                 color: Colors.white,
@@ -46,7 +47,7 @@ class AccountScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(controller.userModel.email),
+                          Text(controller.userModel.fullName),
                           SizedBox(
                             height: 12.h,
                           ),
@@ -183,6 +184,8 @@ class AccountScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
+
             ]),
           );
         },

@@ -6,59 +6,44 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:hackathon_project/model/UserModle.dart';
 
 class FirebaseController extends GetxController {
-
   static FirebaseController get to => Get.find();
-  var stateLogin = "";
+
   var stateCreateAccount = "";
 
-  var userModel =  UserModle();
+  var userModel = UserModle();
 
-  void methodLogin({
+  Future<bool> methodLogin({
     required String email,
     required String password,
-  }) {
-    stateLogin = "loading";
-    FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email, password: password).
-    then((user) {
-      print('asd');
-      stateLogin = "logged";
-      FirebaseFirestore.instance.collection('users')
-      .doc(user.user!.uid)
-          .get()
-          .then((value) {
-        userModel = UserModle.fromJson(value.data()!) ;
+  }) async {
 
+    try {
+      var crid = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      var user =  await FirebaseFirestore.instance.collection('users').doc(crid.user!.uid).get();
+      userModel = UserModle.fromJson(user.data()!);
+      return true;
+    } catch (ex) {
+      print(ex.toString());
+      return false;
+    }
+  }
 
-         }).catchError((onError){});
+  Future<bool> methodCreateAccount({required UserModle userModle}) async{
 
-
-    }).catchError((onError) {
-      stateLogin = "error";
-    });
+  try{
+    var crid = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: userModle.email, password: userModle.password);
+    var user =  await FirebaseFirestore.instance
+        .collection('users')
+        .doc(crid.user!.uid)
+        .set(UserModle.toMap(userModle));
+  this.userModel = userModle;
+  return true;
+  }catch (ex){
+    return false;
   }
 
 
-  void methodCreateAccount({
-    required UserModle userModle
-  }) {
-    print(userModle);
-    stateCreateAccount = "loading";
-    FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: userModle.email, password: userModle.password)
-        .then((user) {
-      FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.user!.uid)
-          .set(UserModle.toMap(userModle))
-          .then((value) {
-             stateCreateAccount = "Created";
-
-          }
-          );
   }
-
-  );
-
-}
 }

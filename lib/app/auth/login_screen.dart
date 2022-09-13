@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
+import 'package:hackathon_project/helper/context_extenssion.dart';
 import 'package:hackathon_project/model/UserModle.dart';
 
 import '../../widgets/app_text_field.dart';
@@ -41,8 +42,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      body: ListView(
+       body: ListView(
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Column(
@@ -154,10 +154,15 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   }
 
   Future<void> _login() async {
+   bool isLogged=await controller.methodLogin(email: _emailTextController.text, password: _passwordTextController.text);
+     print(isLogged);
 
-    controller.methodLogin(email: _emailTextController.text, password: _passwordTextController.text);
-    Navigator.pushNamed(context, '/btn_navigation_screen');
+   if(isLogged){
+     Navigator.pushNamed(context, '/btn_navigation_screen');
+   }
+  context.showSnackBar(message: 'logged',error: !isLogged);
+  }
 
   }
 
-}
+

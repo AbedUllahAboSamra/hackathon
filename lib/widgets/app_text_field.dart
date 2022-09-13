@@ -6,7 +6,7 @@ class AppTextField extends StatelessWidget {
   const AppTextField({
     Key? key,
     required this.hint,
-      this.prefixIcon,
+    this.prefixIcon,
     required this.keyboardType,
     required this.controller,
     this.focusedBorderColor = Colors.grey,
@@ -31,7 +31,6 @@ class AppTextField extends StatelessWidget {
       obscureText: obscureText,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-
         contentPadding: EdgeInsets.zero,
         hintText: hint,
         hintStyle: GoogleFonts.cairo(fontSize: 13.sp),

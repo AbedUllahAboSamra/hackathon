@@ -41,7 +41,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                     isExpanded: false,
                     // لتفعيل فتح الاجابة عند الضغط على كل العنصر
                     canTapOnHeader: false,
-                    backgroundColor: Colors.white,
+
                     headerBuilder: (context, isExpanded) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -256,7 +256,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                     isExpanded: true,
                     // لتفعيل فتح الاجابة عند الضغط على كل العنصر
                     canTapOnHeader: true,
-                    backgroundColor: Colors.white,
+
                     headerBuilder: (context, isExpanded) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -471,7 +471,6 @@ class _ActiveScreenState extends State<ActiveScreen> {
                     isExpanded: false,
                     // لتفعيل فتح الاجابة عند الضغط على كل العنصر
                     canTapOnHeader: false,
-                    backgroundColor: Colors.white,
                     headerBuilder: (context, isExpanded) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -678,8 +677,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
           topRight: Radius.circular(10),
         ),
       ),
-      backgroundColor: Colors.white,
-      clipBehavior: Clip.antiAlias,
+       clipBehavior: Clip.antiAlias,
       context: context,
       builder: (context) {
         return BottomSheet(
