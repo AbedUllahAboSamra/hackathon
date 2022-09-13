@@ -33,8 +33,7 @@ class _OTPState extends State<OTP> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      body: ListView(
+       body: ListView(
         // crossAxisAlignment: CrossAxisAlignment.center,
 
         children: [

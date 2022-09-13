@@ -31,8 +31,7 @@ class CancelScreen extends StatelessWidget {
                     isExpanded: true,
                     // لتفعيل فتح الاجابة عند الضغط على كل العنصر
                     canTapOnHeader: true,
-                    backgroundColor: Colors.white,
-                    headerBuilder: (context, isExpanded) {
+                     headerBuilder: (context, isExpanded) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

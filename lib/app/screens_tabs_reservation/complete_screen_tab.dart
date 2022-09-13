@@ -40,8 +40,7 @@ class CompleteScreen extends StatelessWidget {
                     isExpanded: false,
                     // لتفعيل فتح الاجابة عند الضغط على كل العنصر
                     canTapOnHeader: false,
-                    backgroundColor: Colors.white,
-                    headerBuilder: (context, isExpanded) {
+                     headerBuilder: (context, isExpanded) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
