@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-import '../../widgets/products_user.dart';
+import '../../widgets/events.dart';
+import '../admin_screens/details_event_admin_screen.dart';
 
 class FirstTabScreen extends StatelessWidget {
   const   FirstTabScreen({Key? key}) : super(key: key);
@@ -9,10 +12,15 @@ class FirstTabScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: 10,
-      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return   prodect_card(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100', imageName: '',);
+        return   Events(image:'slider.png',ticket_available: '30', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
+          Get.to(
+                () {
+              return DetailsEventAdmin();
+            },
+          );
+        },);
 
       },
     );

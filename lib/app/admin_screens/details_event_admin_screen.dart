@@ -1,8 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/app/admin_screens/add_event_screen.dart';
 import 'package:readmore/readmore.dart';
+
+import '../praymary_screen/events_screen.dart';
 
 class DetailsEventAdmin extends StatefulWidget {
   @override
@@ -29,7 +32,6 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
               expandedHeight: 300.0.h,
               floating: false,
               pinned: true,
-
               leadingWidth: 130.w,
               leading: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,11 +42,10 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                     margin: EdgeInsets.symmetric(horizontal: 20.w),
                     decoration: BoxDecoration(
                         color: MediaQuery.of(context).platformBrightness ==
-                            Brightness.light
+                                Brightness.light
                             ? Color(0xFFF5F5F5)
                             : Colors.black87,
-                        borderRadius: BorderRadius.circular(5555.r)
-                    ),
+                        borderRadius: BorderRadius.circular(5555.r)),
                     child: InkWell(
                         onTap: () {
                           Navigator.pop(context);
@@ -52,7 +53,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                         child: Icon(
                           Icons.arrow_back_ios,
                           color: MediaQuery.of(context).platformBrightness ==
-                              Brightness.light
+                                  Brightness.light
                               ? Colors.grey[800]
                               : Colors.white,
                         )),
@@ -60,68 +61,99 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                 ],
               ),
               actions: [
+                Container(
+                  height: 25.h,
+                  width: 25.h,
+                  decoration: BoxDecoration(
+                      color: Colors.white, shape: BoxShape.circle),
+                  child: Center(
+                    child: IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                          size: 20,
+                        ),
+                        onPressed: () {},
+                        color: Color(0xff0012AA)),
+                  ),
+                ),
 
-                Icon(
-                  Icons.delete,
-                  color:
-                     Color(0xFFE30000),
+                SizedBox(
+                  width: 24.w,
                 ),
-                SizedBox(width:24.w ,),
-                Icon(
-                  Icons.edit,
-                  color: Color(0xFF063BFA)
+                Container(
+                  height: 25.h,
+                  width: 25.h,
+                  decoration: BoxDecoration(
+                      color: Colors.white, shape: BoxShape.circle),
+                  child: Center(
+                    child: IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: Icon(
+                          Icons.edit,
+                          size: 20,
+                        ),
+                        onPressed: () {
+                          Get.to(() {
+                            return AddOrUpdateEventScreen();
+                          });
+                        },
+                        color: Color(0xff0012AA)),
+                  ),
                 ),
-          SizedBox(width: 16.w,)
-          //
-          //       Container(
-          //         height: 30.h,
-          //         width: 30.h,
-          //         margin: EdgeInsets.symmetric(horizontal: 20.w),
-          //         decoration: BoxDecoration(
-          //             color: MediaQuery.of(context).platformBrightness ==
-          //                 Brightness.light
-          //                 ? Color(0xFFF5F5F5)
-          //                 : Colors.black87,
-          //             borderRadius: BorderRadius.circular(5555.r)),
-          //         child: InkWell(
-          //             onTap: () {
-          //               Navigator.pop(context);
-          //             },
-          //             child: Icon(
-          //               Icons.delete,
-          //               color: MediaQuery.of(context).platformBrightness ==
-          //                   Brightness.light
-          //                   ? Colors.grey[800]
-          //                   : Colors.white,
-          //             )),
-          //       ),
-          //       Container(
-          //
-          //         height: 30.h,
-          //         width: 30.h,
-          //
-          //
-          //         margin: EdgeInsets.symmetric(horizontal: 20.w),
-          //         decoration: BoxDecoration(
-          //             color: Colors.white,
-          //             borderRadius: BorderRadius.circular(50.r)
-          // ),
-          //         child: InkWell(
-          //             onTap: () {
-          //               Navigator.pop(context);
-          //             },
-          //             child: Icon(
-          //               Icons.edit,
-          //               color:Color(0xFF063BFA)
-          //             )),
-          //
-          //       ),
+                SizedBox(
+                  width: 16.w,
+                )
+                //
+                //       Container(
+                //         height: 30.h,
+                //         width: 30.h,
+                //         margin: EdgeInsets.symmetric(horizontal: 20.w),
+                //         decoration: BoxDecoration(
+                //             color: MediaQuery.of(context).platformBrightness ==
+                //                 Brightness.light
+                //                 ? Color(0xFFF5F5F5)
+                //                 : Colors.black87,
+                //             borderRadius: BorderRadius.circular(5555.r)),
+                //         child: InkWell(
+                //             onTap: () {
+                //               Navigator.pop(context);
+                //             },
+                //             child: Icon(
+                //               Icons.delete,
+                //               color: MediaQuery.of(context).platformBrightness ==
+                //                   Brightness.light
+                //                   ? Colors.grey[800]
+                //                   : Colors.white,
+                //             )),
+                //       ),
+                //       Container(
+                //
+                //         height: 30.h,
+                //         width: 30.h,
+                //
+                //
+                //         margin: EdgeInsets.symmetric(horizontal: 20.w),
+                //         decoration: BoxDecoration(
+                //             color: Colors.white,
+                //             borderRadius: BorderRadius.circular(50.r)
+                // ),
+                //         child: InkWell(
+                //             onTap: () {
+                //               Navigator.pop(context);
+                //             },
+                //             child: Icon(
+                //               Icons.edit,
+                //               color:Color(0xFF063BFA)
+                //             )),
+                //
+                //       ),
               ],
-
               backgroundColor:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? Color(0xFFF5F5F5)
-                  : Colors.black87,
+                  MediaQuery.of(context).platformBrightness == Brightness.light
+                      ? Color(0xFFF5F5F5)
+                      : Colors.black87,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
                   alignment: Alignment.bottomCenter,
@@ -169,7 +201,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                               margin: EdgeInsetsDirectional.only(end: 3.w),
                               child: Text('$currentImage/${imagesUrl.length}',
                                   style:
-                                  GoogleFonts.averageSans(fontSize: 12.sp)),
+                                      GoogleFonts.averageSans(fontSize: 12.sp)),
                             ),
                           ],
                         ),
@@ -184,7 +216,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                           topRight: Radius.circular(50.r),
                         ),
                         color: MediaQuery.of(context).platformBrightness ==
-                            Brightness.light
+                                Brightness.light
                             ? Color(0xFFF5F5F5)
                             : Colors.white,
                       ),
@@ -199,7 +231,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
         body: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 16.w,vertical: 20),
+            margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -251,84 +283,84 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                         children: [
                           Expanded(
                               child: Row(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 3.w, vertical: 2.h),
-                                    margin: EdgeInsetsDirectional.only(end: 4.w),
-                                    decoration: BoxDecoration(
-                                        color: Colors.green[500],
-                                        borderRadius: BorderRadius.circular(5.r)),
-                                    child: Text(
-                                      ticketPrice.toString() + "\$ ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 3.w, vertical: 2.h),
+                                margin: EdgeInsetsDirectional.only(end: 4.w),
+                                decoration: BoxDecoration(
+                                    color: Colors.green[500],
+                                    borderRadius: BorderRadius.circular(5.r)),
+                                child: Text(
+                                  ticketPrice.toString() + "\$ ",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      ?.copyWith(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                    ),
-                                  ),
-                                  Text(
-                                    "For ticket",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline6
-                                        ?.copyWith(
+                                ),
+                              ),
+                              Text(
+                                "For ticket",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    ?.copyWith(
                                         color: Colors.green[500],
                                         fontSize: 13.sp,
                                         fontWeight: FontWeight.w500),
-                                  ),
-                                  SizedBox(
-                                    width: 4.w,
-                                  ),
-                                  Text(
-                                    "|",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline6
-                                        ?.copyWith(
+                              ),
+                              SizedBox(
+                                width: 4.w,
+                              ),
+                              Text(
+                                "|",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    ?.copyWith(
                                         color: MediaQuery.of(context)
-                                            .platformBrightness ==
-                                            Brightness.light
+                                                    .platformBrightness ==
+                                                Brightness.light
                                             ? Colors.grey[500]
                                             : Colors.grey[300],
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w500),
-                                  ),
-                                  SizedBox(
-                                    width: 4.w,
-                                  ),
-                                  Text(
-                                    "$numberOfTicketsAvailable  Tickets available",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
+                              ),
+                              SizedBox(
+                                width: 4.w,
+                              ),
+                              Text(
+                                "$numberOfTicketsAvailable  Tickets available",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
                                         color: MediaQuery.of(context)
-                                            .platformBrightness ==
-                                            Brightness.light
+                                                    .platformBrightness ==
+                                                Brightness.light
                                             ? Colors.grey[500]
                                             : Colors.grey[300],
                                         fontSize: 13.sp,
                                         fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              )),
+                              ),
+                            ],
+                          )),
                           Text(
                             "available vip",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText2
                                 ?.copyWith(
-                                color: MediaQuery.of(context)
-                                    .platformBrightness ==
-                                    Brightness.light
-                                    ? Colors.grey[400]
-                                    : Colors.grey[300],
-                                fontSize: 13.sp,
-                                fontWeight: FontWeight.w500),
+                                    color: MediaQuery.of(context)
+                                                .platformBrightness ==
+                                            Brightness.light
+                                        ? Colors.grey[400]
+                                        : Colors.grey[300],
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),
@@ -341,7 +373,6 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                 Divider(),
                 Container(
                   width: double.infinity,
-
                   child: Card(
                     elevation: 2,
                     shape: RoundedRectangleBorder(
@@ -367,19 +398,19 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                           ReadMoreText(
                             'هو مؤسسة تهدف الى نشر الوعي الثقافي والفكري حول العالم وتسعى جاهدة الى اكتشاف هو مؤسسة تهدف الى نشر الوعي الثقافي والفكري حول العالم وتسعى جاهدة الى اكتشاف',
                             style:
-                            Theme.of(context).textTheme.bodyText2?.copyWith(
-                              color: Colors.grey[500],
-                            ),
+                                Theme.of(context).textTheme.bodyText2?.copyWith(
+                                      color: Colors.grey[500],
+                                    ),
                             trimLines: 2,
                             colorClickableText: Color(0xFF001BFF),
                             trimMode: TrimMode.Line,
                             trimCollapsedText: 'قراءة المزيد',
                             trimExpandedText: 'قراءةأقل',
                             moreStyle:
-                            Theme.of(context).textTheme.bodyText2?.copyWith(
-                              color: Color(0xff3c48c5),
-                              fontWeight: FontWeight.w600,
-                            ),
+                                Theme.of(context).textTheme.bodyText2?.copyWith(
+                                      color: Color(0xff3c48c5),
+                                      fontWeight: FontWeight.w600,
+                                    ),
                           ),
                           SizedBox(
                             height: 5.h,
@@ -397,12 +428,15 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                           color: Color(0xFF000637), fontSize: 18.sp),
                     ),
                     Spacer(),
-                    InkWell(child: Icon(Icons.edit ,color: Color(0xFF063BFA),
-                    ),
-                    onTap: (){Navigator.pushNamed(context, '/');}),
-
+                    InkWell(
+                        child: Icon(
+                          Icons.edit,
+                          color: Color(0xFF063BFA),
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/');
+                        }),
                   ],
-
                 ),
                 Container(
                   child: ListView.builder(
@@ -418,9 +452,17 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                           child: ExpansionTile(
                             title: Row(
                               children: [
-                                Text('اليوم الاول' ,style: GoogleFonts.cairo(fontSize: 14.sp ,color: Color(0xFF000000)),),
+                                Text(
+                                  'اليوم الاول',
+                                  style: GoogleFonts.cairo(
+                                      fontSize: 14.sp,
+                                      color: Color(0xFF000000)),
+                                ),
                                 Spacer(),
-                                Text('20201/20/2000',style: GoogleFonts.cairo(fontSize: 14.sp ,color: Color(0xFF0012AA)))
+                                Text('20201/20/2000',
+                                    style: GoogleFonts.cairo(
+                                        fontSize: 14.sp,
+                                        color: Color(0xFF0012AA)))
                               ],
                             ),
                             children: [
@@ -448,7 +490,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                                         decoration: BoxDecoration(
                                             color: Color(0xff3c48c5),
                                             borderRadius:
-                                            BorderRadius.circular(5.r)),
+                                                BorderRadius.circular(5.r)),
                                       ),
                                       SizedBox(
                                         height: 8.h,
@@ -461,17 +503,22 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
-                                      Text('8:30 ص' ,style: GoogleFonts.cairo(fontSize: 14.sp ,color: Color(0xFF120007)),),
-
-
+                                        Text(
+                                          '8:30 ص',
+                                          style: GoogleFonts.cairo(
+                                              fontSize: 14.sp,
+                                              color: Color(0xFF120007)),
+                                        ),
                                         SizedBox(
                                           height: 20.h,
                                         ),
                                         Text(
-                                          'يبدء المهرجان بوصلة غناء من الفنانة اصالة',
-                                           style: GoogleFonts.cairo(fontSize: 12.sp ,color: Color(0xFF838383))),
+                                            'يبدء المهرجان بوصلة غناء من الفنانة اصالة',
+                                            style: GoogleFonts.cairo(
+                                                fontSize: 12.sp,
+                                                color: Color(0xFF838383))),
                                         SizedBox(
                                           height: 10.h,
                                         )
@@ -509,7 +556,9 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Container(
                   decoration: BoxDecoration(
                     color: Color(0xffFFFFFF),
@@ -520,26 +569,40 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                     padding: const EdgeInsets.all(16),
                     child: Row(
                       children: [
-                        Container(child: Row(
-                          children: [
-                            Text('+100k' ,style: GoogleFonts.cairo(color: Color(0xFF2940FF),fontSize: 12.sp),),
-                            Text('تذكرة متاحة',style: GoogleFonts.cairo(color: Color(0xFF838383),fontSize: 10.sp)),
-
-                            VerticalDivider(),
-
-                            Text('500',style: GoogleFonts.cairo(color: Color(0xFF2940FF),fontSize: 12.sp)),
-
-                            Text('تذكرة متاحة',style: GoogleFonts.cairo(color: Color(0xFF838383),fontSize: 10.sp)),
-
-                          ],
-                        ),
+                        Container(
+                          child: Row(
+                            children: [
+                              Text(
+                                '+100k',
+                                style: GoogleFonts.cairo(
+                                    color: Color(0xFF2940FF), fontSize: 12.sp),
+                              ),
+                              Text('تذكرة متاحة',
+                                  style: GoogleFonts.cairo(
+                                      color: Color(0xFF838383),
+                                      fontSize: 10.sp)),
+                              VerticalDivider(),
+                              Text('500',
+                                  style: GoogleFonts.cairo(
+                                      color: Color(0xFF2940FF),
+                                      fontSize: 12.sp)),
+                              Text('تذكرة متاحة',
+                                  style: GoogleFonts.cairo(
+                                      color: Color(0xFF838383),
+                                      fontSize: 10.sp)),
+                            ],
+                          ),
                         ),
                         Spacer(),
-                        Text('الايرادات',style: GoogleFonts.cairo(color: Color(0xFF2940FF),fontSize: 12.sp)),
-                        SizedBox(width: 5.w,),
-                        Text('1000\$',style: GoogleFonts.cairo(color: Color(0xFF2940FF),fontSize: 12.sp)),
-
-
+                        Text('الايرادات',
+                            style: GoogleFonts.cairo(
+                                color: Color(0xFF2940FF), fontSize: 12.sp)),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Text('1000\$',
+                            style: GoogleFonts.cairo(
+                                color: Color(0xFF2940FF), fontSize: 12.sp)),
                       ],
                     ),
                   ),

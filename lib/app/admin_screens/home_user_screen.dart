@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/events.dart';
+import 'details_event_admin_screen.dart';
 
 
 class HomeUserScreen extends StatefulWidget {
@@ -166,8 +169,20 @@ class _HomeUserScreenState extends State<HomeUserScreen> {
 
                     ],
                   ),
-                  Events(image:'slider.png' ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',),
-                  Events(image:'slider.png'  ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100'),
+                  Events(image:'slider.png' ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
+                    Get.to(
+                      () {
+                        return DetailsEventAdmin();
+                      },
+                    );
+                  },),
+                  Events(image:'slider.png'  ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
+                    Get.to(
+                      () {
+                        return DetailsEventAdmin();
+                      },
+                    );
+                  },),
 
                 ],
               ),
@@ -210,7 +225,13 @@ class _HomeUserScreenState extends State<HomeUserScreen> {
 
                     ],
                   ),
-                  Events(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',image:'slider.png',),
+                  Events(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',image:'slider.png',  onTap: () {
+                    Get.to(
+                          () {
+                        return DetailsEventAdmin();
+                      },
+                    );
+                  },),
 
                 ],
               ),

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hackathon_project/app/ticket/taps/basic_info_screen.dart';
 
+import '../../widgets/activate_widget_tazaker.dart';
 import '../../widgets/events.dart';
 import '../taps/first_tab_screen.dart';
 import '../taps/second_tab_screen.dart';
 
-class EventsScreen extends StatefulWidget {
-  const EventsScreen({Key? key}) : super(key: key);
+class TazakerScreen extends StatefulWidget {
+  const TazakerScreen({Key? key}) : super(key: key);
 
   @override
-  State<EventsScreen> createState() => _EventsScreenState();
+  State<TazakerScreen> createState() => _TazakerScreenState();
 }
 
-class _EventsScreenState extends State<EventsScreen>
+class _TazakerScreenState extends State<TazakerScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -36,17 +35,10 @@ class _EventsScreenState extends State<EventsScreen>
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+
       appBar: AppBar(title: Text("فعاليات"),
         leading: Icon(color: Colors.transparent,Icons.arrow_forward_ios),
-        actions: [
 
-          IconButton(color: Colors.black,icon: Icon(Icons.add),onPressed: (){
-            // Navigator.pushNamed(context, '/add_event');
-            Get.to((){
-              return AddEventScreen();
-            });
-          },)
-        ],
       ),
       body: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 20.w ,vertical: 20.h),
@@ -68,20 +60,33 @@ class _EventsScreenState extends State<EventsScreen>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "الفعاليات",
+                        "اجمالي التذاكر",
                         style: GoogleFonts.cairo(
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                           fontSize: 14.sp,
                         ),
                       ),
-                      Text(
-                        "100K فعالية",
-                        style: GoogleFonts.cairo(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          fontSize: 14.sp,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            "100K ",
+                            style: GoogleFonts.cairo(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                          Text(
+                            "تذكرة ",
+                            style: GoogleFonts.cairo(
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF909090),
+                              fontSize: 10.sp,
+                            ),
+                          )
+
+                        ],
                       )
                     ],
                   ),
@@ -221,7 +226,7 @@ class _EventsScreenState extends State<EventsScreen>
                       child: TabBarView(
                         controller: _tabController,
                         children: [
-                          FirstTabScreen(),
+                          ActiveScreenTazaker(),
 
                           SecondTabScreen(),
 
