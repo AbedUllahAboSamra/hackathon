@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../widgets/products_user.dart';
 import '../taps/first_tab_screen.dart';
 import '../taps/second_tab_screen.dart';
 
@@ -40,27 +39,25 @@ class _EventsScreenState extends State<EventsScreen>
         actions: [
 
           IconButton(color: Colors.black,icon: Icon(Icons.add),onPressed: (){
-            Navigator.pushNamed(context, '/info_screen');
+            Navigator.pushNamed(context, '/add_event');
           },)
         ],
       ),
-      body: ListView(
-        children: [
-          Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(20),
-                width: MediaQuery.of(context).size.width,
-                height: 130,
-                color: Color(0xD0FFFFFF),
-                child: Container(
+      body: Padding(
+        padding:  EdgeInsets.symmetric(horizontal: 20.w ,vertical: 20.h),
+        child: Column(
+          children: [
+
+                Container(
+                  height: 84.h,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.r),
                     color: Colors.white,
                     border: Border.all(color: Colors.black12),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,6 +80,15 @@ class _EventsScreenState extends State<EventsScreen>
                           )
                         ],
                       ),
+                      // Divider(),
+                      SizedBox(width: 40.w,),
+
+                      VerticalDivider(
+
+                        color: Color(0xFFBBBBBB),
+                        thickness: 0.5,
+                      ),
+                      SizedBox(width: 40.w,),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -159,70 +165,78 @@ class _EventsScreenState extends State<EventsScreen>
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
+                SizedBox(height: 22.h,),
+                Divider(  ),
 
-            ],
-          ),
-
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black45,
-                        offset: Offset(0, 1),
-                        blurRadius: 0.1,
-                      ),
-                    ]),
-                child: TabBar(
-                  controller: _tabController,
-                  labelColor: Colors.white,
-                  unselectedLabelColor: Colors.grey,
-                  labelPadding: const EdgeInsets.symmetric(vertical: 10),
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  indicator: const BoxDecoration(
-                      color: Color(0XFF001BFF),
-                      borderRadius: BorderRadius.all(Radius.circular(35))),
-                  tabs: [
-                    Text(
-                      'نشطة ',
-                      style: GoogleFonts.cairo(),
-                    ),
-                    Text(
-                      'مكتملة',
-                      style: GoogleFonts.cairo(),
-                    ),
-                    Text(
-                      'ملغاه',
-                      style: GoogleFonts.cairo(),
-                    ),
-                  ],
-                ),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height - 210),
-                child: TabBarView(
-                  controller: _tabController,
+            Expanded(
+              child: Container(
+                child: Column(
                   children: [
-                    FirstTabScreen(),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black45,
+                              offset: Offset(0, 1),
+                              blurRadius: 0.1,
+                            ),
+                          ]),
+                      child: TabBar(
+                        controller: _tabController,
+                        labelColor: Colors.white,
+                        unselectedLabelColor: Colors.grey,
+                        labelPadding: const EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        indicator: const BoxDecoration(
+                            color: Color(0XFF001BFF),
+                            borderRadius: BorderRadius.all(Radius.circular(35))),
+                        tabs: [
+                          Text(
+                            'نشطة ',
+                            style: GoogleFonts.cairo(),
+                          ),
+                          Text(
+                            'مكتملة',
+                            style: GoogleFonts.cairo(),
+                          ),
+                          Text(
+                            'ملغاه',
+                            style: GoogleFonts.cairo(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10.h,),
 
-                    SecondTabScreen(),
 
-                    FirstTabScreen(),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height - 400),
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          FirstTabScreen(),
+
+                          SecondTabScreen(),
+
+                          FirstTabScreen(),
+                        ],
+                      ),
+                    ),
+                    // SizedBox(height: 50.h,),
+
+
+
                   ],
                 ),
               ),
-            ],
-          )
+            )
 
-        ],
+          ],
+        ),
       ),
     );
   }

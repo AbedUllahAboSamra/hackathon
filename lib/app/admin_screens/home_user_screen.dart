@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../widgets/products_user.dart';
+import '../../widgets/events.dart';
 
 
 class HomeUserScreen extends StatefulWidget {
@@ -166,112 +166,8 @@ class _HomeUserScreenState extends State<HomeUserScreen> {
 
                     ],
                   ),
-                  // Container(
-                  //   padding: EdgeInsets.all(10),
-                  //   child: Column(
-                  //     children: [
-                  //       Container(
-                  //         decoration: BoxDecoration(
-                  //             color: Colors.white,
-                  //             border: Border.all(color: Colors.black12),
-                  //             borderRadius: BorderRadius.all(Radius.circular(10))
-                  //         ),
-                  //         height: 110,
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.start,
-                  //           children: [
-                  //             Container(
-                  //               width: 100,
-                  //               decoration: BoxDecoration(
-                  //                 image: DecorationImage(
-                  //                   image: NetworkImage(
-                  //                       "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80"),
-                  //                   fit: BoxFit.cover,
-                  //                 ),
-                  //                 borderRadius: BorderRadius.only(
-                  //                   topRight: Radius.circular(10),
-                  //                   bottomRight: Radius.circular(10),
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             SizedBox(width: 10.w,),
-                  //
-                  //             Column(
-                  //               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //               crossAxisAlignment: CrossAxisAlignment.start,
-                  //               children: [
-                  //                 Text(
-                  //                   "فعاليات مهرجان صورة العرب",
-                  //                   style: GoogleFonts.cairo(
-                  //                     fontWeight: FontWeight.w500,
-                  //                     color: Colors.black,
-                  //                     fontSize: 15.sp,
-                  //                   ),
-                  //                 ),
-                  //                 Row(
-                  //                   children: [
-                  //                     Text(
-                  //                       " تنلىيبل ",
-                  //                       style: GoogleFonts.cairo(
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color: Colors.grey,
-                  //                         fontSize: 12.sp,
-                  //                       ),
-                  //                     ),
-                  //                     Text(
-                  //                       " 500 ",
-                  //                       style: GoogleFonts.cairo(
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color:  Color(0xF81059D7),
-                  //                         fontSize: 13.sp,
-                  //                       ),
-                  //                     ),
-                  //                     Text(
-                  //                       " | ",
-                  //                       style: GoogleFonts.cairo(
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color:  Colors.grey,
-                  //                         fontSize: 13.sp,
-                  //                       ),
-                  //                     ),
-                  //                     Text(
-                  //                       " تنلىيبل ",
-                  //                       style: GoogleFonts.cairo(
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color: Colors.grey,
-                  //                         fontSize: 12.sp,
-                  //                       ),
-                  //                     ),
-                  //                     Text(
-                  //                       " 100 ",
-                  //                       style: GoogleFonts.cairo(
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color:  Color(0xF81059D7),
-                  //                         fontSize: 13.sp,
-                  //                       ),
-                  //                     ),
-                  //                   ],
-                  //                 ),
-                  //                 Text(
-                  //                   "تاريخ الفعاليات : " + " 10/8/2022",
-                  //                   style: GoogleFonts.cairo(
-                  //                     fontWeight: FontWeight.w500,
-                  //                     color: Colors.grey,
-                  //                     fontSize: 13.sp,
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //
-                  //
-                  //           ],
-                  //         ),
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
-                  prodect_card(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100', imageName: "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80",),
-                  prodect_card(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100', imageName: '',),
+                  Events(image:'slider.png' ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',),
+                  Events(image:'slider.png'  ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100'),
 
                 ],
               ),
@@ -314,7 +210,7 @@ class _HomeUserScreenState extends State<HomeUserScreen> {
 
                     ],
                   ),
-                  prodect_card(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100', imageName: '',),
+                  Events(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',image:'slider.png',),
 
                 ],
               ),

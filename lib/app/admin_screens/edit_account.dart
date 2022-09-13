@@ -44,6 +44,7 @@ class _EditAccountState extends State<EditAccount> with Helpers {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.white,
 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
