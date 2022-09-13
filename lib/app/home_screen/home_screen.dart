@@ -229,9 +229,9 @@ var controller = Get.put<FirebaseController>(FirebaseController());
 
 @override
   Widget build(BuildContext context) {
-  var array = controller.fillterEvints(fillterBy: fillterType);
-
-  return Container(
+    var array = controller.fillterEvints(fillterBy: fillterType);
+  print(array);
+    return Container(
       height: 200.h,
       child: ListView.builder(
         itemCount:array.length,

@@ -3,9 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
+import 'package:hackathon_project/app/admin_screens/edit_account.dart';
+import 'package:hackathon_project/prefs/prefs.dart';
+import 'package:path/path.dart';
 
 class AccountScreen extends StatelessWidget {
-   AccountScreen({Key? key}) : super(key: key);
+  final bool isAdmin;
+   AccountScreen({Key? key, this.isAdmin=false}) : super(key: key);
   FirebaseController controller=Get.put(FirebaseController());
 
   @override
@@ -21,7 +25,6 @@ class AccountScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: Color(0xffF5F5F5),
-        leading: Icon(Icons.logout),
       ),
       body: GetBuilder<FirebaseController>(
         builder: (controller) {
@@ -47,11 +50,11 @@ class AccountScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(controller.userModel.fullName),
+                          Text(isAdmin ?'admin':controller.userModel.fullName),
                           SizedBox(
                             height: 12.h,
                           ),
-                          Text(controller.userModel.phone),
+                          Text(isAdmin ?'admin':controller.userModel.phone),
                         ],
                       ),
                     ),
@@ -59,7 +62,9 @@ class AccountScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 30),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to((){return EditAccount(name:isAdmin ?'admin':controller.userModel.fullName,phone:isAdmin ?'':controller.userModel.phone,email:isAdmin ?'admin@gmail.com':controller.userModel.email);});
+                        },
                         color: Colors.blue,
                         icon: Icon(
                           Icons.edit,
@@ -184,7 +189,43 @@ class AccountScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
+              SizedBox(
+                height: 20,
+              ),
+              GestureDetector(
+                onTap: (){
+                  _confirmLogoutDialog(context);
+                },
+                child: Container(
+                  height: 48,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          color: Colors.blue,
+                          icon: Icon(
+                            Icons.logout,
+                          ),
+                        ),
+                        Text('تسجيل خروج '),
+                        Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            // _confirmLogoutDialog(context);
+                          },
+                          color: Colors.grey.shade500,
+                          icon: Icon(
+                            Icons.arrow_back_ios_new,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
 
             ]),
           );
@@ -192,4 +233,54 @@ class AccountScreen extends StatelessWidget {
       ),
     );
   }
+   void _confirmLogoutDialog(BuildContext context) async {
+     bool? result = await showDialog<bool>(
+       context: context,
+       // barrierColor: Colors.red.shade100.withOpacity(0.5),
+       barrierDismissible: false,
+       builder: (context) {
+         return AlertDialog(
+           title: Text(
+             'هل تريد تسجيل الخروج ؟',
+           ),
+           titleTextStyle: GoogleFonts.cairo(
+             fontSize: 16,
+             color: Colors.black,
+           ),
+           contentTextStyle: GoogleFonts.cairo(
+             fontSize: 13,
+             color: Colors.black45,
+           ),
+           actions: [
+             TextButton(
+               onPressed: () {
+                 SharedPrefController().removeValueFor('uId');
+                 Navigator.pop(context, true);
+               },
+               child: Text(
+                 'نعم',
+                 style: GoogleFonts.cairo(color: Colors.red),
+               ),
+             ),
+             TextButton(
+               onPressed: () {
+                 Navigator.pop(context, false);
+               },
+               child: Text(
+                 'لا',
+                 style: GoogleFonts.cairo(),
+               ),
+             ),
+           ],
+         );
+       },
+     );
+     if (result ?? false) {
+       // bool cleared = await SharedPrefController().removeValueFor(PrefKeys.loggedIn.name);
+       //  bool cleared = await SharedPrefController().clear();
+       //  if (cleared) {
+       Navigator.pushReplacementNamed(context, '/login_screen');
+       //  }
+     }
+   }
 }

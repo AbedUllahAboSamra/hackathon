@@ -4,14 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../widgets/adding_row.dart';
 
-class BasicInfoScreen extends StatefulWidget {
-  const BasicInfoScreen({Key? key}) : super(key: key);
+class AddEventScreen extends StatefulWidget {
+  const AddEventScreen({Key? key}) : super(key: key);
 
   @override
-  State<BasicInfoScreen> createState() => _BasicInfoScreenState();
+  State<AddEventScreen> createState() => _AddEventScreenState();
 }
 
-class _BasicInfoScreenState extends State<BasicInfoScreen> {
+class _AddEventScreenState extends State<AddEventScreen> {
   DateTime dateStart = DateTime(2022, 9, 12);
   DateTime dateEnd = DateTime(2022, 9, 12);
 

@@ -21,7 +21,6 @@ class OnBoardingContent extends StatelessWidget {
           flex: 2,
           child: Stack(
             alignment: Alignment.bottomCenter,
-
             children: [
               Container(
 

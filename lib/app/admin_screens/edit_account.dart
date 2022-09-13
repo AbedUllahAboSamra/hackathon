@@ -7,7 +7,10 @@ import '../../widgets/default_button.dart';
 import '../../widgets/helpers.dart';
 
 class EditAccount extends StatefulWidget {
-  const EditAccount({Key? key}) : super(key: key);
+  final String name;
+  final String phone;
+  final String email;
+   EditAccount({Key? key,required this.phone,required this.email,required this.name}) : super(key: key);
 
   @override
   State<EditAccount> createState() => _EditAccountState();
@@ -26,9 +29,9 @@ class _EditAccountState extends State<EditAccount> with Helpers {
   @override
   void initState() {
     super.initState();
-    _phoneTextController = TextEditingController();
-    _nameTextController = TextEditingController();
-    _emailTextController = TextEditingController();
+    _phoneTextController = TextEditingController(text: widget.phone);
+    _nameTextController = TextEditingController(text: widget.name);
+    _emailTextController = TextEditingController(text: widget.email);
   }
 
   @override
@@ -98,7 +101,7 @@ class _EditAccountState extends State<EditAccount> with Helpers {
             SizedBox(height: 36.h),
             Text('اسم المستخدم',),
             AppTextField(
-              hint: "محمد محمد ",
+              hint: "أكتب اسمك",
               prefixIcon: Icons.person,
               keyboardType: TextInputType.text,
               controller: _nameTextController,
@@ -106,7 +109,7 @@ class _EditAccountState extends State<EditAccount> with Helpers {
             SizedBox(height: 26.h),
             Text('رقم الجوال',),
             AppTextField(
-              hint: "+966 5211043 ",
+              hint: "+97000000000",
               prefixIcon: Icons.phone_android_outlined,
               keyboardType: TextInputType.phone,
               controller: _phoneTextController,
@@ -114,7 +117,7 @@ class _EditAccountState extends State<EditAccount> with Helpers {
             SizedBox(height: 26.h),
             Text('البريد الاكتروني',),
             AppTextField(
-              hint: "Mona Fadl@gmail.com ",
+              hint: "أكتب بريدك الالكتروني",
               prefixIcon: Icons.email,
               keyboardType: TextInputType.emailAddress,
               controller: _emailTextController,
