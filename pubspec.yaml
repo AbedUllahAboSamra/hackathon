@@ -53,6 +53,12 @@ dependencies:
   cached_network_image: ^3.2.1
   readmore: ^2.2.0
   backdrop: ^0.8.1
+  firebase_core: ^1.22.0
+  firebase_auth: ^3.8.0
+  cloud_firestore: ^3.4.7
+
+
+
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:hackathon_project/app/admin_screens/settings_screen.dart';
+ import 'package:hackathon_project/app/admin_screens/settings_screen.dart';
  import 'package:hackathon_project/app/home_screen/home_screen.dart';
 import 'package:hackathon_project/app/praymary_screen/main_screen.dart';
 import 'package:hackathon_project/app/praymary_screen/reservations.dart';
@@ -110,14 +109,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       builder: (context) {
         return AlertDialog(
           title: Text(
-            AppLocalizations.of(context)!.confirm_logout_title,
+            'AppLocalizations.of(context)!.confirm_logout_title',
           ),
           titleTextStyle: GoogleFonts.cairo(
             fontSize: 16,
             color: Colors.black,
           ),
           content: Text(
-            AppLocalizations.of(context)!.confirm_logout_content,
+           ' AppLocalizations.of(context)!.confirm_logout_content',
           ),
           contentTextStyle: GoogleFonts.cairo(
             fontSize: 13,
@@ -129,7 +128,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 Navigator.pop(context, true);
               },
               child: Text(
-                AppLocalizations.of(context)!.confirm,
+                'AppLocalizations.of(context)!.confirm',
                 style: GoogleFonts.cairo(color: Colors.red),
               ),
             ),
@@ -138,7 +137,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 Navigator.pop(context, false);
               },
               child: Text(
-                AppLocalizations.of(context)!.cancel,
+                'AppLocalizations.of(context)!.cancel',
                 style: GoogleFonts.cairo(),
               ),
             ),
