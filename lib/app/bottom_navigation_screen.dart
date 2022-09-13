@@ -37,6 +37,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     //  backgroundColor: Colors.red,
       body: _screens[_selectedPageIndex].widget,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         onTap: (int selectedPageIndex) {
           setState(() => _selectedPageIndex = selectedPageIndex);
         },

@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
 
             '/otp_screen': (context) => const OTP(),
             '/details_screen': (context) =>   DetailsScreen(),
-            '/acount_screen': (context) => const AccountScreen(),
+            '/acount_screen': (context) =>  AccountScreen(),
             '/edit_screen': (context) => const EditAccount(),
             '/home_user_screen': (context) => const HomeUserScreen(),
             '/payments_screen': (context) => const Payments(),

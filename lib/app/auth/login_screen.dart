@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   Future<void> _login() async {
 
     controller.methodLogin(email: _emailTextController.text, password: _passwordTextController.text);
-
+    Navigator.pushNamed(context, '/btn_navigation_screen');
 
   }
 
