@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../prefs/prefs.dart';
 import '../widgets/default_button.dart';
 import '../widgets/on_boarding_content.dart';
 
@@ -18,6 +19,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void initState() {
     super.initState();
+    if (SharedPrefController().getValueFor('isShown')==true) {
+      Navigator.pushReplacementNamed(context, '/login_screen');
+    }
+
+
     _pageController = PageController();
   }
 
@@ -33,7 +39,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-
             Expanded(
               child: PageView(
                 physics: BouncingScrollPhysics(),
@@ -49,58 +54,64 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   OnBoardingContent(
                     imageName: 'boarding1.png',
                     title: 'كل الفعاليات في مكان واحد',
-                    description:   'معنا تستطيع متابعة كل الفعاليات من حولك فور  الاعلان عنها و اختيار ما يناسب رغباتك في اي مكان تريد الذهاب اليه',
+                    description:
+                        'معنا تستطيع متابعة كل الفعاليات من حولك فور  الاعلان عنها و اختيار ما يناسب رغباتك في اي مكان تريد الذهاب اليه',
                   ),
                   OnBoardingContent(
                     imageName: 'boarding2.png',
                     title: 'احجز تذكرتك بكل سهوله',
-                    description: '''معنا تستطيع متابعة كل الفعاليات من حولك فور الاعلان عنها و اختيار ما يناسب رغباتك في اي مكان تريد الذهاب اليه
+                    description:
+                        '''معنا تستطيع متابعة كل الفعاليات من حولك فور الاعلان عنها و اختيار ما يناسب رغباتك في اي مكان تريد الذهاب اليه
 ''',
                   ),
                   OnBoardingContent(
                     imageName: 'boarding3.png',
                     title: 'الوصول اسهل',
-                    description: '''معنا تستطيع الوصول ال مكان الفعالية بشكل مباشر وسهل ومندون جهد او تعب ومن دون ما تسال حد ويضيعك من خلال الخريطة
+                    description:
+                        '''معنا تستطيع الوصول ال مكان الفعالية بشكل مباشر وسهل ومندون جهد او تعب ومن دون ما تسال حد ويضيعك من خلال الخريطة
 ''',
                   ),
                 ],
               ),
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TabPageSelectorIndicator(
-                   backgroundColor:_currentPage ==0 ?Colors.blue: Colors.grey,
-                    borderColor: _currentPage==0 ?Colors.blue: Colors.grey,
-                    size: 10,),
+                  backgroundColor:
+                      _currentPage == 0 ? Colors.blue : Colors.grey,
+                  borderColor: _currentPage == 0 ? Colors.blue : Colors.grey,
+                  size: 10,
+                ),
                 TabPageSelectorIndicator(
-                  backgroundColor:_currentPage ==1 ?Colors.blue: Colors.grey,
-                  borderColor: _currentPage==1 ?Colors.blue: Colors.grey,
-                  size: 10,),
+                  backgroundColor:
+                      _currentPage == 1 ? Colors.blue : Colors.grey,
+                  borderColor: _currentPage == 1 ? Colors.blue : Colors.grey,
+                  size: 10,
+                ),
                 TabPageSelectorIndicator(
-                  backgroundColor:_currentPage ==2 ?Colors.blue: Colors.grey,
-                  borderColor: _currentPage==2 ?Colors.blue: Colors.grey,
-                  size: 10,),
+                  backgroundColor:
+                      _currentPage == 2 ? Colors.blue : Colors.grey,
+                  borderColor: _currentPage == 2 ? Colors.blue : Colors.grey,
+                  size: 10,
+                ),
               ],
             ),
-
-
             Visibility(
               visible: _currentPage < 2,
-              // maintainSize: true,
-              // maintainState: true,
-              // maintainAnimation: true,
               replacement: TextButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/login_screen');
+                  SharedPrefController()
+                      .saveBool(key: "isShown", boolean: true);
 
+                  Navigator.pushReplacementNamed(context, '/login_screen');
                 },
-                child:
-                DefaultButton(
+                child: DefaultButton(
                   text: "تخطي",
-                  press: () => {
-                    Navigator.pushReplacementNamed(context, '/login_screen')
+                  press: () {
+                    SharedPrefController()
+                        .saveBool(key: "isShown", boolean: true);
+                    Navigator.pushReplacementNamed(context, '/login_screen');
                   },
                 ),
               ),
@@ -111,9 +122,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         curve: Curves.easeInOutBack);
                   },
                   style: TextButton.styleFrom(),
-                  child: Icon(Icons.arrow_forward_ios,)),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                  )),
             ),
-
             SizedBox(
               height: 25,
             ),

@@ -2,12 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
  import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
  import 'package:hackathon_project/prefs/prefs.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
  import 'app/payment_cards/new_payments.dart';
 import 'app/payment_cards/pay_screen.dart';
 import 'app/payment_cards/payments.dart';
@@ -96,6 +96,7 @@ class MyApp extends StatelessWidget {
 
 
           },
+ navigatorKey: Get.key,
         );
       },
     );
