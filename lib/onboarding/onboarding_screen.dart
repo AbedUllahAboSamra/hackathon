@@ -98,7 +98,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
                 child:
                 DefaultButton(
-                  text: "SKIP",
+                  text: "تخطي",
                   press: () => {
                     Navigator.pushReplacementNamed(context, '/login_screen')
                   },
