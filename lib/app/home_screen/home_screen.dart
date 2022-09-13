@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/widgets/Dialog/Coustom_Dialog.dart';
 
 import '../../Get/FirebaseController.dart';
+import 'details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 25.h, left: 15.w, right: 15.w),
+      padding: EdgeInsets.only(top: 25.h, ),
       child: ListView(
         children: [
           CarouselSlider(
@@ -81,10 +82,13 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 39.h,
           ),
-          Text(
-            'أشهر الفعاليات',
-            style: TextStyle(
-                color: Color(0xff120007), fontWeight: FontWeight.normal),
+          Container(
+            margin: EdgeInsets.only(left: 15.w,right: 15.w),
+            child: Text(
+              'أشهر الفعاليات',
+              style: TextStyle(
+                  color: Color(0xff120007), fontWeight: FontWeight.normal),
+            ),
           ),
           SizedBox(
             height: 14.sp,
@@ -93,10 +97,12 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 24.sp,
           ),
-          Text(
+    Container(
+    margin: EdgeInsets.only(left: 15.w,right: 15.w),
+    child:Text(
             'سيبدأ قريبا',
             style: GoogleFonts.cairo(color: Color(0xFF120007), fontSize: 16.sp),
-          ),
+          ),),
           SizedBox(
             height: 14.h,
           ),
@@ -208,9 +214,11 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 24.h,
           ),
-          Text(
+            Container(
+    margin: EdgeInsets.only(left: 15.w,right: 15.w),
+    child:Text(
             'أحدث الفعاليات',
-          ),
+          ),),
           SizedBox(
             height: 14.h,
           ),
@@ -236,68 +244,77 @@ var controller = Get.put<FirebaseController>(FirebaseController());
       child: ListView.builder(
         itemCount:array.length,
         itemBuilder: (context, index) {
-          return InkWell(
-            onTap: (){},
-            child: Stack(
-              children: [
-                Container(
-                  child: Image.network(
-                    array[index].imagesUrl![0].toString(),
-                    color: Colors.grey.withOpacity(0.8),
-                    colorBlendMode: BlendMode.modulate,
-                    fit: BoxFit.cover,
+          return Container(
+
+            height: 200.h,
+            width: 140.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.r),
+              color: Colors.black26
+            ),
+                margin: EdgeInsets.only(left: 15.w,right: index==0?15.w:0),
+
+            child: InkWell(
+              onTap: (){
+              Get.to(DetailsScreen(falia:array[index]));
+
+              },
+              child: Stack(
+                fit: StackFit.expand,
+                clipBehavior: Clip.hardEdge,
+                children: [
+
+                  Container(
+                    clipBehavior: Clip.hardEdge,
+                    child: Image.network(
+                      array[index].imagesUrl![0].toString(),
+                      color: Colors.grey.withOpacity(0.8),
+                      colorBlendMode: BlendMode.modulate,
+                      fit: BoxFit.fill,
+                    ),
+                    decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
                   ),
-                  margin: EdgeInsets.only(left: 16.w),
-                  height: 200.h,
-                  width: 140.w,
-                  decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
-                ),
-                Positioned(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Positioned(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
 
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                    children: [
-                      Text('\$20',
+                      children: [
+                        Text(array[index].ticketPrice.toString()+"\$",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.bold)),
+                         Text(
+                          array[index].name,
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.normal)),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                      Text(
-                        'المهرجان الكيودو ',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.normal),
-                      ),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                      Row(
-                        children: [
-                          Text('1K',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.normal)),
-                          Text('تذكرة متاحة',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.normal)),
-                        ],
-                      ),
-                    ],
+                              color: Colors.white,  fontSize: 12.sp,
+                              fontWeight: FontWeight.bold),
+
+                        ),
+
+                        Row(
+                          children: [
+                            Text(array[index].numberOfTickets.toString(),
+                                style: TextStyle(
+                                    color: Colors.white,  fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold)),
+                            SizedBox(width: 5.w,),
+                            Text('تذكرة متاحة',
+                                style: TextStyle(
+                                    color: Colors.white,  fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ],
+                    ),
+                    right: 10.w,
+                    bottom: 8.h,
                   ),
-                  right: 12.w,
-                  bottom: 14.h,
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

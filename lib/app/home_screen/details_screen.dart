@@ -1,30 +1,25 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
+import 'package:hackathon_project/model/FaliaModel.dart';
 import 'package:readmore/readmore.dart';
 
 class DetailsScreen extends StatefulWidget {
+  late FaliaModel falia;
+
+  DetailsScreen({required this.falia});
+
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  var isCollapse = false;
   var currentImage = 1;
 
-  var imagesUrl = ['images/assets/boarding1.png'];
-  var evintName = "abed ullah abo Samra";
-  var compunyName = "isu asdlkm ";
-  var aboutCompunyName =
-      "isu a as'dak spodka spdokaspodk aposdk apsodk apso dmsogkdnm dkfmapso dfkaspodk aspodk apsodk aspo dmaspkfmsdfklm s;SOFN JPa;fd sdlkm ";
-  var nameDiscribtion = "abe i am scoll asd ;lasd mboidkfv ";
-  var ticketPrice = 20;
+  var controller = Get.put<FirebaseController>(FirebaseController());
 
-  var numberOfTicketsAvailable = 200;
- var controller  = Get.put<FirebaseController>(FirebaseController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +30,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
               expandedHeight: 300.0.h,
               floating: false,
               pinned: true,
-
               leadingWidth: 130.w,
               leading: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,8 +68,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Container(
                       height: double.infinity,
                       child: PageView.builder(
-                        itemBuilder: (context, index) => Image.asset(
-                          imagesUrl[index],
+                        itemBuilder: (context, index) => Image.network(
+                          widget.falia.imagesUrl![index],
                           fit: BoxFit.cover,
                         ),
                         onPageChanged: (v) {
@@ -83,7 +77,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             currentImage = v + 1;
                           });
                         },
-                        itemCount: imagesUrl.length,
+                        itemCount: widget.falia.imagesUrl!.length,
                       ),
                     ),
                     Align(
@@ -111,7 +105,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             ),
                             Container(
                               margin: EdgeInsetsDirectional.only(end: 3.w),
-                              child: Text('$currentImage/${imagesUrl.length}',
+                              child: Text(
+                                  '$currentImage/${widget.falia.imagesUrl!.length}',
                                   style:
                                       GoogleFonts.averageSans(fontSize: 12.sp)),
                             ),
@@ -143,7 +138,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
         body: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 16.w,vertical: 20),
+            margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20),
+           decoration: BoxDecoration(
+             borderRadius: BorderRadius.only(
+               topLeft: Radius.circular(50.r),
+               topRight: Radius.circular(50.r),
+
+             )
+           ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -159,7 +161,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         children: [
                           Expanded(
                             child: Text(
-                              'فعاليات مهرجان صوت العرب ',
+                              widget.falia.name,
                               style: GoogleFonts.cairo(
                                   color: Color(0xFF000637), fontSize: 18.sp),
                             ),
@@ -183,7 +185,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         height: 12.h,
                       ),
                       Text(
-                        'الراعي الرسمي للمهرجان مؤسسة  استرز للفنون',
+                        widget.falia.faliaDescrebtion,
                         style: GoogleFonts.cairo(
                             color: Color(0xFF565656), fontSize: 10.sp),
                       ),
@@ -204,7 +206,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     color: Colors.green[500],
                                     borderRadius: BorderRadius.circular(5.r)),
                                 child: Text(
-                                  ticketPrice.toString() + "\$ ",
+                                  widget.falia.ticketPrice.toString() + "\$ ",
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText2
@@ -215,7 +217,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 ),
                               ),
                               Text(
-                                "For ticket",
+                                "للتذكرة",
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline6
@@ -245,7 +247,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 width: 4.w,
                               ),
                               Text(
-                                "$numberOfTicketsAvailable  Tickets available",
+                                "${widget.falia.numberOfTickets} تذاكر متاحة",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2
@@ -261,7 +263,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             ],
                           )),
                           Text(
-                            "available vip",
+                            "يتوفر vip",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText2
@@ -285,7 +287,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 Divider(),
                 Container(
                   width: double.infinity,
-
+                  margin: EdgeInsets.only(top: 10.h),
                   child: Card(
                     elevation: 2,
                     shape: RoundedRectangleBorder(
@@ -309,7 +311,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             height: 8.h,
                           ),
                           ReadMoreText(
-                            'هو مؤسسة تهدف الى نشر الوعي الثقافي والفكري حول العالم وتسعى جاهدة الى اكتشاف هو مؤسسة تهدف الى نشر الوعي الثقافي والفكري حول العالم وتسعى جاهدة الى اكتشاف',
+                            widget.falia.aboutCompany,
                             style:
                                 Theme.of(context).textTheme.bodyText2?.copyWith(
                                       color: Colors.grey[500],
@@ -335,7 +337,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
                 Container(
                   width: double.infinity,
-
+                  margin: EdgeInsets.only(top: 15.h),
                   child: Text(
                     'مخطط الفعالية',
                     style: GoogleFonts.cairo(
@@ -345,9 +347,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 Container(
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: 10,
+                      itemCount: widget.falia.eventchart?.length,
                       shrinkWrap: true,
-                      itemBuilder: (ctx, inde) {
+                      itemBuilder: (ctx, index) {
                         return Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.r),
@@ -356,14 +358,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           child: ExpansionTile(
                             title: Row(
                               children: [
-                                Text('$inde day'),
+                                 Text(widget.falia.eventchart![index].day.toString(),
+                              style: TextStyle(),
+                                 ),
                                 Spacer(),
-                                Text('20201/20/2000')
+                                Text(widget.falia.eventchart![index].date.toString(),
+                                  style: TextStyle(),
+                                )
                               ],
                             ),
-                            children: [
-                              // coomenteion row
-                              Row(
+                            children: widget.falia.eventchart![index].evintsDate!.map((e) {
+                              return Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -386,7 +391,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         decoration: BoxDecoration(
                                             color: Color(0xff3c48c5),
                                             borderRadius:
-                                                BorderRadius.circular(5.r)),
+                                            BorderRadius.circular(5.r)),
                                       ),
                                       SizedBox(
                                         height: 8.h,
@@ -399,27 +404,27 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          '8:20 am',
+                                          e.time,
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline6
                                               ?.copyWith(
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 20.h,
                                         ),
                                         Text(
-                                          'start any peapole kasdkm asldasd asd asd asd asdsad asd  m',
+                                          e.describtion ,
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline6
                                               ?.copyWith(
-                                                  color: Colors.grey[500]),
+                                              color: Colors.grey[500]),
                                         ),
                                         SizedBox(
                                           height: 10.h,
@@ -428,14 +433,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     ),
                                   ),
                                 ],
-                              ),
-                            ],
+                              );
+                            }).toList(),
                           ),
                         );
                       }),
                 ),
                 Card(
                   elevation: 4,
+                  margin: EdgeInsets.only(top: 20.h,bottom: 15.h),
                   child: Container(
                     height: 156.h,
                     width: 343.w,
@@ -450,7 +456,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           color: Color(0xff001BFF),
                         ),
                         Text(
-                          'غزة, النصر ,شارع جمال باشة  ',
+                         widget.falia.location,
                           style: GoogleFonts.cairo(
                               color: Color(0xFF000637), fontSize: 18.sp),
                         ),
@@ -458,10 +464,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 ElevatedButton(
                   onPressed: () {
-                   controller.getFaliasFromFirebase();
+                    controller.getFaliasFromFirebase();
 
                     // Navigator.pushNamed(context, '/pay_screen');
                   },
@@ -470,7 +478,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     style: GoogleFonts.cairo(
                         color: Color(0xFF000637), fontSize: 18.sp),
                   ),
-                  style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity, 48.h),),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 48.h),
+                  ),
                 )
               ],
             ),
