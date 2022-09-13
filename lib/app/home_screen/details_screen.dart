@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/Get/FirebaseController.dart';
 import 'package:readmore/readmore.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -22,7 +24,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   var ticketPrice = 20;
 
   var numberOfTicketsAvailable = 200;
-
+ var controller  = Get.put<FirebaseController>(FirebaseController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -459,7 +461,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 SizedBox(height: 10.h,),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/pay_screen');
+                   controller.getFaliasFromFirebase();
+
+                    // Navigator.pushNamed(context, '/pay_screen');
                   },
                   child: Text(
                     'حجز تذكرة',
