@@ -4,26 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:hackathon_project/model/EventChart.dart';
+import 'package:hackathon_project/model/FaliaModel.dart';
 import 'package:hackathon_project/model/UserModle.dart';
 
 import '../prefs/prefs.dart';
 
 class FirebaseController extends GetxController {
   static FirebaseController get to => Get.find();
-
   var stateCreateAccount = "";
-
   var userModel = UserModle();
+  var falias = <FaliaModel>[].obs;
 
   Future<bool> methodLogin({
     required String email,
     required String password,
   }) async {
-
     try {
       var crid = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      var user =  await FirebaseFirestore.instance.collection('users').doc(crid.user!.uid).get();
+      var user = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(crid.user!.uid)
+          .get();
       userModel = UserModle.fromJson(user.data()!);
       SharedPrefController().save(uId: crid.user!.uid);
       return true;
@@ -33,14 +36,12 @@ class FirebaseController extends GetxController {
     }
   }
 
-
-  Future<bool> methodLoginWithUid({
-   required BuildContext context
-  }) async {
-
+  Future<bool> methodLoginWithUid({required BuildContext context}) async {
     try {
-
-      var user =  await FirebaseFirestore.instance.collection('users').doc(SharedPrefController().getValueFor('uId')).get();
+      var user = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(SharedPrefController().getValueFor('uId'))
+          .get();
       userModel = UserModle.fromJson(user.data()!);
       print('object');
       Navigator.pushReplacementNamed(context, '/btn_navigation_screen');
@@ -53,25 +54,105 @@ class FirebaseController extends GetxController {
   }
 
 
+  Future<bool> methodCreateAccount({required UserModle userModle}) async {
+    try {
+      var crid = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: userModle.email, password: userModle.password);
+      var user = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(crid.user!.uid)
+          .set(UserModle.toMap(userModle));
+      this.userModel = userModle;
+      SharedPrefController().save(uId: crid.user!.uid);
+      return true;
+    } catch (ex) {
+      return false;
+    }
+  }
 
-
-
-  Future<bool> methodCreateAccount({required UserModle userModle}) async{
-
+   getFaliasFromFirebase() async {
+    falias.clear();
   try{
-    var crid = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: userModle.email, password: userModle.password);
-    var user =  await FirebaseFirestore.instance
-        .collection('users')
-        .doc(crid.user!.uid)
-        .set(UserModle.toMap(userModle));
-  this.userModel = userModle;
-    SharedPrefController().save(uId: crid.user!.uid);
-  return true;
-  }catch (ex){
-    return false;
+    falias.clear();
+   var fal = await FirebaseFirestore.instance.collection('Falias').get();
+
+   for(var element in fal .docs){
+     var eventChart = await getEvintCharts(faliaId:element.id );
+     FaliaModel fa = FaliaModel(
+         name: element['name'],
+         type: element['type'],
+         companyName: element['companyName'],
+         ticketPrice: int.parse(element['ticketPrice'].toString()),
+         numberOfTickets: int.parse(element['numberOfTickets'].toString()),
+         aboutCompany: element['aboutCompany'],
+         faliaDescrebtion: element['faliaDescrebtion'],
+         eventchart:eventChart,
+         imagesUrl: element.get('imagesUrl') as List<dynamic>);
+       falias.add(fa);
+
+   }
+
+ }catch (ex){
+    print(ex.toString());
+
+ }
+
+  }
+  Future<List<EventChart>?> getEvintCharts({required String faliaId}) async {
+    var eventChartArray = <EventChart>[];
+    try {
+      var arr = await FirebaseFirestore.instance
+          .collection('Falias')
+          .doc(faliaId)
+          .collection('EventChart')
+          .get();
+      for (var i in arr.docs) {
+        var aw = await getEvintData(faliaId: faliaId, evintChartsId: i.id);
+        var evintChart =
+            EventChart(date: i['date'], day: i['day'], evintsDate: aw);
+        eventChartArray.add(evintChart);
+        return eventChartArray;
+      }
+    } catch (ex) {}
+  }
+
+  Future<List<EvintData>?> getEvintData({
+    required String faliaId,
+    required String evintChartsId,
+  }) async {
+    List<EvintData> evintDataArray = [];
+
+    try {
+      var ats = await FirebaseFirestore.instance
+          .collection('Falias')
+          .doc(faliaId)
+          .collection('EventChart')
+          .doc(evintChartsId)
+          .collection('EvintData')
+          .get();
+      ats.docs.forEach((element) {
+        print(element.data());
+        var e = EvintData(
+            time: element['time'], describtion: element['describtion']);
+        evintDataArray.add(e);
+      });
+      return evintDataArray;
+    } catch (ex) {}
   }
 
 
+  List<FaliaModel> fillterEvints({required String fillterBy}){
+    var a = falias;
+
+    List<FaliaModel> newArray = [];
+     a.forEach((element) {
+      if(element.type==fillterBy){
+        newArray.add(element);
+      }
+    });
+
+return newArray;
   }
+
+
 }

@@ -3,8 +3,12 @@ import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/widgets/Dialog/Coustom_Dialog.dart';
+
+import '../../Get/FirebaseController.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,6 +18,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  var controller = Get.put<FirebaseController>(FirebaseController());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,11 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 14.sp,
           ),
-          InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, '/details_screen');
-              },
-              child: SliderWidget()),
+          SliderWidget(fillterType:"أحدث الفعاليات"),
           SizedBox(
             height: 24.sp,
           ),
@@ -212,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 14.h,
           ),
-          SliderWidget(),
+          SliderWidget(fillterType: "أحدث الفعاليات"),
           SizedBox(height: 24.h),
         ],
       ),
@@ -221,77 +223,82 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class SliderWidget extends StatelessWidget {
-  const SliderWidget({
-    Key? key,
-  }) : super(key: key);
+  var fillterType ;
+  SliderWidget({required this.fillterType});
+var controller = Get.put<FirebaseController>(FirebaseController());
 
-  @override
+@override
   Widget build(BuildContext context) {
-    return Container(
+  var array = controller.fillterEvints(fillterBy: fillterType);
+
+  return Container(
       height: 200.h,
       child: ListView.builder(
-        itemCount: 3,
+        itemCount:array.length,
         itemBuilder: (context, index) {
-          return Stack(
-            children: [
-              Container(
-                child: Image.asset(
-                  'images/assets/boarding1.png',
-                  color: Colors.grey.withOpacity(0.8),
-                  colorBlendMode: BlendMode.modulate,
-                  fit: BoxFit.cover,
+          return InkWell(
+            onTap: (){},
+            child: Stack(
+              children: [
+                Container(
+                  child: Image.network(
+                    array[index].imagesUrl![0].toString(),
+                    color: Colors.grey.withOpacity(0.8),
+                    colorBlendMode: BlendMode.modulate,
+                    fit: BoxFit.cover,
+                  ),
+                  margin: EdgeInsets.only(left: 16.w),
+                  height: 200.h,
+                  width: 140.w,
+                  decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
                 ),
-                margin: EdgeInsets.only(left: 16.w),
-                height: 200.h,
-                width: 140.w,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
-              ),
-              Positioned(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Positioned(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
 
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                  children: [
-                    Text('\$20',
+                    children: [
+                      Text('\$20',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.normal)),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      Text(
+                        'المهرجان الكيودو ',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.normal)),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    Text(
-                      'المهرجان الكيودو ',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.normal),
-                    ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    Row(
-                      children: [
-                        Text('1K',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.normal)),
-                        Text('تذكرة متاحة',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.normal)),
-                      ],
-                    ),
-                  ],
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.normal),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      Row(
+                        children: [
+                          Text('1K',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.normal)),
+                          Text('تذكرة متاحة',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.normal)),
+                        ],
+                      ),
+                    ],
+                  ),
+                  right: 12.w,
+                  bottom: 14.h,
                 ),
-                right: 12.w,
-                bottom: 14.h,
-              ),
-            ],
+              ],
+            ),
           );
         },
         scrollDirection: Axis.horizontal,

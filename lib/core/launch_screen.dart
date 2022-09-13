@@ -9,7 +9,6 @@ import '../prefs/prefs.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({Key? key}) : super(key: key);
-
   @override
   State<LaunchScreen> createState() => _LaunchScreenState();
 }
@@ -21,9 +20,10 @@ class _LaunchScreenState extends State<LaunchScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    controller.getFaliasFromFirebase();
     Future.delayed(const Duration(seconds: 3), () {
       if(SharedPrefController().getValueFor('uId')!=null){
-        controller.methodLoginWithUid(  context: context);\
+        controller.methodLoginWithUid(  context: context);
       }else{
         Navigator.pushReplacementNamed(context, '/on_boarding_screen');
 
