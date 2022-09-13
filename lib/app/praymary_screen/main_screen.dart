@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/second_home_widget.dart';
 import '../home_screen/home_screen.dart';
+import '../taps/second_tab_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -66,7 +67,7 @@ class _MainScreenState extends State<MainScreen>
               text: 'فعاليات تراثية',
             ),
             Tab(
-              text: 'فعاليات تراثية',
+              text: 'فعاليات أخرى',
             ),
           ],
         ),
@@ -76,8 +77,8 @@ class _MainScreenState extends State<MainScreen>
         children: [
           HomeScreen(),
           SecondHomeWidget(),
-          SecondHomeWidget(),
-          SecondHomeWidget(),
+          SecondTabScreen(),
+          SecondTabScreen(),
 
         ],
       ),

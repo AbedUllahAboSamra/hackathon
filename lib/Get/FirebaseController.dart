@@ -11,10 +11,13 @@ import 'package:hackathon_project/model/UserModle.dart';
 import '../prefs/prefs.dart';
 
 class FirebaseController extends GetxController {
+
+
   static FirebaseController get to => Get.find();
   var stateCreateAccount = "";
   var userModel = UserModle();
   var falias = <FaliaModel>[].obs;
+  var  thqafa = <FaliaModel>[].obs;
 
   Future<bool> methodLogin({
     required String email,
@@ -81,6 +84,7 @@ class FirebaseController extends GetxController {
      FaliaModel fa = FaliaModel(
          name: element['name'],
          type: element['type'],
+         location: element['location'],
          companyName: element['companyName'],
          ticketPrice: int.parse(element['ticketPrice'].toString()),
          numberOfTickets: int.parse(element['numberOfTickets'].toString()),
@@ -89,6 +93,10 @@ class FirebaseController extends GetxController {
          eventchart:eventChart,
          imagesUrl: element.get('imagesUrl') as List<dynamic>);
        falias.add(fa);
+       print(fa.type+"ASDASDASD");
+       if(fa.type=="فعاليات الثقافة"){
+         thqafa.add(fa);
+       }
 
    }
 

@@ -149,22 +149,12 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
 
   bool _checkData() {
     if (_emailTextController.text.isNotEmpty &&
+        _passwordTextController.text.isNotEmpty &&
+        _emailTextController.text.isNotEmpty &&
         _passwordTextController.text.isNotEmpty) {
-      if (_emailTextController.text == 'admin' &&
-          _passwordTextController.text == '123456') {
-        SchedulerBinding.instance.addPostFrameCallback((_) {
-          Get.to(() {
-            return BTNScreen();
-          });
-        });
-        // Future.delayed(Duration.zero, () {
-        // });
-      }
       return true;
     }
-
     showSnackBar(context, message: 'أدخل البيانات المطلوبة', error: true);
-
     return false;
   }
 
@@ -172,16 +162,26 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
     bool isLogged = await controller.methodLogin(
         email: _emailTextController.text,
         password: _passwordTextController.text);
-    print(isLogged.toString() + "ASDASD");
+
 
     if (isLogged) {
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        Get.to(
-          () {
-            return BottomNavigationScreen();
-          },
-        );
-      });
+      if(controller.userModel.email.toString().split("@")[0]=="admin"){
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Get.to(
+                () {
+              return BTNScreen();
+            },
+          );
+        });
+      }else{
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Get.to(
+                () {
+              return BottomNavigationScreen();
+            },
+          );
+        });
+      }
     } else {
       context.showSnackBar(message: 'تأكد من معلومات حسابك', error: !isLogged);
     }

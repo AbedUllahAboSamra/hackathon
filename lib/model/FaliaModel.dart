@@ -9,6 +9,7 @@ class FaliaModel {
   int numberOfTickets;
   String aboutCompany;
   String faliaDescrebtion;
+  String location;
 
 
   late List<EventChart>? eventchart;
@@ -22,6 +23,7 @@ class FaliaModel {
     required this.numberOfTickets,
     required this.aboutCompany,
     required this.faliaDescrebtion,
+    required this.location,
     required this.eventchart,
     required this.imagesUrl,
   });

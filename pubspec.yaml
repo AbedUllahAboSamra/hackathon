@@ -57,6 +57,7 @@ dependencies:
   firebase_auth: ^3.8.0
   cloud_firestore: ^3.4.7
   image_picker: ^0.8.5+3
+  conditional_builder_null_safety: ^0.0.6
 
 
 
