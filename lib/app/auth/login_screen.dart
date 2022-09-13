@@ -7,6 +7,7 @@ import 'package:hackathon_project/Get/FirebaseController.dart';
 import 'package:hackathon_project/helper/context_extenssion.dart';
 import 'package:hackathon_project/model/UserModle.dart';
 
+import '../../prefs/prefs.dart';
 import '../../widgets/app_text_field.dart';
 import '../../widgets/default_button.dart';
 import '../../widgets/helpers.dart';
@@ -28,6 +29,9 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
     super.initState();
     _emailTextController = TextEditingController();
     _passwordTextController = TextEditingController();
+
+
+
   }
 
   @override
@@ -154,8 +158,9 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   }
 
   Future<void> _login() async {
+
    bool isLogged=await controller.methodLogin(email: _emailTextController.text, password: _passwordTextController.text);
-     print(isLogged);
+     print(isLogged.toString()+"ASDASD");
 
    if(isLogged){
      Navigator.pushNamed(context, '/btn_navigation_screen');

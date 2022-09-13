@@ -1,9 +1,9 @@
 
+import 'package:hackathon_project/model/UserModle.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/user.dart';
-enum PrefKeys {  loggedIn, id, name, email }
-class SharedPrefController {
+ class SharedPrefController {
   SharedPrefController._();
 
   late SharedPreferences _sharedPreferences;
@@ -17,12 +17,11 @@ class SharedPrefController {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  void save({required User user}) {
-    _sharedPreferences.setBool(PrefKeys.loggedIn.name, true);
-    _sharedPreferences.setInt(PrefKeys.id.name, user.id);
-    _sharedPreferences.setString(PrefKeys.name.name, user.name);
-    _sharedPreferences.setString(PrefKeys.email.name, user.email);
-
+  void save({required String uId}) {
+    _sharedPreferences.setString('uId', uId);
+  }
+  void saveBool({required bool boolean,required String key}) {
+    _sharedPreferences.setBool(key, boolean);
   }
 
 /*  void changeLanguage({required String langCode}) {

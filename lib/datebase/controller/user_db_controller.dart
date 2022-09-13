@@ -25,7 +25,6 @@ class UserDbController {
         whereArgs: [email, password]);
     if(rowsMap.isNotEmpty){
       User user =User.fromMap(rowsMap.first);
-      SharedPrefController().save(user: user);
       return ProcessResponse(message: 'Login Successfully', success: true);
     }
     return ProcessResponse(message: 'Credentials error , check and try again !',success: false );

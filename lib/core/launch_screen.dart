@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/Get/FirebaseController.dart';
 
 import '../prefs/prefs.dart';
 
@@ -13,19 +15,19 @@ class LaunchScreen extends StatefulWidget {
 }
 
 class _LaunchScreenState extends State<LaunchScreen> {
+
+  var controller = Get.put<FirebaseController>(FirebaseController());
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-/*
+      if(SharedPrefController().getValueFor('uId')!=null){
+        controller.methodLoginWithUid(  context: context);\
+      }else{
+        Navigator.pushReplacementNamed(context, '/on_boarding_screen');
 
-      bool loggedIn =
-          SharedPrefController().getValueFor<bool>(PrefKeys.loggedIn.name) ??
-              false;
-      String route = loggedIn ? '/btn_navigation_screen' : '/onboarding_screen';
-      Navigator.pushReplacementNamed(context, route);*/
-      Navigator.pushReplacementNamed(context, '/on_boarding_screen');
+      }
     });
   }
 
