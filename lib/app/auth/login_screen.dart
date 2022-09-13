@@ -1,7 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/Get/FirebaseController.dart';
+import 'package:hackathon_project/model/UserModle.dart';
 
 import '../../widgets/app_text_field.dart';
 import '../../widgets/default_button.dart';
@@ -15,17 +18,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> with Helpers {
-  late TextEditingController _mobileTextController;
+  late TextEditingController _emailTextController;
+  late TextEditingController _passwordTextController;
+  var controller = Get.put<FirebaseController>(FirebaseController());
 
   @override
   void initState() {
     super.initState();
-    _mobileTextController = TextEditingController();
+    _emailTextController = TextEditingController();
+    _passwordTextController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _mobileTextController.dispose();
+    _emailTextController.dispose();
+    _passwordTextController.dispose();
 
     super.dispose();
   }
@@ -37,7 +44,6 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
       backgroundColor: Colors.white,
       body: ListView(
         // crossAxisAlignment: CrossAxisAlignment.center,
-
         children: [
           Column(
             children: [
@@ -57,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
                 padding: const EdgeInsets.only(top: 24, right: 16),
                 child: Align(
                   child: Text(
-                    'رقم الجوال',
+                    'البريد الالكتروني',
                     style: GoogleFonts.cairo(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -69,12 +75,35 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: AppTextField(
                   hint: "ادخل رقم الجوال",
-                  prefixIcon: Icons.phone_android_outlined,
-                  keyboardType: TextInputType.phone,
-                  controller: _mobileTextController,
+                  prefixIcon: Icons.email_outlined,
+                  keyboardType: TextInputType.emailAddress,
+                  controller: _emailTextController,
+                ),
+              ), Padding(
+                padding: const EdgeInsets.only(top: 24, right: 16),
+                child: Align(
+                  child: Text(
+                    'كلمة السر',
+                    style: GoogleFonts.cairo(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF000000),
+                    ),
+                  ),
+                  alignment: Alignment.centerRight,
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: AppTextField(
+                  hint: "ادخل رقم الجوال",
+                  prefixIcon: Icons.password,
+                  keyboardType: TextInputType.visiblePassword,
+                  controller: _passwordTextController,
                 ),
               ),
               Column(
@@ -104,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
             ],
           ),
         ],
-      ),
+      )
     );
   }
 
@@ -115,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   }
 
   bool _checkData() {
-    if (_mobileTextController.text.isNotEmpty) {
+    if (_emailTextController.text.isNotEmpty && _passwordTextController.text.isNotEmpty) {
       return true;
     }
 
@@ -125,6 +154,10 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   }
 
   Future<void> _login() async {
-    Navigator.pushNamed(context, '/otp_screen');
+
+    controller.methodLogin(email: _emailTextController.text, password: _passwordTextController.text);
+
+
   }
+
 }
