@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
- import 'package:hackathon_project/app/admin_screens/settings_screen.dart';
- import 'package:hackathon_project/app/home_screen/home_screen.dart';
 import 'package:hackathon_project/app/praymary_screen/main_screen.dart';
 import 'package:hackathon_project/app/praymary_screen/reservations.dart';
- import 'package:hackathon_project/app/ticket/taps/basic_info_screen.dart';
 
 import '../model/ui_model/screen_model.dart';
 import 'praymary_screen/account_screen.dart';
-import 'admin_screens/events_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({Key? key}) : super(key: key);
@@ -24,10 +20,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   final List<BnScreen> _screens = <BnScreen>[
     BnScreen(title: 'اهلا وسهلا بك', widget: MainScreen()),
     BnScreen(title: 'حجوزاتي', widget: ReservationScreen()),
-    BnScreen(title: 'الاحصائيات', widget: EventsScreen()),
-    //  BnScreen(title: 'اضافة فعالية ', widget: BasicInfoScreen()),
-   // BnScreen(title: 'الاعدادات', widget: SettingsScreen()),
-    BnScreen(title: 'الاعدادات', widget: AccountScreen()),
+    BnScreen(title: 'الاعدادات', widget: AccountScreen(isAdmin: false,)),
   ];
 
   @override
@@ -87,11 +80,6 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               ),
               icon: Icon(Icons.category),
               label: 'حجوزاتي'),
-           BottomNavigationBarItem(
-              backgroundColor: Color(0XFF389898),
-              activeIcon: Icon(Icons.account_box),
-              icon: Icon(Icons.account_box),
-              label: 'اخرى '),
           BottomNavigationBarItem(
               backgroundColor: Color(0XFF389898),
               activeIcon: Icon(Icons.settings),
@@ -102,56 +90,5 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     );
   }
 
-  void _confirmLogoutDialog() async {
-    bool? result = await showDialog<bool>(
-      context: context,
-      // barrierColor: Colors.red.shade100.withOpacity(0.5),
-      barrierDismissible: false,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            'AppLocalizations.of(context)!.confirm_logout_title',
-          ),
-          titleTextStyle: GoogleFonts.cairo(
-            fontSize: 16,
-            color: Colors.black,
-          ),
-          content: Text(
-           ' AppLocalizations.of(context)!.confirm_logout_content',
-          ),
-          contentTextStyle: GoogleFonts.cairo(
-            fontSize: 13,
-            color: Colors.black45,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context, true);
-              },
-              child: Text(
-                'AppLocalizations.of(context)!.confirm',
-                style: GoogleFonts.cairo(color: Colors.red),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context, false);
-              },
-              child: Text(
-                'AppLocalizations.of(context)!.cancel',
-                style: GoogleFonts.cairo(),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-    if (result ?? false) {
-      // bool cleared = await SharedPrefController().removeValueFor(PrefKeys.loggedIn.name);
-      //  bool cleared = await SharedPrefController().clear();
-      //  if (cleared) {
-      Navigator.pushReplacementNamed(context, '/login_screen');
-      //  }
-    }
-  }
+
 }

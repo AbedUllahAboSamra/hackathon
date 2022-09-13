@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../app/admin_screens/add_event_screen.dart';
 
 class Events extends StatelessWidget {
   Events({Key? key,
@@ -9,6 +13,7 @@ class Events extends StatelessWidget {
     required this.Reservation,
     required this.ticket_available,
     required this.data,
+    required this.onTap,
     this.icon,
   }) : super(key: key);
 
@@ -18,6 +23,7 @@ class Events extends StatelessWidget {
   final String ticket_available;
   final Widget? icon;
   final String data;
+  final VoidCallback onTap;
 
   bool? obscureText;
 
@@ -30,125 +36,131 @@ class Events extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding:  EdgeInsets.only(bottom: 16.h),
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.black12),
-            borderRadius: BorderRadius.all(Radius.circular(8.r))),
-        height: 105.h,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: double.infinity,
-              width: 100,
-                child: Image.asset('images/$image',
-                  color: Colors.grey.withOpacity(0.8), colorBlendMode: BlendMode.modulate,
-          fit: BoxFit.cover,),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: GoogleFonts.cairo(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontSize: 15.sp,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.black12),
+              borderRadius: BorderRadius.all(Radius.circular(8.r))),
+          height: 105.h,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: double.infinity,
+                width: 100,
+                  child: Image.asset('images/$image',
+                    color: Colors.grey.withOpacity(0.8), colorBlendMode: BlendMode.modulate,
+            fit: BoxFit.cover,),
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: GoogleFonts.cairo(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontSize: 15.sp,
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      " حجز ",
-                      style: GoogleFonts.cairo(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey,
-                        fontSize: 12.sp,
+                  Row(
+                    children: [
+                      Text(
+                        " حجز ",
+                        style: GoogleFonts.cairo(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey,
+                          fontSize: 12.sp,
+                        ),
                       ),
-                    ),
-                    Text(
-                      Reservation,
-                      style: GoogleFonts.cairo(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.blue,
-                        fontSize: 13.sp,
+                      Text(
+                        Reservation,
+                        style: GoogleFonts.cairo(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.blue,
+                          fontSize: 13.sp,
+                        ),
                       ),
-                    ),
-                    Text(
-                      " | ",
-                      style: GoogleFonts.cairo(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey,
-                        fontSize: 13.sp,
+                      Text(
+                        " | ",
+                        style: GoogleFonts.cairo(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey,
+                          fontSize: 13.sp,
+                        ),
                       ),
-                    ),
-                    Text(
-                      " تذكرة متبقية ",
-                      style: GoogleFonts.cairo(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey,
-                        fontSize: 12.sp,
+                      Text(
+                        " تذكرة متبقية ",
+                        style: GoogleFonts.cairo(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey,
+                          fontSize: 12.sp,
+                        ),
                       ),
-                    ),
-                    Text(
-                     ticket_available,
-                      style: GoogleFonts.cairo(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.red,
-                        fontSize: 13.sp,
+                      Text(
+                       ticket_available,
+                        style: GoogleFonts.cairo(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.red,
+                          fontSize: 13.sp,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Text(
-                  "تاريخ الفعاليات : " + data,
-                  style: GoogleFonts.cairo(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey,
-                    fontSize: 13.sp,
+                    ],
                   ),
-                ),
-              ],
-            ),
-            //
-            // SizedBox(
-            //   width: 60.w,
-            // ),
-            //
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-
-              ],
-            ),
-            Column(
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  color: Colors.blue,
-                  icon: Icon(
-                    Icons.edit,
+                  Text(
+                    "تاريخ الفعاليات : " + data,
+                    style: GoogleFonts.cairo(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
+                      fontSize: 13.sp,
+                    ),
                   ),
-                ),
+                ],
+              ),
+              //
+              // SizedBox(
+              //   width: 60.w,
+              // ),
+              //
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
 
-                // SwitchListTile(
-                //   contentPadding: EdgeInsets.zero,
-                //   title: Text(""),
-                //   value: _notifications,
-                //   onChanged: (bool value) {
-                //     setState(() => _notifications = value);
-                //   },
-                // )
-              ],
-            ),
-          ],
+                ],
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Get.to((){
+                        return AddOrUpdateEventScreen();
+                      });
+                    },
+                    color: Colors.blue,
+                    icon: Icon(
+                      Icons.edit,
+                    ),
+                  ),
+
+                  // SwitchListTile(
+                  //   contentPadding: EdgeInsets.zero,
+                  //   title: Text(""),
+                  //   value: _notifications,
+                  //   onChanged: (bool value) {
+                  //     setState(() => _notifications = value);
+                  //   },
+                  // )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

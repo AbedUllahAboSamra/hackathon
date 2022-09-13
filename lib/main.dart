@@ -5,6 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/app/admin_screens/event_screen_edit.dart';
+import 'package:hackathon_project/app/admin_screens/home_admin_Screen.dart';
  import 'package:hackathon_project/prefs/prefs.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
  import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,8 +14,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app/payment_cards/pay_screen.dart';
 import 'app/payment_cards/payments.dart';
 import 'app/praymary_screen/account_screen.dart';
-import 'app/admin_screens/edit_account.dart';
-import 'app/admin_screens/home_user_screen.dart';
 import 'app/auth/create_aprofile_screen.dart';
 import 'app/auth/login_screen.dart';
 import 'app/auth/otp.dart';
@@ -27,8 +27,7 @@ import 'onboarding/onboarding_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-  );
+  await Firebase.initializeApp();
   await SharedPrefController().initPreferences();
   await DbController().initDatabase();
   runApp(const MyApp());
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       builder: (context, child) {
-        return MaterialApp(
+        return GetMaterialApp(
           theme: ThemeData(
             appBarTheme: AppBarTheme(
               centerTitle: true,
@@ -70,8 +69,6 @@ class MyApp extends StatelessWidget {
             Locale('ar'),
             Locale('en'),
           ],
-          // localizationsDelegates: AppLocalizations.localizationsDelegates,
-          // supportedLocales: AppLocalizations.supportedLocales,
           locale: Locale('ar'),
           initialRoute: '/launch_screen',
           routes: {
@@ -84,17 +81,13 @@ class MyApp extends StatelessWidget {
             '/otp_screen': (context) => const OTP(),
             '/details_screen': (context) =>   DetailsScreen(),
             '/acount_screen': (context) =>  AccountScreen(),
-            '/edit_screen': (context) => const EditAccount(),
-            '/home_user_screen': (context) => const HomeUserScreen(),
+            // '/edit_screen': (context) =>  EditAccount(),
             '/payments_screen': (context) => const Payments(),
             '/pay_screen': (context) => const PayScreen(),
             '/newpay_screen': (context) => const NewPaymentsScreen(),
-            '/info_screen': (context) => const BasicInfoScreen(),
-
-
-           // '/effect_screen': (context) => const EffectivenessScreen(),
-
-
+            '/add_event': (context) => const AddEventScreen(),
+            '/event_screen': (context) =>  EventsScreen(),
+            '/home_admin_screen': (context) => const BTNScreen(),
           },
  navigatorKey: Get.key,
         );

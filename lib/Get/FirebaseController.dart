@@ -76,7 +76,7 @@ class FirebaseController extends GetxController {
     falias.clear();
    var fal = await FirebaseFirestore.instance.collection('Falias').get();
 
-   for(var element in fal .docs){
+      for(var element in fal .docs){
      var eventChart = await getEvintCharts(faliaId:element.id );
      FaliaModel fa = FaliaModel(
          name: element['name'],
@@ -143,9 +143,11 @@ class FirebaseController extends GetxController {
 
   List<FaliaModel> fillterEvints({required String fillterBy}){
     var a = falias;
-
+    print(falias.value);
+    print('*****************');
     List<FaliaModel> newArray = [];
      a.forEach((element) {
+       print(element);
       if(element.type==fillterBy){
         newArray.add(element);
       }

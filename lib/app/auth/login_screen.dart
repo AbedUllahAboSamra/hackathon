@@ -1,9 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
+import 'package:hackathon_project/app/admin_screens/home_admin_Screen.dart';
+import 'package:hackathon_project/app/bottom_navigation_screen.dart';
 import 'package:hackathon_project/helper/context_extenssion.dart';
 import 'package:hackathon_project/model/UserModle.dart';
 
@@ -29,9 +32,6 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
     super.initState();
     _emailTextController = TextEditingController();
     _passwordTextController = TextEditingController();
-
-
-
   }
 
   @override
@@ -45,100 +45,100 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-       body: ListView(
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Column(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 462.h,
-                child: Image.asset(
-                  'images/assets/boarding1.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 24, right: 16),
-                child: Align(
-                  child: Text(
-                    'البريد الالكتروني',
-                    style: GoogleFonts.cairo(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF000000),
-                    ),
+        resizeToAvoidBottomInset: true,
+        body: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 462.h,
+                  child: Image.asset(
+                    'images/assets/boarding1.png',
+                    fit: BoxFit.cover,
                   ),
-                  alignment: Alignment.centerRight,
                 ),
-              ),
-              Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: AppTextField(
-                  hint: "ادخل رقم الجوال",
-                  prefixIcon: Icons.email_outlined,
-                  keyboardType: TextInputType.emailAddress,
-                  controller: _emailTextController,
-                ),
-              ), Padding(
-                padding: const EdgeInsets.only(top: 24, right: 16),
-                child: Align(
-                  child: Text(
-                    'كلمة السر',
-                    style: GoogleFonts.cairo(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF000000),
+              ],
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 24, right: 16),
+                  child: Align(
+                    child: Text(
+                      'البريد الالكتروني',
+                      style: GoogleFonts.cairo(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF000000),
+                      ),
                     ),
+                    alignment: Alignment.centerRight,
                   ),
-                  alignment: Alignment.centerRight,
                 ),
-              ),
-              Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: AppTextField(
-                  hint: "ادخل رقم الجوال",
-                  prefixIcon: Icons.password,
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: _passwordTextController,
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: AppTextField(
+                    hint: "ادخل رقم الجوال",
+                    prefixIcon: Icons.email_outlined,
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailTextController,
+                  ),
                 ),
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: DefaultButton(
-                      text: "تسجيل دخول",
-                      press: () => _performLogin(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 24, right: 16),
+                  child: Align(
+                    child: Text(
+                      'كلمة السر',
+                      style: GoogleFonts.cairo(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF000000),
+                      ),
                     ),
+                    alignment: Alignment.centerRight,
                   ),
-                  // SizedBox(height: 10),
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/create_screen');
-                            },
-                            child: Text('تسجيل جديد ')),
-                      ],
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: AppTextField(
+                    hint: "ادخل رقم الجوال",
+                    prefixIcon: Icons.password,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: _passwordTextController,
+                  ),
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: DefaultButton(
+                        text: "تسجيل دخول",
+                        press: () => _performLogin(),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      )
-    );
+                    // SizedBox(height: 10),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/create_screen');
+                              },
+                              child: Text('تسجيل جديد ')),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 
   Future<void> _performLogin() async {
@@ -148,7 +148,18 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   }
 
   bool _checkData() {
-    if (_emailTextController.text.isNotEmpty && _passwordTextController.text.isNotEmpty) {
+    if (_emailTextController.text.isNotEmpty &&
+        _passwordTextController.text.isNotEmpty) {
+      if (_emailTextController.text == 'admin' &&
+          _passwordTextController.text == '123456') {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Get.to(() {
+            return BTNScreen();
+          });
+        });
+        // Future.delayed(Duration.zero, () {
+        // });
+      }
       return true;
     }
 
@@ -158,16 +169,21 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
   }
 
   Future<void> _login() async {
+    bool isLogged = await controller.methodLogin(
+        email: _emailTextController.text,
+        password: _passwordTextController.text);
+    print(isLogged.toString() + "ASDASD");
 
-   bool isLogged=await controller.methodLogin(email: _emailTextController.text, password: _passwordTextController.text);
-     print(isLogged.toString()+"ASDASD");
-
-   if(isLogged){
-     Navigator.pushNamed(context, '/btn_navigation_screen');
-   }
-  context.showSnackBar(message: 'logged',error: !isLogged);
+    if (isLogged) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        Get.to(
+          () {
+            return BottomNavigationScreen();
+          },
+        );
+      });
+    } else {
+      context.showSnackBar(message: 'تأكد من معلومات حسابك', error: !isLogged);
+    }
   }
-
-  }
-
-
+}
