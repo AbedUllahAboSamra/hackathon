@@ -3,23 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/Get/FirebaseController.dart';
 import 'package:hackathon_project/app/admin_screens/details_event_admin_screen.dart';
 import 'package:hackathon_project/app/admin_screens/event_screen_edit.dart';
 import '../../widgets/events.dart';
 
 class HomeAdminScreen extends StatelessWidget {
-  const HomeAdminScreen({Key? key}) : super(key: key);
-
+ var controller = Get.put<FirebaseController>(FirebaseController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("أهلا وسهلا"),
+
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text("أهلا وسهلا",style: Theme.of(context).textTheme.bodyText2,),
         leading: Icon(color: Colors.transparent, Icons.arrow_forward_ios),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: ListView(children: [
+        child: ListView(
+            physics: BouncingScrollPhysics(),
+            children: [
+          SizedBox(
+            height: 32.h,
+          ),
           Container(
             height: 80.h,
             padding: EdgeInsets.all(10),
@@ -78,7 +85,7 @@ class HomeAdminScreen extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "200K",
+                          controller.falias.length.toString(),
                           style: GoogleFonts.cairo(
                             fontWeight: FontWeight.w600,
                             color: Colors.black,
@@ -148,98 +155,33 @@ class HomeAdminScreen extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              InkWell(
-                  onTap: () {
-                    Get.to(() {
-                      return EventsScreen();
-                    });
-                  },
-                  child: Text(
-                    'المزيد',
-                    style: GoogleFonts.cairo(
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF2940FF),
-                      fontSize: 14.sp,
-                    ),
-                  ))
+
             ],
           ),
-
+          SizedBox(height: 20.h,),
           SizedBox(
-            height: 350.h,
             child: ListView.builder(
+              shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: 3,
+              itemCount:  controller.falias.length,
               itemBuilder: (context, index) {
-                return   Events(image:'slider.png',ticket_available: '30', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
+                return   Events(image:controller.falias[index].imagesUrl![0]
+                  ,ticket_available: controller.falias[index].ticketPrice.toString(), title: controller.falias[index].name, data: controller.falias[index].eventchart![0].date
+                  , Reservation: controller.falias[index].numberOfTickets.toString()
+                  ,  onTap: () {
                   Get.to(
-                        () {
-                      return DetailsEventAdmin();
-                    },
+
+                        DetailsEventAdmin(
+                         falia: controller.falias[index],
+                      )
+
                   );
                 },);
               },
             ),
           ),
-          Divider(
-            height: 12.h,
-          ),
-          Row(
-            children: [
-              Text(
-                'اوشك على النفاذ',
-                style: GoogleFonts.cairo(
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF000637),
-                  fontSize: 16.sp,
-                ),
-              ),
-              Spacer(),
-              InkWell(
-                  onTap: () {
-                    Get.to(() {
-                      return EventsScreen();
-                    });
-                  },
-                  child: Text(
-                    'المزيد',
-                    style: GoogleFonts.cairo(
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF2940FF),
-                      fontSize: 14.sp,
-                    ),
-                  ))
-            ],
-          ),
-          SizedBox(
-            height: 500.h,
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return Events(
-                  image: 'slider.png',
-                  ticket_available: '30',
-                  title: 'فعاليات مهرجا صوة العرب',
-                  data: '2/2/2022',
-                  Reservation: '100',
-                  onTap: () {
-                    Get.to(
-                      () {
-                        return DetailsEventAdmin();
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-          Spacer(),
-// Container(
-//   decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r),
-//   color: Colors.white),
-//   height:392 ,
-// )
+
+
         ]),
       ),
     );
