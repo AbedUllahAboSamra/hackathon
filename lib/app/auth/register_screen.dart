@@ -1,9 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hackathon_project/helper/context_extenssion.dart';
 
 import '../../datebase/controller/user_db_controller.dart';
 import '../../model/api_response.dart';
@@ -129,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _passwordEditingController.text.isNotEmpty) {
       return true;
     }
-    context.showSnackBar(message: 'Enter Required data', error: true);
+    // context.showSnackBar(message: 'Enter Required data', error: true);
     return false;
   }
 
@@ -138,10 +136,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if(processResponse.success ){
         Navigator.pop(context);
        }
-      context.showSnackBar(
-          message: processResponse.message ,
-          error:  processResponse.success ,
-           );
+      // context.
+      // context.showSnackBar(
+      //     message: processResponse.message ,
+      //     error:  processResponse.success ,
+      //      );
      }
 
 

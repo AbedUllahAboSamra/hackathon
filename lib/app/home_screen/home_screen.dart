@@ -22,6 +22,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var controller = Get.put<FirebaseController>(FirebaseController());
 
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,7 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
             ),
             items: controller.falias.map((element) {
-              print(element.imagesUrl![0]);
               return  Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),
@@ -253,7 +254,6 @@ class SliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(array);
     return Container(
       height: 200.h,
       child: ListView.builder(

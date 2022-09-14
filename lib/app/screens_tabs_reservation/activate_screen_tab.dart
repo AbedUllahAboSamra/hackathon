@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../Get/reservations_get_controller.dart';
 import '../../widgets/Dialog/Coustom_Dialog.dart';
 
 class ActiveScreen extends StatefulWidget {
@@ -12,620 +14,276 @@ class ActiveScreen extends StatefulWidget {
 }
 
 class _ActiveScreenState extends State<ActiveScreen> {
+  ReservationsGetxController controller = Get.put(ReservationsGetxController());
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: ListView(
-        shrinkWrap: true,
-        children: [
-          // لازم نححطها باشي يحجمها اجباري ف عطيها في ListView
-
-
-          ExpansionPanelList(
-              // لون الخط الفاصل
-              dividerColor: Colors.grey,
-
-              // عند العرض يكون في حركة
-              animationDuration: const Duration(seconds: 1),
-              expandedHeaderPadding: EdgeInsets.zero,
-              elevation: 4,
-              // هاي علشان نعرف شو حالة الضغطة ونحولها من شغالة لطافية
-              expansionCallback: (panelIndex, isExpanded) {},
-              // خليت العناصر الي موودة في الليستة اعرضها عنا
-              children: [
-
-                ExpansionPanel(
-                    backgroundColor: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
-                    // expansionCallbackهنا لتفعيل السهم لعرض الاجابة  من
-                    isExpanded: false,
-                    // لتفعيل فتح الاجابة عند الضغط على كل العنصر
-                    canTapOnHeader: false,
-
-                    headerBuilder: (context, isExpanded) {
-                      return Row(
+    return GetX<ReservationsGetxController>(
+      builder: (controller) {
+        return controller.reservationsItem.value.isNotEmpty
+            ? Container(
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    // ExpansionPanelList(
+                    //     expandedHeaderPadding: EdgeInsets.symmetric(vertical: 10.h),
+                    //     dividerColor: Colors.grey,
+                    //     animationDuration: const Duration(seconds: 1),
+                    //     elevation: 4,
+                    //     expansionCallback: (panelIndex, isExpanded) {},
+                    //     children: [
+                    //       // ExpansionPanel(
+                    //       //     isExpanded: true,
+                    //       //     canTapOnHeader: true,
+                    //       //     backgroundColor:
+                    //       //         MediaQuery.of(context).platformBrightness ==
+                    //       //                 Brightness.light
+                    //       //             ? Colors.white
+                    //       //             : Colors.black26,
+                    //       //     headerBuilder: (context, isExpanded) {
+                    //       //       return Row(
+                    //       //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //       //         children: [
+                    //       //           Text(''),
+                    //       //           Text(
+                    //       //             controller.reservationsItem.value[index].name,
+                    //       //             style: Theme.of(context).textTheme.bodyText2,
+                    //       //           ),
+                    //       //           Text(
+                    //       //             controller.reservationsItem.value[index].date,
+                    //       //             style: Theme.of(context).textTheme.bodyText2,
+                    //       //           ),
+                    //       //         ],
+                    //       //       );
+                    //       //     },
+                    //       //     body:),
+                    //     ]);
+                    return ExpansionTile(
+                      initiallyExpanded: true,
+                      title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(''),
                           Text(
-                            'فعالية واحد',
+                            controller.reservationsItem.value[index].name,
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
-                            '10/10/1010',
+                            controller.reservationsItem.value[index].date,
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ],
-                      );
-                    },
-                    body: Container(
-
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "images/contents.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'التاريخ',
-                                style: Theme.of(context).textTheme.headline5,
-                      ), Text(
-                                'الموعد',
-                                style: Theme.of(context).textTheme.headline5,
-                              )     ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '10/10/1010',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 10),
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "images/contents.png",
                               ),
-                              Text(
-                                '8:30 ص',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                            ],
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'نوع التذكرة ',
-                                style: Theme.of(context).textTheme.headline5,
-                              ),   Text(
-                                'رقم المقعد',
-                                style: Theme.of(context).textTheme.headline5,
-                              ),   ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'عادية ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                              Text(
-                                'A1',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'العنوان',
-                            style: GoogleFonts.cairo(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'غزة النصر , شارع جمال باشة ',
-                            style: GoogleFonts.cairo(
-                                fontSize: 14, color: Color(0xff0012AA)),
-                          ),
-                          Divider(),
-
-
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return CustomDialog(
-                                            buttonText2: 'لا اريد',
-                                            title:
-                                                "هل انت متاكد من انك تريد الغاء التذكرة؟",
-                                            discraption: "",
-                                            buttonText: "نعم أريد",
-                                            image:
-                                                Image.network("images/h2.png"));
-                                      });
-                                },
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.delete_outline,
-                                      color: Color(0xff0012AA),
-                                    ),
-                                    Text(
-                                      'الغاء ',
-                                      style: Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Column(
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Icon(
-                                    Icons.edit,
-                                    size: 20,
-                                    color: Color(0xff0012AA),
+                                  Text(
+                                    'التاريخ',
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
                                   ),
                                   Text(
-                                    'تعديل  ',
-                                    style: Theme.of(context).textTheme.bodyText2,
+                                    'الموعد',
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
                                   ),
                                 ],
                               ),
-                              InkWell(
-                                onTap: () => _showBottomSheet(),
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.share,
-                                      color: Color(0xff0012AA),
-                                    ),
-                                    Text(
-                                      'تصدير ',
-                                      style: Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ],
-                                ),
+                              SizedBox(
+                                height: 10,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )),
-              ]),
-          SizedBox(
-            height: 5,
-          ),
-          ExpansionPanelList(
-              // لون الخط الفاصل
-              dividerColor: Colors.grey,
-              // عند العرض يكون في حركة
-              animationDuration: const Duration(seconds: 1),
-              expandedHeaderPadding: EdgeInsets.zero,
-              elevation: 4,
-              // هاي علشان نعرف شو حالة الضغطة ونحولها من شغالة لطافية
-              expansionCallback: (panelIndex, isExpanded) {},
-              // خليت العناصر الي موودة في الليستة اعرضها عنا
-              children: [
-                ExpansionPanel(
-
-                    // expansionCallbackهنا لتفعيل السهم لعرض الاجابة  من
-                    isExpanded: true,
-                    // لتفعيل فتح الاجابة عند الضغط على كل العنصر
-                    canTapOnHeader: true,
-backgroundColor: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
-                    headerBuilder: (context, isExpanded) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(''),
-                          Text(
-                            'فعالية واحد',
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                          Text(
-                            '10/10/1010',
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                        ],
-                      );
-                    },
-                    body: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "images/contents.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    controller
+                                        .reservationsItem.value[index].date,
+                                    style: GoogleFonts.cairo(
+                                        fontSize: 14, color: Color(0xff0012AA)),
+                                  ),
+                                  Text(
+                                    '8:30 ص',
+                                    style: GoogleFonts.cairo(
+                                        fontSize: 14, color: Color(0xff0012AA)),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'نوع التذكرة ',
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
+                                  Text(
+                                    'رقم المقعد',
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'عادية ',
+                                    style: GoogleFonts.cairo(
+                                        fontSize: 14, color: Color(0xff0012AA)),
+                                  ),
+                                  Text(
+                                    'A1',
+                                    style: GoogleFonts.cairo(
+                                        fontSize: 14, color: Color(0xff0012AA)),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Text(
-                                'التاريخ',
-                                style: Theme.of(context).textTheme.headline5,
-                      ),     Text(
-                                'الموعد',
-                                style: Theme.of(context).textTheme.headline5,
-                              ),   ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                                'العنوان',
+                                style: GoogleFonts.cairo(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
                               Text(
-                                '10/10/1010',
+                                controller
+                                    .reservationsItem.value[index].address,
                                 style: GoogleFonts.cairo(
                                     fontSize: 14, color: Color(0xff0012AA)),
                               ),
-                              Text(
-                                '8:30 ص',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'نوع التذكرة ',
-                                style: Theme.of(context).textTheme.headline5,
-                              ),  Text(
-                                'رقم المقعد',
-                                style: Theme.of(context).textTheme.headline5,
-                              ),    ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'عادية ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                              Text(
-                                'A1',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'العنوان',
-                            style: GoogleFonts.cairo(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'غزة النصر , شارع جمال باشة ',
-                            style: GoogleFonts.cairo(
-                                fontSize: 14, color: Color(0xff0012AA)),
-                          ),
-                          Divider(),
-                          /*      Align(
+                              Divider(),
+                              /*      Align(
                   alignment: AlignmentDirectional.center,
                   child: Image(
-                      image: AssetImage('images/cock.png'),
-                      fit: BoxFit.cover,
-                      height: 120,
-                      width: 120,
-                      alignment: AlignmentDirectional.center),
-                ),*/
+                  image: AssetImage('images/cock.png'),
+                  fit: BoxFit.cover,
+                  height: 120,
+                  width: 120,
+                  alignment: AlignmentDirectional.center),
+                  ),*/
 
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return CustomDialog(
-                                            buttonText2: 'لا اريد',
-                                            title:
-                                                "هل انت متاكد من انك تريد الغاء التذكرة؟",
-                                            discraption: "",
-                                            buttonText: "نعم أريد",
-                                            image:
-                                                Image.network("images/h2.png"));
-                                      });
-                                },
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.delete_outline,
-                                      color: Color(0xff0012AA),
-                                    ),
-                                    Text(
-                                      'الغاء ',
-                                      style: Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Column(
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Icon(
-                                    Icons.edit,
-                                    size: 20,
-                                    color: Color(0xff0012AA),
+                                  InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return CustomDialog(
+                                                index: index,
+                                                buttonText2: 'لا اريد',
+                                                title:
+                                                    "هل انت متاكد من انك تريد الغاء التذكرة؟",
+                                                discraption: "",
+                                                buttonText: "نعم أريد",
+                                                image: Image.network(
+                                                    "images/h2.png"));
+                                          });
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.delete_outline,
+                                          color: Color(0xff0012AA),
+                                        ),
+                                        Text(
+                                          'الغاء ',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Text(
-                                    'تعديل  ',
-                                    style: Theme.of(context).textTheme.bodyText2,
+                                  Column(
+                                    children: [
+                                      Icon(
+                                        Icons.edit,
+                                        size: 20,
+                                        color: Color(0xff0012AA),
+                                      ),
+                                      Text(
+                                        'تعديل  ',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              InkWell(
-                                onTap: () => _showBottomSheet(),
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.share,
-                                      color: Color(0xff0012AA),
+                                  InkWell(
+                                    onTap: () => _showBottomSheet(),
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.share,
+                                          color: Color(0xff0012AA),
+                                        ),
+                                        Text(
+                                          'تصدير ',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2,
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      'تصدير ',
-                                      style: Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )),
-              ]),
-          SizedBox(
-            height: 5,
-          ),
-          ExpansionPanelList(
-              // لون الخط الفاصل
-              dividerColor: Colors.grey,
-
-              // عند العرض يكون في حركة
-              animationDuration: const Duration(seconds: 1),
-              expandedHeaderPadding: EdgeInsets.zero,
-              elevation: 4,
-              // هاي علشان نعرف شو حالة الضغطة ونحولها من شغالة لطافية
-              expansionCallback: (panelIndex, isExpanded) {},
-              // خليت العناصر الي موودة في الليستة اعرضها عنا
-              children: [
-                ExpansionPanel(
-                    backgroundColor: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
-                    // expansionCallbackهنا لتفعيل السهم لعرض الاجابة  من
-                    isExpanded: false,
-                    // لتفعيل فتح الاجابة عند الضغط على كل العنصر
-                    canTapOnHeader: false,
-                    headerBuilder: (context, isExpanded) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(''),
-                          Text(
-                            'فعالية واحد',
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                          Text(
-                            '10/10/1010',
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                        ],
-                      );
-                    },
-                    body: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "images/contents.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'التاريخ',
-                                style: Theme.of(context).textTheme.headline5,
-                              ),    Text(
-                                'الموعد',
-                                style: Theme.of(context).textTheme.headline5,
-                              ),     ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '10/10/1010',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                              Text(
-                                '8:30 ص',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'نوع التذكرة ',
-                                style: Theme.of(context).textTheme.headline5,),
-                              Text(
-                                'رقم المقعد',
-                                style: Theme.of(context).textTheme.headline5,
-                              )
-                                ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'عادية ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                              Text(
-                                'A1',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 14, color: Color(0xff0012AA)),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'العنوان',
-                            style: GoogleFonts.cairo(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'غزة النصر , شارع جمال باشة ',
-                            style: GoogleFonts.cairo(
-                                fontSize: 14, color: Color(0xff0012AA)),
-                          ),
-                          Divider(),
-                          /*      Align(
-                  alignment: AlignmentDirectional.center,
-                  child: Image(
-                      image: AssetImage('images/cock.png'),
-                      fit: BoxFit.cover,
-                      height: 120,
-                      width: 120,
-                      alignment: AlignmentDirectional.center),
-                ),*/
-
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return CustomDialog(
-                                            buttonText2: 'لا اريد',
-                                            title:
-                                                "هل انت متاكد من انك تريد الغاء التذكرة؟",
-                                            discraption: "",
-                                            buttonText: "نعم أريد",
-                                            image:
-                                                Image.network("images/h2.png"));
-                                      });
-                                },
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.delete_outline,
-                                      color: Color(0xff0012AA),
-                                    ),
-                                    Text(
-                                      'الغاء ',
-                                      style: Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Column(
-                                children: [
-                                  Icon(
-                                    Icons.edit,
-                                    size: 20,
-                                    color: Color(0xff0012AA),
-                                  ),
-                                  Text(
-                                    'تعديل  ',
-                                    style: Theme.of(context).textTheme.bodyText2,
                                   ),
                                 ],
                               ),
-                              InkWell(
-                                onTap: () => _showBottomSheet(),
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.share,
-                                      color: Color(0xff0012AA),
-                                    ),
-                                    Text(
-                                      'تصدير ',
-                                      style: Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ],
-                                ),
-                              ),
                             ],
                           ),
-                        ],
-                      ),
-                    )),
-              ]),
-        ],
-      ),
+                        )
+                      ],
+                    );
+                  },
+                  itemCount: controller.reservationsItem.value.length,
+                  shrinkWrap: true,
+                ),
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.error,size: 55),
+                  Center(
+                    
+                    child: Text(
+                      'لا يوجد تذاكر, احجز الان',
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                  )
+                ],
+              );
+      },
     );
   }
 
@@ -637,7 +295,7 @@ backgroundColor: MediaQuery.of(context).platformBrightness==Brightness.light?Col
           topRight: Radius.circular(10),
         ),
       ),
-       clipBehavior: Clip.antiAlias,
+      clipBehavior: Clip.antiAlias,
       context: context,
       builder: (context) {
         return BottomSheet(
@@ -657,7 +315,8 @@ backgroundColor: MediaQuery.of(context).platformBrightness==Brightness.light?Col
                       ),
                       Text(
                         'تصد ير التذكرة',
-                        style: Theme.of(context).textTheme.headline5,),
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
                       Divider(
                         thickness: 2,
                       ),

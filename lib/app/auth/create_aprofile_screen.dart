@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hackathon_project/helper/context_extenssion.dart';
 import 'package:hackathon_project/model/UserModle.dart';
 
 import '../../Get/FirebaseController.dart';
@@ -197,6 +196,6 @@ class _CreateAprofileScreenState extends State<CreateAprofileScreen>
       Navigator.pushReplacementNamed(context, '/btn_navigation_screen');
 
     }else {
-      context.showSnackBar(message: 'error', error: false);
+      // context.showSnackBar(message: 'error', error: false);
     }}
 }

@@ -281,6 +281,7 @@ class _NewPaymentsScreenState extends State<NewPaymentsScreen> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return CustomDialog(
+                                          index: 0,
                                           buttonText2: ' ',
                                           title:
                                           "هل انت متاكد من انك تريد الغاء التذكرة؟",

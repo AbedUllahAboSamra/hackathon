@@ -1,6 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_project/helper/context_extenssion.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/Get/reservations_get_controller.dart';
+import '../../model/api_response.dart';
 
 class Const {
   static double padding = 16;
@@ -10,8 +13,11 @@ class Const {
 }
 
 class CustomDialog extends StatelessWidget {
-  const CustomDialog(
+  final int index;
+  ReservationsGetxController controller =Get.put(ReservationsGetxController());
+   CustomDialog(
       {Key? key,
+      required this.index,
       required this.title,
       required this.discraption,
       required this.buttonText,
@@ -28,11 +34,11 @@ class CustomDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(Const.padding)),
       elevation: 0,
       backgroundColor: Colors.transparent,
-      child: diallogContent(context),
+      child: diallogContent(context,index:index),
     );
   }
 
-  diallogContent(BuildContext context) {
+  diallogContent(BuildContext context, {required int index}) {
     return Stack(
       children: [
         Container(
@@ -66,7 +72,12 @@ class CustomDialog extends StatelessWidget {
                           child: Text(buttonText,
                               textAlign: TextAlign.start,
                               style: GoogleFonts.getFont('Cairo')),
-                          onPressed: () {
+                          onPressed: () async{
+                            ProcessResponse process=await controller.deleteItem(index);
+                            // Navigator.push(context);
+                            context.showSnackBar(message: process.message,error: !process.success);
+                            print(process.success);
+                            print(process.message);
                             Navigator.of(context).pop();
                           },
                         ),

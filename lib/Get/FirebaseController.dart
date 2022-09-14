@@ -79,9 +79,12 @@ class FirebaseController extends GetxController {
     falias.clear();
    var fal = await FirebaseFirestore.instance.collection('Falias').get();
 
-      for(var element in fal .docs){
+
+      for(var element in fal.docs){
      var eventChart = await getEvintCharts(faliaId:element.id );
-     FaliaModel fa = FaliaModel(
+     print(eventChart!.length);
+        FaliaModel fa = FaliaModel(
+          id: element.id,
          name: element['name'],
          type: element['type'],
          location: element['location'],
@@ -97,6 +100,7 @@ class FirebaseController extends GetxController {
        if(fa.type=="فعاليات الثقافة"){
          thqafa.add(fa);
        }
+
 
    }
 
