@@ -399,9 +399,9 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                 Container(
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: 10,
+                      itemCount: widget.falia.eventchart!.length,
                       shrinkWrap: true,
-                      itemBuilder: (ctx, inde) {
+                      itemBuilder: (ctx, index) {
                         return Card(
                           color: MediaQuery.of(context).platformBrightness ==
                               Brightness.light
@@ -411,25 +411,26 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                             borderRadius: BorderRadius.circular(4.r),
                           ),
                           margin: EdgeInsets.symmetric(vertical: 8.h),
-                          child: ExpansionTile(
+                          child:ExpansionTile(
                             title: Row(
                               children: [
                                 Text(
-                                  'اليوم الاول',
-                                  style: GoogleFonts.cairo(
-                                      fontSize: 14.sp,
-                                      color: Color(0xFF000000)),
+                                  widget.falia.eventchart![index].day
+                                      .toString(),
+                                  style: Theme.of(context).textTheme.bodyText2,
                                 ),
                                 Spacer(),
-                                Text('20201/20/2000',
-                                    style: GoogleFonts.cairo(
-                                        fontSize: 14.sp,
-                                        color: Color(0xFF0012AA)))
+                                Text(
+                                  widget.falia.eventchart![index].date
+                                      .toString(),
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                )
                               ],
                             ),
-                            children: [
-                              // coomenteion row
-                              Row(
+                            children: widget
+                                .falia.eventchart![index].evintsDate!
+                                .map((e) {
+                              return Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -452,7 +453,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                                         decoration: BoxDecoration(
                                             color: Color(0xff3c48c5),
                                             borderRadius:
-                                                BorderRadius.circular(5.r)),
+                                            BorderRadius.circular(5.r)),
                                       ),
                                       SizedBox(
                                         height: 8.h,
@@ -465,22 +466,28 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          '8:30 ص',
-                                          style: GoogleFonts.cairo(
-                                              fontSize: 14.sp,
-                                              color: Color(0xFF120007)),
+                                          e.time,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6
+                                              ?.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 20.h,
                                         ),
                                         Text(
-                                            'يبدء المهرجان بوصلة غناء من الفنانة اصالة',
-                                            style: GoogleFonts.cairo(
-                                                fontSize: 12.sp,
-                                                color: Color(0xFF838383))),
+                                          e.describtion,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6
+                                              ?.copyWith(
+                                              color: Colors.grey[500]),
+                                        ),
                                         SizedBox(
                                           height: 10.h,
                                         )
@@ -488,8 +495,8 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                                     ),
                                   ),
                                 ],
-                              ),
-                            ],
+                              );
+                            }).toList(),
                           ),
                         );
                       }),
