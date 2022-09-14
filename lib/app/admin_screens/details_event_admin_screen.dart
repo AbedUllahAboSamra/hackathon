@@ -3,21 +3,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/app/admin_screens/add_event_screen.dart';
+import 'package:hackathon_project/model/FaliaModel.dart';
 import 'package:readmore/readmore.dart';
 
 import '../praymary_screen/events_screen.dart';
 
 class DetailsEventAdmin extends StatefulWidget {
+  FaliaModel falia ;
+  DetailsEventAdmin({required this.falia});
   @override
   State<DetailsEventAdmin> createState() => _DetailsEventAdminState();
 }
 
 class _DetailsEventAdminState extends State<DetailsEventAdmin> {
-  var isCollapse = false;
-  var currentImage = 1;
-  var imagesUrl = ['images/assets/boarding1.png'];
-  var ticketPrice = 20;
-  var numberOfTicketsAvailable = 200;
+   var currentImage = 1;
+
 
   @override
   Widget build(BuildContext context) {
@@ -115,8 +115,8 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                     Container(
                       height: double.infinity,
                       child: PageView.builder(
-                        itemBuilder: (context, index) => Image.asset(
-                          imagesUrl[index],
+                        itemBuilder: (context, index) => Image.network(
+                          widget.falia.imagesUrl![index],
                           fit: BoxFit.cover,
                         ),
                         onPageChanged: (v) {
@@ -124,18 +124,21 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                             currentImage = v + 1;
                           });
                         },
-                        itemCount: imagesUrl.length,
+                        itemCount:  widget.falia.imagesUrl!.length,
                       ),
                     ),
                     Align(
                       alignment: Alignment.bottomLeft,
-                      child: Card(
+                      child: Card(color: MediaQuery.of(context).platformBrightness ==
+                          Brightness.light
+                          ? Colors.white
+                          : Colors.black,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6.r)),
                         elevation: 5,
                         margin: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 32.h),
-                        color: Color(0xFFF5F5F5),
+
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -152,7 +155,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                             ),
                             Container(
                               margin: EdgeInsetsDirectional.only(end: 3.w),
-                              child: Text('$currentImage/${imagesUrl.length}',
+                              child: Text('$currentImage/${widget.falia.imagesUrl!.length}',
                                   style:
                                       GoogleFonts.averageSans(fontSize: 12.sp)),
                             ),
@@ -242,7 +245,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                                     color: Colors.green[500],
                                     borderRadius: BorderRadius.circular(5.r)),
                                 child: Text(
-                                  ticketPrice.toString() + "\$ ",
+                                  widget.falia.ticketPrice.toString() + "\$ ",
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText2
@@ -283,7 +286,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                                 width: 4.w,
                               ),
                               Text(
-                                "$numberOfTicketsAvailable  Tickets available",
+                                "${widget.falia.numberOfTickets}  Tickets available",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2
@@ -323,7 +326,10 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                 Divider(),
                 Container(
                   width: double.infinity,
-                  child: Card(
+                  child: Card(color: MediaQuery.of(context).platformBrightness ==
+                      Brightness.light
+                      ? Colors.white
+                      : Colors.black,
                     elevation: 2,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.r),
@@ -397,6 +403,10 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                       shrinkWrap: true,
                       itemBuilder: (ctx, inde) {
                         return Card(
+                          color: MediaQuery.of(context).platformBrightness ==
+                              Brightness.light
+                              ? Colors.white
+                              : Colors.black,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.r),
                           ),
@@ -485,6 +495,10 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                       }),
                 ),
                 Card(
+                  color: MediaQuery.of(context).platformBrightness ==
+                    Brightness.light
+                    ? Colors.white
+                    : Colors.black,
                   elevation: 4,
                   child: Container(
                     height: 156.h,

@@ -15,12 +15,8 @@ class FirstTabScreen extends StatelessWidget {
       itemCount: 10,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return   Events(image:'slider.png',ticket_available: '30', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
-          Get.to(
-                () {
-              return DetailsEventAdmin();
-            },
-          );
+        return   Events(image:'https://picsum.photos/200/300',ticket_available: '30', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
+
         },);
 
       },

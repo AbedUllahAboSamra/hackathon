@@ -169,19 +169,11 @@ class _HomeUserScreenState extends State<HomeUserScreen> {
 
                     ],
                   ),
-                  Events(image:'slider.png' ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
-                    Get.to(
-                      () {
-                        return DetailsEventAdmin();
-                      },
-                    );
+                  Events(image:'https://picsum.photos/200/300' ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
+
                   },),
-                  Events(image:'slider.png'  ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
-                    Get.to(
-                      () {
-                        return DetailsEventAdmin();
-                      },
-                    );
+                  Events(image:'https://picsum.photos/200/300'  ,ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',  onTap: () {
+
                   },),
 
                 ],
@@ -225,12 +217,9 @@ class _HomeUserScreenState extends State<HomeUserScreen> {
 
                     ],
                   ),
-                  Events(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',image:'slider.png',  onTap: () {
-                    Get.to(
-                          () {
-                        return DetailsEventAdmin();
-                      },
-                    );
+                  Events(ticket_available: '20', title: 'فعاليات مهرجا صوة العرب', data: '2/2/2022', Reservation: '100',image:'slider.png'
+                    ,  onTap: () {
+
                   },),
 
                 ],

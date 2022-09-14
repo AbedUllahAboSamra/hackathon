@@ -198,8 +198,8 @@ class _NewPaymentsScreenState extends State<NewPaymentsScreen> {
                                   width: 150.w,
                                   child: GestureDetector(
                                     onTap: () {
-                                      // _selectDate();
-                                    },
+
+                                     },
                                     child: Container(
                                       padding:
                                       EdgeInsets.symmetric(horizontal: 5.w),

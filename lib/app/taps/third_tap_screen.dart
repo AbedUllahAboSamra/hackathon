@@ -14,16 +14,13 @@ class ThirdTabScreen extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Events(
-          image:'slider.png',
+          image:'https://picsum.photos/200/300',
              ticket_available: '30',
              title: 'فعاليات مهرجا صوة العرب',
              data: '2/2/2022',
              Reservation: '100',
              onTap: () {
-             Get.to(() {
-               return DetailsEventAdmin();
-             },
-          );
+
         },);
 
       },

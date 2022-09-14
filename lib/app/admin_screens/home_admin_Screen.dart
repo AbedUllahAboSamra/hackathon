@@ -21,7 +21,7 @@ class _BTNScreenState extends State<BTNScreen> with SingleTickerProviderStateMix
   int _selectedPageIndex = 0;
 
   final List<BnScreen> _screens = <BnScreen>[
-    const BnScreen(title: 'أهلا وسهلا', widget: HomeAdminScreen()),
+      BnScreen(title: 'أهلا وسهلا', widget: HomeAdminScreen()),
     const BnScreen(title: 'الفعاليات', widget: EventsScreen()),
     const BnScreen(title: 'تذاكري', widget: TazakerScreen()),
      BnScreen(title: 'الاعدادات', widget: AccountScreen(isAdmin:true)),

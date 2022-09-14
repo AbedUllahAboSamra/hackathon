@@ -366,7 +366,7 @@ class _DetailsScreenState extends State<DetailsScreen> with Helpers{
                           color: MediaQuery.of(context).platformBrightness ==
                                   Brightness.light
                               ? Colors.white
-                              : Colors.black26,
+                              : Colors.black,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.r),
                           ),
