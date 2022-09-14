@@ -1,8 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../widgets/second_home_widget.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:hackathon_project/Get/FirebaseController.dart';
+import '../../widgets/TqafaWidget.dart';
 import '../home_screen/home_screen.dart';
 import '../taps/second_tab_screen.dart';
 
@@ -19,9 +23,8 @@ class _MainScreenState extends State<MainScreen>
 
   @override
   void initState() {
-    _controller = TabController(vsync: this, length: 4);
-    // TODO: implement initState
-    super.initState();
+    _controller = TabController(vsync: this, length: 3);
+     super.initState();
   }
 
   @override
@@ -29,7 +32,7 @@ class _MainScreenState extends State<MainScreen>
     _controller.dispose();
     super.dispose();
   }
-
+var controller  = Get.put<FirebaseController>(FirebaseController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,10 +44,7 @@ class _MainScreenState extends State<MainScreen>
         // backgroundColor: Color(0xffF2F2F2),
         title: Text(
           'اهلا وسهلا بك',
-          style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.normal,
-              color: Color(0xFF120007)),
+          style:  Theme.of(context).textTheme.headline4,
         ),
         centerTitle: true,
 
@@ -63,9 +63,7 @@ class _MainScreenState extends State<MainScreen>
             Tab(
               text: 'فعاليات الثقافة',
             ),
-            Tab(
-              text: 'فعاليات تراثية',
-            ),
+
             Tab(
               text: 'فعاليات أخرى',
             ),
@@ -76,8 +74,7 @@ class _MainScreenState extends State<MainScreen>
         controller: _controller,
         children: [
           HomeScreen(),
-          SecondHomeWidget(),
-          SecondTabScreen(),
+          TqafaWidget(array: controller.fillterEvints(fillterBy: 'فعاليات الثقافة'),),
           SecondTabScreen(),
 
         ],

@@ -23,7 +23,7 @@ class _PayScreenState extends State<PayScreen> {
         backgroundColor: Color(0xffF5F5F5),
         title: Text('كيف تحب ان تدفع؟',
             style:
-            GoogleFonts.cairo(color: Color(0xFF000637), fontSize: 16.sp)),
+            Theme.of(context).textTheme.headline5),
         centerTitle: true,
       ),
       body: Padding(
@@ -33,22 +33,21 @@ class _PayScreenState extends State<PayScreen> {
             Text(
               'انت على بعد خطوة من حجز جلسة المساج',
               style:
-              GoogleFonts.cairo(color: Color(0xFF000637), fontSize: 16.sp),
+              Theme.of(context).textTheme.headline5,
             ),
 
 
             SizedBox(height: 14.h),
 
             Text('كيف تحب ان تدفع؟',
-                style: GoogleFonts.cairo(
-                    color: Color(0xFF000637), fontSize: 14.sp)),
+                style: Theme.of(context).textTheme.headline6),
             SizedBox(height: 24.h),
             PaymentsWay(
               leadingtitle: 'بطاقة الائتمان',
               widget: InkWell(
                 child: Text('اضافة بطاقة',
-                    style: GoogleFonts.cairo(
-                        color: Color(0xFF0012AA), fontSize: 10.sp)),
+                    style: Theme.of(context).textTheme.headline5?.copyWith(
+                        color: Theme.of(context).cardColor, fontSize: 10.sp)),
                 onTap: () {
 
                   Navigator.pushNamed(context, '/newpay_screen');
@@ -74,17 +73,14 @@ class _PayScreenState extends State<PayScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('4000',
-                        style: TextStyle(color: Colors.white, fontSize: 16
-                            .sp),),
+                        style:  Theme.of(context).textTheme.headline5?.copyWith(
+                            color: Colors.white,  ),),
                       Text('****',
-                          style: TextStyle(color: Colors.white, fontSize: 16
-                              .sp)),
+                          style:  Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white,   )),
                       Text('****',
-                          style: TextStyle(color: Colors.white, fontSize: 16
-                              .sp)),
+                          style:  Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white, )),
                       Text('7689',
-                          style: TextStyle(color: Colors.white, fontSize: 16
-                              .sp)),
+                          style:  Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white, )),
                     ],
                   ),
                   // SizedBox(height: 13.96.h,),
@@ -123,10 +119,10 @@ class _PayScreenState extends State<PayScreen> {
                         borderRadius: BorderRadius.circular(6.r))),
                 child: Text(
                   'شراء التذاكر 60 ',
-                  style: GoogleFonts.nunito(
-                      fontSize: 16.sp,
+                  style: Theme.of(context).textTheme.headline5?.copyWith(
+
                       color: Color(0xffFFFFFF),
-                      fontWeight: FontWeight.bold),
+                     ),
                 )),
             // SizedBox(height: 34.h,)
           ],

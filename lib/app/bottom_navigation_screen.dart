@@ -16,12 +16,13 @@ class BottomNavigationScreen extends StatefulWidget {
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int _selectedPageIndex = 0;
 
-  // هذا جاي من ملف المودل علشان نعمل استدعاء للصفحات حسب الضغط على البوتن
-  final List<BnScreen> _screens = <BnScreen>[
+   final List<BnScreen> _screens = <BnScreen>[
     BnScreen(title: 'اهلا وسهلا بك', widget: MainScreen()),
     BnScreen(title: 'حجوزاتي', widget: ReservationScreen()),
     BnScreen(title: 'الاعدادات', widget: AccountScreen(isAdmin: false,)),
   ];
+
+
 
   @override
   Widget build(BuildContext context) {

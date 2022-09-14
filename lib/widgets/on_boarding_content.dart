@@ -66,11 +66,7 @@ class OnBoardingContent extends StatelessWidget {
                   ),
                   Text(
                     description,
-                    style: GoogleFonts.cairo(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF000000),
-                    ),
+                    style: Theme.of(context).textTheme.headline5
                   ),
                 ],
               ),

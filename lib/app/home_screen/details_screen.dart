@@ -57,9 +57,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ],
               ),
               backgroundColor:
-                  MediaQuery.of(context).platformBrightness == Brightness.light
-                      ? Color(0xFFF5F5F5)
-                      : Colors.black87,
+                  Theme.of(context).scaffoldBackgroundColor,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
                   alignment: Alignment.bottomCenter,
@@ -88,7 +86,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         elevation: 5,
                         margin: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 32.h),
-                        color: Color(0xFFF5F5F5),
+                        color:  Theme.of(context).scaffoldBackgroundColor,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -99,7 +97,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               ),
                               child: Icon(
                                 Icons.camera_alt,
-                                color: Colors.grey[800],
+                                color:  Colors.grey[600],
                                 size: 17,
                               ),
                             ),
@@ -108,7 +106,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               child: Text(
                                   '$currentImage/${widget.falia.imagesUrl!.length}',
                                   style:
-                                      GoogleFonts.averageSans(fontSize: 12.sp)),
+                                      Theme.of(context).textTheme.headline6?.copyWith(fontSize: 12.sp)),
                             ),
                           ],
                         ),
@@ -162,10 +160,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           Expanded(
                             child: Text(
                               widget.falia.name,
-                              style: GoogleFonts.cairo(
-                                  color: Color(0xFF000637), fontSize: 18.sp),
-                            ),
-                          ),
+                              style: Theme.of(context).textTheme.headline4,
+                          ),),
                           SizedBox(
                             width: 16.w,
                           ),
@@ -174,8 +170,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             child: InkWell(
                               child: Icon(
                                 Icons.share_rounded,
-                                color: Color(0xff3c48c5),
-                                size: 25,
+                                color: Theme.of(context).cardColor,
+
                               ),
                             ),
                           )
@@ -186,8 +182,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       ),
                       Text(
                         widget.falia.faliaDescrebtion,
-                        style: GoogleFonts.cairo(
-                            color: Color(0xFF565656), fontSize: 10.sp),
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                            fontSize: 10.sp),
                       ),
                       SizedBox(
                         height: 20.h,
@@ -289,6 +285,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   width: double.infinity,
                   margin: EdgeInsets.only(top: 10.h),
                   child: Card(
+                    color: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                     elevation: 2,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.r),
@@ -303,9 +300,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             height: 5.h,
                           ),
                           Text(
-                            'حول استرز',
-                            style: GoogleFonts.cairo(
-                                color: Color(0xFF000637), fontSize: 16.sp),
+                            'حول ${widget.falia.companyName}',
+                            style: Theme.of(context).textTheme.headline4,
                           ),
                           SizedBox(
                             height: 8.h,
@@ -340,10 +336,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   margin: EdgeInsets.only(top: 15.h),
                   child: Text(
                     'مخطط الفعالية',
-                    style: GoogleFonts.cairo(
-                        color: Color(0xFF000637), fontSize: 18.sp),
-                  ),
-                ),
+                    style: Theme.of(context).textTheme.headline4,
+                ),),
                 Container(
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
@@ -351,7 +345,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       shrinkWrap: true,
                       itemBuilder: (ctx, index) {
                         return Card(
-                          shape: RoundedRectangleBorder(
+                          color:  MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26
+                          ,shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.r),
                           ),
                           margin: EdgeInsets.symmetric(vertical: 8.h),
@@ -359,11 +354,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             title: Row(
                               children: [
                                  Text(widget.falia.eventchart![index].day.toString(),
-                              style: TextStyle(),
+                              style: Theme.of(context).textTheme.bodyText2,
                                  ),
                                 Spacer(),
                                 Text(widget.falia.eventchart![index].date.toString(),
-                                  style: TextStyle(),
+                                  style: Theme.of(context).textTheme.bodyText2,
                                 )
                               ],
                             ),
@@ -441,6 +436,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
                 Card(
                   elevation: 4,
+             color: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                   margin: EdgeInsets.only(top: 20.h,bottom: 15.h),
                   child: Container(
                     height: 156.h,
@@ -457,9 +453,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                         Text(
                          widget.falia.location,
-                          style: GoogleFonts.cairo(
-                              color: Color(0xFF000637), fontSize: 18.sp),
-                        ),
+                          style: Theme.of(context).textTheme.headline4,)
                       ],
                     ),
                   ),
@@ -475,9 +469,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   },
                   child: Text(
                     'حجز تذكرة',
-                    style: GoogleFonts.cairo(
-                        color: Color(0xFF000637), fontSize: 18.sp),
-                  ),
+                    style: Theme.of(context).textTheme.headline4,),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 48.h),
                   ),

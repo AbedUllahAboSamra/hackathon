@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/model/FaliaModel.dart';
 import 'package:hackathon_project/widgets/Dialog/Coustom_Dialog.dart';
 
 import '../../Get/FirebaseController.dart';
@@ -19,12 +20,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   var controller = Get.put<FirebaseController>(FirebaseController());
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 25.h, ),
+      padding: EdgeInsets.only(
+        top: 25.h,
+      ),
       child: ListView(
         children: [
           CarouselSlider(
@@ -41,8 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
               autoPlayCurve: Curves.fastOutSlowIn,
               scrollDirection: Axis.horizontal,
             ),
-            items: [
-              Container(
+            items: controller.falias.map((element) {
+              print(element.imagesUrl![0]);
+              return  Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),
                 ),
@@ -55,8 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         sigmaX: 0.5,
                         sigmaY: 0.5,
                       ),
-                      child: Image.asset(
-                        'images/slider.png',
+                      child: Image.network(
+                        element.imagesUrl![0],
                         color: Colors.grey.withOpacity(0.8),
                         colorBlendMode: BlendMode.modulate,
                         fit: BoxFit.cover,
@@ -66,9 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Positioned(
                       child: Text(
-                        ' 4 تذاكر لحضور مهرجان الاصيل فقط 50 ',
-                        style:
-                            TextStyle(fontSize: 16, color: Color(0xFFFFFFFF)),
+                        ' ${element.numberOfTickets} تذاكر لحضور ${element.name} فقط  ',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            ?.copyWith(color: Color(0xFFFFFFFF)),
                       ),
                       bottom: 14.h,
                       right: 24.w,
@@ -76,33 +82,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     // SizedBox(height: ,)
                   ],
                 ),
-              ),
-            ],
+              );
+            }).toList(),
           ),
           SizedBox(
             height: 39.h,
           ),
           Container(
-            margin: EdgeInsets.only(left: 15.w,right: 15.w),
-            child: Text(
-              'أشهر الفعاليات',
-              style: TextStyle(
-                  color: Color(0xff120007), fontWeight: FontWeight.normal),
-            ),
-          ),
+              margin: EdgeInsets.only(left: 15.w, right: 15.w),
+              child: Text(
+                'أشهر الفعاليات',
+                style: Theme.of(context).textTheme.bodyText2,
+              )),
           SizedBox(
             height: 14.sp,
           ),
-          SliderWidget(fillterType:"أحدث الفعاليات"),
+          SliderWidget(
+              array: controller.fillterEvints(fillterBy: 'أشهر الفعاليات')),
           SizedBox(
             height: 24.sp,
           ),
-    Container(
-    margin: EdgeInsets.only(left: 15.w,right: 15.w),
-    child:Text(
-            'سيبدأ قريبا',
-            style: GoogleFonts.cairo(color: Color(0xFF120007), fontSize: 16.sp),
-          ),),
+          Container(
+            margin: EdgeInsets.only(left: 15.w, right: 15.w),
+            child: Text(
+              'سيبدأ قريبا',
+              style:
+              Theme.of(context).textTheme.headline5,
+            ),
+          ),
           SizedBox(
             height: 14.h,
           ),
@@ -146,19 +153,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('\$20',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.normal)),
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                ?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.normal)),
                         SizedBox(
                           height: 8.h,
                         ),
                         Text(
                           'المهرجان الكيودو ',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.normal),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5
+                              ?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.normal),
                         ),
                         SizedBox(
                           height: 8.h,
@@ -174,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 12.w,
                             ),
                             Text('الخميس 2022\ 10\12',
-                                style: GoogleFonts.cairo(
+                                style:Theme.of(context).textTheme.headline5?.copyWith(
                                     color: Colors.white,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.normal)),
@@ -183,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             // Spacer(),
                             Text('1K',
-                                style: GoogleFonts.cairo(
+                                style: Theme.of(context).textTheme.headline5?.copyWith(
                                     color: Colors.white,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.normal)),
@@ -192,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Text(
                               'تذكرة متاحة',
-                              style: GoogleFonts.cairo(
+                              style: Theme.of(context).textTheme.headline5?.copyWith(
                                   color: Colors.white,
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.normal),
@@ -214,15 +227,17 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 24.h,
           ),
-            Container(
-    margin: EdgeInsets.only(left: 15.w,right: 15.w),
-    child:Text(
-            'أحدث الفعاليات',
-          ),),
+          Container(
+            margin: EdgeInsets.only(left: 15.w, right: 15.w),
+            child: Text(
+              'أحدث الفعاليات',
+            ),
+          ),
           SizedBox(
             height: 14.h,
           ),
-          SliderWidget(fillterType: "أحدث الفعاليات"),
+          SliderWidget(
+              array: controller.fillterEvints(fillterBy: 'أحدث الفعاليات')),
           SizedBox(height: 24.h),
         ],
       ),
@@ -231,39 +246,34 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class SliderWidget extends StatelessWidget {
-  var fillterType ;
-  SliderWidget({required this.fillterType});
-var controller = Get.put<FirebaseController>(FirebaseController());
+  late RxList<FaliaModel> array;
 
-@override
+  SliderWidget({required this.array});
+
+
+  @override
   Widget build(BuildContext context) {
-    var array = controller.fillterEvints(fillterBy: fillterType);
-  print(array);
+    print(array);
     return Container(
       height: 200.h,
       child: ListView.builder(
-        itemCount:array.length,
+        itemCount: array.length,
         itemBuilder: (context, index) {
           return Container(
-
             height: 200.h,
             width: 140.w,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
-              color: Colors.black26
-            ),
-                margin: EdgeInsets.only(left: 15.w,right: index==0?15.w:0),
-
+                borderRadius: BorderRadius.circular(12.r),
+                color: Colors.black26),
+            margin: EdgeInsets.only(left: 15.w, right: index == 0 ? 15.w : 0),
             child: InkWell(
-              onTap: (){
-              Get.to(DetailsScreen(falia:array[index]));
-
+              onTap: () {
+                Get.to(DetailsScreen(falia: array[index]));
               },
               child: Stack(
                 fit: StackFit.expand,
                 clipBehavior: Clip.hardEdge,
                 children: [
-
                   Container(
                     clipBehavior: Clip.hardEdge,
                     child: Image.network(
@@ -272,8 +282,8 @@ var controller = Get.put<FirebaseController>(FirebaseController());
                       colorBlendMode: BlendMode.modulate,
                       fit: BoxFit.fill,
                     ),
-                    decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.r)),
                   ),
                   Positioned(
                     child: Column(
@@ -282,30 +292,45 @@ var controller = Get.put<FirebaseController>(FirebaseController());
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                       children: [
-                        Text(array[index].ticketPrice.toString()+"\$",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.bold)),
-                         Text(
+                        Text(array[index].ticketPrice.toString() + "\$",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                ?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold)),
+                        Text(
                           array[index].name,
-                          style: TextStyle(
-                              color: Colors.white,  fontSize: 12.sp,
-                              fontWeight: FontWeight.bold),
-
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5
+                              ?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.bold),
                         ),
-
                         Row(
                           children: [
                             Text(array[index].numberOfTickets.toString(),
-                                style: TextStyle(
-                                    color: Colors.white,  fontSize: 12.sp,
-                                    fontWeight: FontWeight.bold)),
-                            SizedBox(width: 5.w,),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5
+                                    ?.copyWith(
+                                        color: Colors.white,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold)),
+                            SizedBox(
+                              width: 5.w,
+                            ),
                             Text('تذكرة متاحة',
-                                style: TextStyle(
-                                    color: Colors.white,  fontSize: 12.sp,
-                                    fontWeight: FontWeight.bold)),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5
+                                    ?.copyWith(
+                                        color: Colors.white,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ],

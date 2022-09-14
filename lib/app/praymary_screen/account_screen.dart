@@ -18,10 +18,10 @@ class AccountScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'حسابي ',
-          style: GoogleFonts.cairo(
-            fontSize: 20.sp,
+          style: Theme.of(context).textTheme.headline3?.copyWith(
+
             fontWeight: FontWeight.w800,
-            color: Color(0xFF000000),
+
           ),
         ),
         backgroundColor: Color(0xffF5F5F5),
@@ -243,14 +243,8 @@ class AccountScreen extends StatelessWidget {
            title: Text(
              'هل تريد تسجيل الخروج ؟',
            ),
-           titleTextStyle: GoogleFonts.cairo(
-             fontSize: 16,
-             color: Colors.black,
-           ),
-           contentTextStyle: GoogleFonts.cairo(
-             fontSize: 13,
-             color: Colors.black45,
-           ),
+           titleTextStyle:Theme.of(context).textTheme.headline5,
+           contentTextStyle: Theme.of(context).textTheme.headline6,
            actions: [
              TextButton(
                onPressed: () {
@@ -259,7 +253,7 @@ class AccountScreen extends StatelessWidget {
                },
                child: Text(
                  'نعم',
-                 style: GoogleFonts.cairo(color: Colors.red),
+                 style: Theme.of(context).textTheme.bodyText2?.copyWith(color: Colors.red),
                ),
              ),
              TextButton(
@@ -268,7 +262,7 @@ class AccountScreen extends StatelessWidget {
                },
                child: Text(
                  'لا',
-                 style: GoogleFonts.cairo(),
+                 style:  Theme.of(context).textTheme.bodyText2,
                ),
              ),
            ],

@@ -18,8 +18,7 @@ class HomeSection extends StatelessWidget {
       children: [
         Text(
           title,
-          style: GoogleFonts.nunito(
-              fontSize: 20, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headline3
         ),
         Spacer(),
         TextButton(
@@ -27,7 +26,7 @@ class HomeSection extends StatelessWidget {
             onPressed: onPressed,
             child: Text(
              'See All',
-              style: GoogleFonts.nunito(),
+              style: Theme.of(context).textTheme.bodyText2,
             ))
       ],
     );

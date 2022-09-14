@@ -29,32 +29,14 @@ class CustomListTitleBioCard extends StatelessWidget {
       margin: EdgeInsets.only(left: 20, right: 20, bottom: marginBottom),
       shadowColor: Colors.yellow,
       child: ListTile(
-        // المسافة حول محتوى الكارد
-        // contentPadding: EdgeInsets.zero,
-        // المسافة بين النص والايقونة البدائية
-        // horizontalTitleGap: 0,
-        // خاصية للسماح بالضغط على الcard
-        //   onTap: () {},
-        // بتخليني اشيل المسافة من فوق وتحت يعني ال padding  الي حول المحتوى
         minVerticalPadding: 0,
         minLeadingWidth: 0,
-        // leading: Icon(Icons.email),
-        // title: Text('Email'),
-        // subtitle: Text('email@app.com'),
-        // trailing: IconButton(
-        //   onPressed: (){},
-        //   icon: Icon(Icons.email_outlined),
         leading: Icon(leadingIcon, color: Colors.black),
         title: Text(
           title,
-          style: GoogleFonts.cairo(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+          style: Theme.of(context).textTheme.headline4,
         ),
         subtitle: Text(subTitle),
-        // trailing: IconButton(
-        //   onPressed: () {},
-        //   icon: Icon(trailingIcon),
-        // ),
         trailing: IconButton(
           color: Colors.black,
           onPressed: onActionPressed, // استدعاء الفنكشن علشان نخصصها

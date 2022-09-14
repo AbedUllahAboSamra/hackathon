@@ -34,11 +34,9 @@ class PaymentsWay extends StatelessWidget {
               ),
             ),
             SizedBox(width: 12.w,),
-            Text(leadingtitle,style: GoogleFonts.cairo(color: Color(0xFF000000),fontSize: 14.sp)),
+            Text(leadingtitle,style:Theme.of(context).textTheme.headline6 ),
             Spacer(),
-            // Text(data),
-            // Text(title ,style: GoogleFonts.cairo(color: Color(0xFF0012AA),fontSize: 10.sp),),
-            widget,
+               widget,
 
           ],),
       ),

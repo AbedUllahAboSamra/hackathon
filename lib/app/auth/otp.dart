@@ -56,10 +56,8 @@ class _OTPState extends State<OTP> {
                 child: Align(
                   child: Text(
                     'التحقق من رقم الجوال',
-                    style: GoogleFonts.cairo(
-                      fontSize: 16.sp,
+                    style: Theme.of(context).textTheme.headline5?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF000000),
                     ),
                   ),
                   alignment: Alignment.centerRight,
@@ -70,10 +68,9 @@ class _OTPState extends State<OTP> {
                 child: Align(
                   child: Text(
                     'لقد أرسلنا إليك رسالة نصية قصيرة تحتوي على رمز التحقق إلى رقمك 9665211043+ تعديل',
-                    style: GoogleFonts.cairo(
-                      fontSize: 14.sp,
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF000000),
                     ),
                   ),
                   alignment: Alignment.centerRight,
@@ -111,7 +108,8 @@ class _OTPState extends State<OTP> {
                         RichText(
                           text: TextSpan(
                               text: 'اعادة الارسال',
-                              style: GoogleFonts.cairo(
+                              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+
                                 color: Colors.grey.shade700,
                               ),
                               children: [

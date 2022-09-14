@@ -85,10 +85,10 @@ class _PaymentsState extends State<Payments> {
                             // crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('4000' ,style: TextStyle(color: Colors.white,fontSize: 16.sp),),
-                              Text('****',style: TextStyle(color: Colors.white,fontSize: 16.sp)),
-                              Text('****',style: TextStyle(color: Colors.white,fontSize: 16.sp)),
-                              Text('7689',style: TextStyle(color: Colors.white,fontSize: 16.sp)),
+                              Text('4000' ,style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white ),),
+                              Text('****',style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white ),),
+                              Text('****',style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white ),),
+                              Text('7689',style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white ),),
                             ],
                           ),
                           // SizedBox(height: 13.96.h,),
@@ -109,7 +109,7 @@ class _PaymentsState extends State<Payments> {
                           color: Color(0xFF00A145)*/
                     // child: Icon(Icons.check,color: Colors.white,),
                   ,top: 8.h,right: 8.w,),
-                  Positioned(child:  Text('05/22',style: TextStyle(color: Colors.white ,fontSize: 16.sp)),bottom: 24.h,right: 98.w,),
+                  Positioned(child:  Text('05/22',style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white ),),bottom: 24.h,right: 98.w,),
                   Positioned(child:  Image.asset('images/visa.png' ,width: 60.w ,height: 20.h,),bottom: 12.h,right: 14.w,),
 
                 ],
