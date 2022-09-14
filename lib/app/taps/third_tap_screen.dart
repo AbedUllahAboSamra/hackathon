@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:hackathon_project/Get/FirebaseController.dart';
 
 import '../../widgets/events.dart';
 import '../admin_screens/details_event_admin_screen.dart';
 class ThirdTabScreen extends StatelessWidget {
-  const ThirdTabScreen({Key? key}) : super(key: key);
+ var controller = Get.put<FirebaseController>(FirebaseController());
 
   @override
   Widget build(BuildContext context) {

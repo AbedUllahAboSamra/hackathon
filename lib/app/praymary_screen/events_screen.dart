@@ -129,11 +129,7 @@ class _EventsScreenState extends State<EventsScreen>
                                 Text(
                                   "200 K ",
                                   style: Theme.of(context).textTheme.headline6?.copyWith(
-
-                                    fontWeight: FontWeight.bold,
-
-
-
+    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 SizedBox(

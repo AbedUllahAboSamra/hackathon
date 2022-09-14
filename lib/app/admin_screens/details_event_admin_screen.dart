@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hackathon_project/app/admin_screens/add_event_screen.dart';
-import 'package:hackathon_project/model/FaliaModel.dart';
+ import 'package:hackathon_project/model/FaliaModel.dart';
 import 'package:readmore/readmore.dart';
 
 import '../praymary_screen/events_screen.dart';
+import '../ticket/taps/basic_info_screen.dart';
 
 class DetailsEventAdmin extends StatefulWidget {
   FaliaModel falia ;
@@ -95,7 +95,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                         ),
                         onPressed: () {
                           Get.to(() {
-                            return AddOrUpdateEventScreen();
+                            return AddEventScreen();
                           });
                         },
                         color: Color(0xff0012AA)),
@@ -391,7 +391,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                         ),
                       onTap: () {
                         Get.to(() {
-                          return AddOrUpdateEventScreen();
+                          return AddEventScreen();
                         });
                       },
                     )],
