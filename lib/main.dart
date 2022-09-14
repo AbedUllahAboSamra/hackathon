@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             scaffoldBackgroundColor: Color(0xFFF5F5F5),
             accentColor: Colors.transparent,
-            iconTheme: IconThemeData(color: Colors.grey[600], size: 22),
+            iconTheme: IconThemeData(color: Colors.grey[600], size: 22,),
             textTheme: TextTheme(
               headline1: GoogleFonts.averageSans(
                   fontSize: 24.sp, color: Colors.black87),
@@ -73,6 +73,7 @@ class MyApp extends StatelessWidget {
             ),
             cardColor: Color(0xff2c38b0),
           ),
+
           darkTheme: ThemeData(
             scaffoldBackgroundColor: Color(0xFF1C1C1C),
             accentColor: Colors.transparent,

@@ -28,7 +28,6 @@ class ActiveScreenTazaker extends StatelessWidget {
               children: [
                 Container(
                   width: 120.h,
-
                   height: double.infinity,
                   child: Image.asset('images/slider.png',
                     color: Colors.grey.withOpacity(0.8), colorBlendMode: BlendMode.modulate,

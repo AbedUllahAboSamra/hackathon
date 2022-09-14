@@ -27,7 +27,9 @@ class AppTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       keyboardType: keyboardType,
-      style: GoogleFonts.cairo(fontSize: 13.sp),
+      style: GoogleFonts.cairo(fontSize: 13.sp,
+      color: Colors.black
+      ),
       obscureText: obscureText,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
