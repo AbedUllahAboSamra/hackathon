@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hackathon_project/app/admin_screens/add_event_screen.dart';
-import 'package:hackathon_project/app/taps/third_tap_screen.dart';
+ import 'package:hackathon_project/app/taps/third_tap_screen.dart';
 
 import '../../widgets/events.dart';
 import '../taps/first_tab_screen.dart';
 import '../taps/second_tab_screen.dart';
+import '../ticket/taps/basic_info_screen.dart';
 
 class EventsScreen extends StatefulWidget {
   const EventsScreen({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _EventsScreenState extends State<EventsScreen>
 
           IconButton(color: Colors.black,icon: Icon(Icons.add),onPressed: (){
             // Navigator.pushNamed(context, '/add_event');
-            Get.to((){return AddOrUpdateEventScreen();});
+            Get.to((){return AddEventScreen();});
           },)
         ],
       ),

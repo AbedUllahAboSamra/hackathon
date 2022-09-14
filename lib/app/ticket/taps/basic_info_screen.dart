@@ -81,7 +81,6 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 ),
               ),
             ),
-
             Card(color: MediaQuery
                 .of(context)
                 .platformBrightness == Brightness.light ? Colors.white : Colors
@@ -96,7 +95,6 @@ class _AddEventScreenState extends State<AddEventScreen> {
               ),
             ),
 
-            //  '${date.year}/${date.month}/${date.day}'
 
             Card(
               elevation: 3, color: MediaQuery

@@ -22,13 +22,14 @@ class ActiveScreenTazaker extends StatelessWidget {
                 color: Colors.white,
                 border: Border.all(color: Colors.black12),
                 borderRadius: BorderRadius.all(Radius.circular(8.r))),
-            height: 105.h,
+            width: 120.h,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
+                  width: 120.h,
+
                   height: double.infinity,
-                  width: 100,
                   child: Image.asset('images/slider.png',
                     color: Colors.grey.withOpacity(0.8), colorBlendMode: BlendMode.modulate,
                     fit: BoxFit.cover,),
