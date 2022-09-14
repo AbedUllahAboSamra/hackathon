@@ -1,10 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
 import '../../widgets/TqafaWidget.dart';
 import '../home_screen/home_screen.dart';
@@ -44,7 +43,7 @@ var controller  = Get.put<FirebaseController>(FirebaseController());
         // backgroundColor: Color(0xffF2F2F2),
         title: Text(
           'اهلا وسهلا بك',
-          style:  Theme.of(context).textTheme.headline4,
+     style: GoogleFonts.cairo(color: Colors.black),
         ),
         centerTitle: true,
 
@@ -57,7 +56,7 @@ var controller  = Get.put<FirebaseController>(FirebaseController());
           tabs: [
             Tab(
               icon: Text(
-                'العروض',
+                'الرئيسية',
               ),
             ),
             Tab(

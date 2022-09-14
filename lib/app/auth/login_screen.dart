@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,9 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
 import 'package:hackathon_project/app/admin_screens/home_admin_Screen.dart';
 import 'package:hackathon_project/app/bottom_navigation_screen.dart';
-import 'package:hackathon_project/model/UserModle.dart';
 
-import '../../prefs/prefs.dart';
 import '../../widgets/app_text_field.dart';
 import '../../widgets/default_button.dart';
 import '../../widgets/helpers.dart';

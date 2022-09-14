@@ -1,8 +1,6 @@
 
-import 'package:hackathon_project/model/UserModle.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../model/user.dart';
  class SharedPrefController {
   SharedPrefController._();
 

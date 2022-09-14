@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../widgets/payments_way.dart';
+import '../../widgets/card_payment.dart';
+import '../../widgets/payment_way.dart';
 
 
 class PayScreen extends StatefulWidget {
@@ -13,6 +13,7 @@ class PayScreen extends StatefulWidget {
 }
 
 bool visibile = false;
+Color color = Color(0xFFDDE1FF);
 
 class _PayScreenState extends State<PayScreen> {
   @override
@@ -23,7 +24,7 @@ class _PayScreenState extends State<PayScreen> {
         backgroundColor: Color(0xffF5F5F5),
         title: Text('كيف تحب ان تدفع؟',
             style:
-            Theme.of(context).textTheme.headline5),
+            GoogleFonts.cairo(color: Color(0xFF000637), fontSize: 16.sp)),
         centerTitle: true,
       ),
       body: Padding(
@@ -31,65 +32,101 @@ class _PayScreenState extends State<PayScreen> {
         child: Column(
           children: [
             Text(
-              'انت على بعد خطوة من حجز جلسة المساج',
+              'انت على بعد خطوة من حجز تذكرة',
               style:
-              Theme.of(context).textTheme.headline5,
+              GoogleFonts.cairo(color: Color(0xFF000637), fontSize: 16.sp),
             ),
 
 
             SizedBox(height: 14.h),
 
             Text('كيف تحب ان تدفع؟',
-                style: Theme.of(context).textTheme.headline6),
+                style: GoogleFonts.cairo(
+                    color: Color(0xFF000637), fontSize: 14.sp)),
             SizedBox(height: 24.h),
+
             PaymentsWay(
+              radio: InkWell(
+                onTap: (){
+                  setState(() { visibile = !visibile;
+                  color=Color(0xFF001BFF);
+                  });
+
+                },
+                child: Container(width:18.w ,height: 18.h,
+                  decoration: BoxDecoration(
+                    color:color,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+              ),
               leadingtitle: 'بطاقة الائتمان',
               widget: InkWell(
                 child: Text('اضافة بطاقة',
-                    style: Theme.of(context).textTheme.headline5?.copyWith(
-                        color: Theme.of(context).cardColor, fontSize: 10.sp)),
+                    style: GoogleFonts.cairo(
+                        color: Color(0xFF0012AA), fontSize: 10.sp)),
                 onTap: () {
 
                   Navigator.pushNamed(context, '/newpay_screen');
 
-                  setState(()=> visibile = !visibile
-                   );
+                  setState(
+                          ()=> visibile = !visibile
+
+                  );
                 },
               ),
             ),
+            SizedBox(height: 16.h,),
 
             Visibility(
-                visible: visibile == true, child: Padding(
+              visible: visibile, child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  SizedBox(height: 27.91.h,),
-                  Image.asset('images/card.png'),
-                  SizedBox(height: 28.h,),
 
-                  Row(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('4000',
-                        style:  Theme.of(context).textTheme.headline5?.copyWith(
-                            color: Colors.white,  ),),
-                      Text('****',
-                          style:  Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white,   )),
-                      Text('****',
-                          style:  Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white, )),
-                      Text('7689',
-                          style:  Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white, )),
-                    ],
-                  ),
-                  // SizedBox(height: 13.96.h,),
-                ],
-              ),
-            )),
+              child:SizedBox(
+                height: 160.h,
+                width: double.infinity,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return
+                      Padding(
+                        padding:  EdgeInsets.only(left:16.w ),
+                        child: CardsPayments(holderName: 'Sawsan Sami', date: '05/24', cvv: '232', cardNum: '1591852367521489', image: 'images/payment.jpeg', color: Color(0xff1b447b)),
+                      );
+
+                  },
+
+                ),
+              ),),),
             SizedBox(
               height: 24.h,
             ),
+            InkWell(
+              onTap: (){
+                setState(()=> visibile = !visibile );
+
+              },
+              child: PaymentsWay(
+                radio: InkWell(
+                  onTap: (){
+                    setState(() { visibile = !visibile;
+                    });
+
+                  },
+                  child: Container(width:18.w ,height: 18.h,
+                    decoration: BoxDecoration(
+                      color:Color(0xFFDDE1FF),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                ),
+
+                leadingtitle: 'كاش ',
+                widget: Text(''),
+              ),
+            ),
+
 
 
 
@@ -100,8 +137,22 @@ class _PayScreenState extends State<PayScreen> {
               onTap: (){
                 setState(()=> visibile = !visibile );
 
-                    },
+              },
               child: PaymentsWay(
+                radio: InkWell(
+                  onTap: (){
+                    setState(() { visibile = !visibile;
+                    });
+
+                  },
+                  child: Container(width:18.w ,height: 18.h,
+                    decoration: BoxDecoration(
+                      color:Color(0xFFDDE1FF),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                ),
+
                 leadingtitle: 'جوال بي ',
                 widget: Text(''),
               ),
@@ -119,10 +170,10 @@ class _PayScreenState extends State<PayScreen> {
                         borderRadius: BorderRadius.circular(6.r))),
                 child: Text(
                   'شراء التذاكر 60 ',
-                  style: Theme.of(context).textTheme.headline5?.copyWith(
-
+                  style: GoogleFonts.nunito(
+                      fontSize: 16.sp,
                       color: Color(0xffFFFFFF),
-                     ),
+                      fontWeight: FontWeight.bold),
                 )),
             // SizedBox(height: 34.h,)
           ],

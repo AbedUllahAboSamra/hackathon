@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
 import 'package:hackathon_project/app/admin_screens/edit_account.dart';
-import 'package:hackathon_project/prefs/prefs.dart';
-import 'package:path/path.dart';
+import '../../datebase/prefs/prefs.dart';
 
 class AccountScreen extends StatelessWidget {
   final bool isAdmin;
@@ -16,16 +15,13 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'حسابي ',
-          style: Theme.of(context).textTheme.headline3?.copyWith(
-
-            fontWeight: FontWeight.w800,
-
-          ),
-        ),
-        backgroundColor: Color(0xffF5F5F5),
+        title: Text('حسابي ',style: GoogleFonts.cairo(color: Colors.black),),
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        elevation: 0,
+        leading: Icon(color: Colors.transparent,Icons.arrow_forward_ios),
       ),
+
       body: GetBuilder<FirebaseController>(
         builder: (controller) {
           return Container(

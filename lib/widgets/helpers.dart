@@ -16,6 +16,7 @@ mixin Helpers {
       ),
     );
   }
+
   void showSnackBarCode(BuildContext context,{required String code}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
