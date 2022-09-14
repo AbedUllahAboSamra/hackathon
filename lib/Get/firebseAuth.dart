@@ -44,7 +44,7 @@ class FirebseAuth  {
     // showSnackBar(context: context, content: e.message!, error: true);
     switch (e.message) {
       case 'email-already-in-use':
-        context.showSnackBar( message: '',error: false);
+        // context.showSnackBar( message: '',error: false);
         break;
       case 'invalid-email':
         break;

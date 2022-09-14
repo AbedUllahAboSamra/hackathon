@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/Get/reservations_get_controller.dart';
 
 import '../screens_tabs_reservation/activate_screen_tab.dart';
 import '../screens_tabs_reservation/cancel_screen_tab.dart';
@@ -17,6 +19,7 @@ class ReservationScreen extends StatefulWidget {
 class _ReservationScreenState extends State<ReservationScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
 
   @override
   void initState() {

@@ -2,6 +2,7 @@ import 'package:hackathon_project/model/EventChart.dart';
 
 class FaliaModel {
 
+  String id;
   String name;
   String companyName;
   String type;
@@ -17,6 +18,7 @@ class FaliaModel {
 
   FaliaModel({
     required this.name,
+    required this.id,
     required this.companyName,
     required this.ticketPrice,
     required this.type,

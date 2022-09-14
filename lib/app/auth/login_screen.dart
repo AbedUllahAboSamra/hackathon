@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
 import 'package:hackathon_project/app/admin_screens/home_admin_Screen.dart';
 import 'package:hackathon_project/app/bottom_navigation_screen.dart';
-import 'package:hackathon_project/helper/context_extenssion.dart';
 import 'package:hackathon_project/model/UserModle.dart';
 
 import '../../prefs/prefs.dart';
@@ -183,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> with Helpers {
         });
       }
     } else {
-      context.showSnackBar(message: 'تأكد من معلومات حسابك', error: !isLogged);
+      // context.showSnackBar(message: 'تأكد من معلومات حسابك', error: !isLogged);
     }
   }
 }

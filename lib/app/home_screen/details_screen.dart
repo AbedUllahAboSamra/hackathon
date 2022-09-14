@@ -1,10 +1,18 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
+import 'package:hackathon_project/helper/context_extenssion.dart';
 import 'package:hackathon_project/model/FaliaModel.dart';
+import 'package:hackathon_project/widgets/helpers.dart';
+import 'package:path/path.dart';
 import 'package:readmore/readmore.dart';
+
+import '../../Get/reservations_get_controller.dart';
+import '../../model/api_response.dart';
+import '../../model/reservations.dart';
+import '../../prefs/prefs.dart';
 
 class DetailsScreen extends StatefulWidget {
   late FaliaModel falia;
@@ -15,13 +23,18 @@ class DetailsScreen extends StatefulWidget {
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _DetailsScreenState extends State<DetailsScreen> with Helpers{
   var currentImage = 1;
 
   var controller = Get.put<FirebaseController>(FirebaseController());
+  ReservationsGetxController reservationsGetxController =
+      Get.put<ReservationsGetxController>(ReservationsGetxController());
 
   @override
   Widget build(BuildContext context) {
+    print(
+      widget.falia.eventchart?.length,
+    );
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -56,8 +69,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 ],
               ),
-              backgroundColor:
-                  Theme.of(context).scaffoldBackgroundColor,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
                   alignment: Alignment.bottomCenter,
@@ -86,7 +98,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         elevation: 5,
                         margin: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 32.h),
-                        color:  Theme.of(context).scaffoldBackgroundColor,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -97,7 +109,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               ),
                               child: Icon(
                                 Icons.camera_alt,
-                                color:  Colors.grey[600],
+                                color: Colors.grey[600],
                                 size: 17,
                               ),
                             ),
@@ -105,8 +117,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               margin: EdgeInsetsDirectional.only(end: 3.w),
                               child: Text(
                                   '$currentImage/${widget.falia.imagesUrl!.length}',
-                                  style:
-                                      Theme.of(context).textTheme.headline6?.copyWith(fontSize: 12.sp)),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      ?.copyWith(fontSize: 12.sp)),
                             ),
                           ],
                         ),
@@ -137,13 +151,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
           physics: NeverScrollableScrollPhysics(),
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20),
-           decoration: BoxDecoration(
-             borderRadius: BorderRadius.only(
-               topLeft: Radius.circular(50.r),
-               topRight: Radius.circular(50.r),
-
-             )
-           ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(50.r),
+              topRight: Radius.circular(50.r),
+            )),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -161,7 +173,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             child: Text(
                               widget.falia.name,
                               style: Theme.of(context).textTheme.headline4,
-                          ),),
+                            ),
+                          ),
                           SizedBox(
                             width: 16.w,
                           ),
@@ -171,7 +184,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               child: Icon(
                                 Icons.share_rounded,
                                 color: Theme.of(context).cardColor,
-
                               ),
                             ),
                           )
@@ -182,8 +194,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       ),
                       Text(
                         widget.falia.faliaDescrebtion,
-                        style: Theme.of(context).textTheme.headline6?.copyWith(
-                            fontSize: 10.sp),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            ?.copyWith(fontSize: 10.sp),
                       ),
                       SizedBox(
                         height: 20.h,
@@ -285,7 +299,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   width: double.infinity,
                   margin: EdgeInsets.only(top: 10.h),
                   child: Card(
-                    color: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
+                    color: MediaQuery.of(context).platformBrightness ==
+                            Brightness.light
+                        ? Colors.white
+                        : Colors.black26,
                     elevation: 2,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.r),
@@ -337,7 +354,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   child: Text(
                     'مخطط الفعالية',
                     style: Theme.of(context).textTheme.headline4,
-                ),),
+                  ),
+                ),
                 Container(
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
@@ -345,24 +363,33 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       shrinkWrap: true,
                       itemBuilder: (ctx, index) {
                         return Card(
-                          color:  MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26
-                          ,shape: RoundedRectangleBorder(
+                          color: MediaQuery.of(context).platformBrightness ==
+                                  Brightness.light
+                              ? Colors.white
+                              : Colors.black26,
+                          shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.r),
                           ),
                           margin: EdgeInsets.symmetric(vertical: 8.h),
                           child: ExpansionTile(
                             title: Row(
                               children: [
-                                 Text(widget.falia.eventchart![index].day.toString(),
-                              style: Theme.of(context).textTheme.bodyText2,
-                                 ),
+                                Text(
+                                  widget.falia.eventchart![index].day
+                                      .toString(),
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
                                 Spacer(),
-                                Text(widget.falia.eventchart![index].date.toString(),
+                                Text(
+                                  widget.falia.eventchart![index].date
+                                      .toString(),
                                   style: Theme.of(context).textTheme.bodyText2,
                                 )
                               ],
                             ),
-                            children: widget.falia.eventchart![index].evintsDate!.map((e) {
+                            children: widget
+                                .falia.eventchart![index].evintsDate!
+                                .map((e) {
                               return Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -386,7 +413,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         decoration: BoxDecoration(
                                             color: Color(0xff3c48c5),
                                             borderRadius:
-                                            BorderRadius.circular(5.r)),
+                                                BorderRadius.circular(5.r)),
                                       ),
                                       SizedBox(
                                         height: 8.h,
@@ -399,7 +426,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           e.time,
@@ -407,19 +434,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                               .textTheme
                                               .headline6
                                               ?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
                                         SizedBox(
                                           height: 20.h,
                                         ),
                                         Text(
-                                          e.describtion ,
+                                          e.describtion,
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline6
                                               ?.copyWith(
-                                              color: Colors.grey[500]),
+                                                  color: Colors.grey[500]),
                                         ),
                                         SizedBox(
                                           height: 10.h,
@@ -436,8 +463,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
                 Card(
                   elevation: 4,
-             color: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
-                  margin: EdgeInsets.only(top: 20.h,bottom: 15.h),
+                  color: MediaQuery.of(context).platformBrightness ==
+                          Brightness.light
+                      ? Colors.white
+                      : Colors.black26,
+                  margin: EdgeInsets.only(top: 20.h, bottom: 15.h),
                   child: Container(
                     height: 156.h,
                     width: 343.w,
@@ -452,8 +482,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           color: Color(0xff001BFF),
                         ),
                         Text(
-                         widget.falia.location,
-                          style: Theme.of(context).textTheme.headline4,)
+                          widget.falia.location,
+                          style: Theme.of(context).textTheme.headline4,
+                        )
                       ],
                     ),
                   ),
@@ -462,14 +493,25 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   height: 10.h,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    controller.getFaliasFromFirebase();
+                  onPressed: () async{
+                    ProcessResponse process=await reservationsGetxController.create(
+                      getReservations(
+                        address: widget.falia.location,
+                        date: widget.falia.eventchart!.first.date,
+                        name: widget.falia.name,
+                        productId: widget.falia.id,
+                        status: 'نشطة',
+                      ),
+                    );
+                    context.showSnackBar(message:!process.success? 'التذكرة محجوزة مسبقا': process.message,error: !process.success);
 
+                    // controller.getFaliasFromFirebase();
                     // Navigator.pushNamed(context, '/pay_screen');
                   },
                   child: Text(
                     'حجز تذكرة',
-                    style: Theme.of(context).textTheme.headline4,),
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 48.h),
                   ),
@@ -480,5 +522,22 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ),
       ),
     );
+  }
+
+  Reservations getReservations(
+      {required String name,
+      required String address,
+      required String status,
+      required date,
+      required String productId}) {
+    Reservations reservationsItem = Reservations();
+    reservationsItem.name = name;
+    reservationsItem.userId =
+        SharedPrefController().getValueFor<String>('uId')!;
+    reservationsItem.address = address;
+    reservationsItem.date = date;
+    reservationsItem.status = status;
+    reservationsItem.productId = productId.toString();
+    return reservationsItem;
   }
 }

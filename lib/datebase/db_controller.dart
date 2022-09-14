@@ -19,45 +19,34 @@ class DbController {
     String path = join(directory.path, 'app_db.sql');
     _database = await openDatabase(
       path,
-      version: 1,
+      version: 3,
       onOpen: (Database database) {},
       onCreate: (Database database, int version) async {
 
         //TODO: Create tables (users) USING SQL
 
-           await database.execute('CREATE TABLE users ('
+        await database.execute('CREATE TABLE IF NOT EXISTS reservations ('
             'id INTEGER PRIMARY KEY AUTOINCREMENT,'
             'name TEXT NOT NULL,'
-            'email TEXT NOT NULL,'
-            'password TEXT NOT NULL'
+            'date TEXT NOT NULL,'
+            'status TEXT NOT NULL,'
+            'productId TEXT NOT NULL,'
+            'userId TEXT NOT NULL,'
+            'address TEXT NOT NULL'
             ')');
- /*
-      await database_one.execute('CREATE TABLE products ('
-            'id INTEGER PRIMARY KEY AUTOINCREMENT,'
-            'name TEXT NOT NULL,'
-            'info TEXT NOT NULL,'
-            'price REAL NOT NULL,'
-            'quantity INTEGER DEFAULT (0),'
-            'user_id INTEGER,'
-            'FOREIGN KEY (user_id) references users(id)'
-            ')');
-
-        await database.execute('CREATE TABLE cart ('
-            'id INTEGER PRIMARY KEY AUTOINCREMENT,'
-            'total REAL NOT NULL,'
-        // 'count INTEGER NOT NULL DEFAULT 1,'
-            'count INTEGER NOT NULL,'
-            'price REAL NOT NULL,'
-            'user_id INTEGER,'
-            'product_id INTEGER,'
-        //'user_id INTEGER,'
-        // 'product_id INTEGER,'
-        // 'FOREIGN KEY (user_id) references users(id),'
-        // 'FOREIGN KEY (product_id) references products(id)'
-            ')');
-        */
       },
-      onUpgrade: (Database database, int oldVersion, int newVersion) {},
+      onUpgrade: (Database database, int oldVersion, int newVersion) async{
+
+        await database.execute('CREATE TABLE IF NOT EXISTS reservations ('
+            'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+            'name TEXT NOT NULL,'
+            'date TEXT NOT NULL,'
+            'status TEXT NOT NULL,'
+            'productId TEXT NOT NULL,'
+            'userId TEXT NOT NULL,'
+            'address TEXT NOT NULL'
+            ')');
+      },
       onDowngrade: (Database database, int oldVersion, int newVersion) {},
     );
   }
