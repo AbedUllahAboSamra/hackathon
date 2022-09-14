@@ -14,7 +14,13 @@ class AddEventScreen extends StatefulWidget {
 class _AddEventScreenState extends State<AddEventScreen> {
   DateTime dateStart = DateTime(2022, 9, 12);
   DateTime dateEnd = DateTime(2022, 9, 12);
-
+var eventNameController =TextEditingController();
+var eventNameCompuneController =TextEditingController();
+var eventtickitPriceController =TextEditingController();
+var eventtickitNumberController =TextEditingController();
+var eventtickitStartDataController =TextEditingController();
+var eventtickitFinishDataController =TextEditingController();
+var eventWoryController =TextEditingController();
   final Color customColor = Colors.blue;
 
   @override
@@ -36,6 +42,8 @@ appBar: AppBar(title: Text('اضافة فعالية '),),
                   border: OutlineInputBorder(),
                   hintText: 'أضف اسم الفعالية',
                 ),
+                controller: eventNameController,
+
               ),
               Text(
                 'الراعي الرسمي ',
@@ -46,11 +54,13 @@ appBar: AppBar(title: Text('اضافة فعالية '),),
                   border: OutlineInputBorder(),
                   hintText: 'اضف اسم الراعي الرسمي',
                 ),
+                controller: eventNameCompuneController,
               ),
               SizedBox(
                 height: 10,
               ),
               Card(
+                color:  MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                 elevation: 3,
                 shadowColor: customColor,
                 child: Padding(
@@ -61,7 +71,7 @@ appBar: AppBar(title: Text('اضافة فعالية '),),
                 ),
               ),
 
-             Card(
+             Card(                color:  MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                 elevation: 3,
                 shadowColor: customColor,
                 child: Padding(
@@ -75,7 +85,7 @@ appBar: AppBar(title: Text('اضافة فعالية '),),
               //  '${date.year}/${date.month}/${date.day}'
 
               Card(
-                elevation: 3,
+                elevation: 3,                color:  MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                 shadowColor: customColor,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -113,7 +123,7 @@ appBar: AppBar(title: Text('اضافة فعالية '),),
                 ),
               ),
 
-              Card(
+              Card(   color:  MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                 elevation: 3,
                 shadowColor: customColor,
                 child: Padding(
@@ -161,9 +171,15 @@ appBar: AppBar(title: Text('اضافة فعالية '),),
                   border: OutlineInputBorder(),
                   hintText: 'اكتب التحذيرات',
                 ),
+                controller: eventWoryController,
+
               ),
 
-              ElevatedButton(onPressed: (){}, child: Text('حفظ'),style: ElevatedButton.styleFrom(
+              ElevatedButton(
+                onPressed: (){
+
+
+                }, child: Text('التالي'),style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity, 50.h) ,
               ),)
             ],

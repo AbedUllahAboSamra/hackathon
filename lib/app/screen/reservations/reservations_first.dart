@@ -25,7 +25,7 @@ class _State extends State<ReservationsFirstScreen> {
             children: [
               Text(
                 'اسم الفعالية ',
-                style: GoogleFonts.cairo(),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
               TextField(
                 decoration: InputDecoration(
@@ -35,7 +35,7 @@ class _State extends State<ReservationsFirstScreen> {
               ),
               Text(
                 'الراعي الرسمي ',
-                style: GoogleFonts.cairo(),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
               TextField(
                 decoration: InputDecoration(
@@ -112,7 +112,7 @@ class _State extends State<ReservationsFirstScreen> {
 
               Text(
                 'التحذيرات ',
-                style: GoogleFonts.cairo(),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
               TextField(
                 decoration: InputDecoration(

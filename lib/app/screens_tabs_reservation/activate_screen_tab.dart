@@ -36,7 +36,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
               children: [
 
                 ExpansionPanel(
-
+                    backgroundColor: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                     // expansionCallbackهنا لتفعيل السهم لعرض الاجابة  من
                     isExpanded: false,
                     // لتفعيل فتح الاجابة عند الضغط على كل العنصر
@@ -49,16 +49,17 @@ class _ActiveScreenState extends State<ActiveScreen> {
                           Text(''),
                           Text(
                             'فعالية واحد',
-                            style: GoogleFonts.cairo(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
                             '10/10/1010',
-                            style: GoogleFonts.cairo(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ],
                       );
                     },
                     body: Container(
+
                       padding:
                           EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -78,15 +79,11 @@ class _ActiveScreenState extends State<ActiveScreen> {
                             children: [
                               Text(
                                 'التاريخ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
+                                style: Theme.of(context).textTheme.headline5,
+                      ), Text(
                                 'الموعد',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                                style: Theme.of(context).textTheme.headline5,
+                              )     ],
                           ),
                           SizedBox(
                             height: 10,
@@ -114,15 +111,11 @@ class _ActiveScreenState extends State<ActiveScreen> {
                             children: [
                               Text(
                                 'نوع التذكرة ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
+                                style: Theme.of(context).textTheme.headline5,
+                              ),   Text(
                                 'رقم المقعد',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                                style: Theme.of(context).textTheme.headline5,
+                              ),   ],
                           ),
                           SizedBox(
                             height: 10,
@@ -156,15 +149,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                 fontSize: 14, color: Color(0xff0012AA)),
                           ),
                           Divider(),
-                          /*      Align(
-                  alignment: AlignmentDirectional.center,
-                  child: Image(
-                      image: AssetImage('images/cock.png'),
-                      fit: BoxFit.cover,
-                      height: 120,
-                      width: 120,
-                      alignment: AlignmentDirectional.center),
-                ),*/
+
 
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -193,10 +178,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                     ),
                                     Text(
                                       'الغاء ',
-                                      style: GoogleFonts.cairo(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                      style: Theme.of(context).textTheme.bodyText2,
                                     ),
                                   ],
                                 ),
@@ -210,7 +192,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                   ),
                                   Text(
                                     'تعديل  ',
-                                    style: GoogleFonts.cairo(),
+                                    style: Theme.of(context).textTheme.bodyText2,
                                   ),
                                 ],
                               ),
@@ -224,7 +206,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                     ),
                                     Text(
                                       'تصدير ',
-                                      style: GoogleFonts.cairo(),
+                                      style: Theme.of(context).textTheme.bodyText2,
                                     ),
                                   ],
                                 ),
@@ -241,7 +223,6 @@ class _ActiveScreenState extends State<ActiveScreen> {
           ExpansionPanelList(
               // لون الخط الفاصل
               dividerColor: Colors.grey,
-
               // عند العرض يكون في حركة
               animationDuration: const Duration(seconds: 1),
               expandedHeaderPadding: EdgeInsets.zero,
@@ -256,7 +237,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                     isExpanded: true,
                     // لتفعيل فتح الاجابة عند الضغط على كل العنصر
                     canTapOnHeader: true,
-
+backgroundColor: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                     headerBuilder: (context, isExpanded) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -264,11 +245,11 @@ class _ActiveScreenState extends State<ActiveScreen> {
                           Text(''),
                           Text(
                             'فعالية واحد',
-                            style: GoogleFonts.cairo(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
                             '10/10/1010',
-                            style: GoogleFonts.cairo(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ],
                       );
@@ -293,15 +274,11 @@ class _ActiveScreenState extends State<ActiveScreen> {
                             children: [
                               Text(
                                 'التاريخ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
+                                style: Theme.of(context).textTheme.headline5,
+                      ),     Text(
                                 'الموعد',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                                style: Theme.of(context).textTheme.headline5,
+                              ),   ],
                           ),
                           SizedBox(
                             height: 10,
@@ -329,15 +306,11 @@ class _ActiveScreenState extends State<ActiveScreen> {
                             children: [
                               Text(
                                 'نوع التذكرة ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
+                                style: Theme.of(context).textTheme.headline5,
+                              ),  Text(
                                 'رقم المقعد',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                                style: Theme.of(context).textTheme.headline5,
+                              ),    ],
                           ),
                           SizedBox(
                             height: 10,
@@ -408,10 +381,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                     ),
                                     Text(
                                       'الغاء ',
-                                      style: GoogleFonts.cairo(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                      style: Theme.of(context).textTheme.bodyText2,
                                     ),
                                   ],
                                 ),
@@ -425,7 +395,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                   ),
                                   Text(
                                     'تعديل  ',
-                                    style: GoogleFonts.cairo(),
+                                    style: Theme.of(context).textTheme.bodyText2,
                                   ),
                                 ],
                               ),
@@ -439,7 +409,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                     ),
                                     Text(
                                       'تصدير ',
-                                      style: GoogleFonts.cairo(),
+                                      style: Theme.of(context).textTheme.bodyText2,
                                     ),
                                   ],
                                 ),
@@ -466,7 +436,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
               // خليت العناصر الي موودة في الليستة اعرضها عنا
               children: [
                 ExpansionPanel(
-
+                    backgroundColor: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.white:Colors.black26,
                     // expansionCallbackهنا لتفعيل السهم لعرض الاجابة  من
                     isExpanded: false,
                     // لتفعيل فتح الاجابة عند الضغط على كل العنصر
@@ -478,11 +448,11 @@ class _ActiveScreenState extends State<ActiveScreen> {
                           Text(''),
                           Text(
                             'فعالية واحد',
-                            style: GoogleFonts.cairo(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
                             '10/10/1010',
-                            style: GoogleFonts.cairo(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ],
                       );
@@ -507,15 +477,11 @@ class _ActiveScreenState extends State<ActiveScreen> {
                             children: [
                               Text(
                                 'التاريخ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
+                                style: Theme.of(context).textTheme.headline5,
+                              ),    Text(
                                 'الموعد',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                                style: Theme.of(context).textTheme.headline5,
+                              ),     ],
                           ),
                           SizedBox(
                             height: 10,
@@ -543,15 +509,12 @@ class _ActiveScreenState extends State<ActiveScreen> {
                             children: [
                               Text(
                                 'نوع التذكرة ',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
+                                style: Theme.of(context).textTheme.headline5,),
                               Text(
                                 'رقم المقعد',
-                                style: GoogleFonts.cairo(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                                style: Theme.of(context).textTheme.headline5,
+                              )
+                                ],
                           ),
                           SizedBox(
                             height: 10,
@@ -622,10 +585,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                     ),
                                     Text(
                                       'الغاء ',
-                                      style: GoogleFonts.cairo(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                      style: Theme.of(context).textTheme.bodyText2,
                                     ),
                                   ],
                                 ),
@@ -639,7 +599,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                   ),
                                   Text(
                                     'تعديل  ',
-                                    style: GoogleFonts.cairo(),
+                                    style: Theme.of(context).textTheme.bodyText2,
                                   ),
                                 ],
                               ),
@@ -653,7 +613,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                                     ),
                                     Text(
                                       'تصدير ',
-                                      style: GoogleFonts.cairo(),
+                                      style: Theme.of(context).textTheme.bodyText2,
                                     ),
                                   ],
                                 ),
@@ -697,9 +657,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
                       ),
                       Text(
                         'تصد ير التذكرة',
-                        style: GoogleFonts.cairo(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
+                        style: Theme.of(context).textTheme.headline5,),
                       Divider(
                         thickness: 2,
                       ),

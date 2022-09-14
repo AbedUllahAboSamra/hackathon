@@ -149,14 +149,12 @@ class FirebaseController extends GetxController {
   }
 
 
-  List<FaliaModel> fillterEvints({required String fillterBy}){
-    var a = falias;
-    print(falias.value);
-    print('*****************');
-    List<FaliaModel> newArray = [];
+  RxList<FaliaModel> fillterEvints({required String fillterBy}){
+   var a = falias;
+    RxList<FaliaModel> newArray = <FaliaModel>[].obs;
      a.forEach((element) {
        print(element);
-      if(element.type==fillterBy){
+      if(element.type.contains(fillterBy)){
         newArray.add(element);
       }
     });

@@ -61,18 +61,22 @@ class _EventsScreenState extends State<EventsScreen>
                           children: [
                             Text(
                               "الفعاليات",
-                              style: GoogleFonts.cairo(
+                              style: Theme.of(context).textTheme.headline6?.copyWith(
+
                                 fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                                fontSize: 14.sp,
+
+
+
                               ),
                             ),
                             Text(
                               "100K فعالية",
-                              style: GoogleFonts.cairo(
+                              style: Theme.of(context).textTheme.headline6?.copyWith(
+
                                 fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                                fontSize: 14.sp,
+
+
+
                               ),
                             )
                           ],
@@ -84,10 +88,12 @@ class _EventsScreenState extends State<EventsScreen>
                               children: [
                                 Text(
                                   "200 K ",
-                                  style: GoogleFonts.cairo(
+                                  style: Theme.of(context).textTheme.headline6?.copyWith(
+
                                     fontWeight: FontWeight.w600,
-                                    color: Colors.black,
-                                    fontSize: 14.sp,
+
+
+
                                   ),
                                 ),
                                 SizedBox(
@@ -95,10 +101,12 @@ class _EventsScreenState extends State<EventsScreen>
                                 ),
                                 Text(
                                   "حجز",
-                                  style: GoogleFonts.cairo(
+                                  style: Theme.of(context).textTheme.headline6?.copyWith(
+
                                     fontWeight: FontWeight.w600,
+
                                     color: Colors.blue,
-                                    fontSize: 14.sp,
+
                                   ),
                                 ),
                                 SizedBox(
@@ -106,10 +114,12 @@ class _EventsScreenState extends State<EventsScreen>
                                 ),
                                 Text(
                                   "70%",
-                                  style: GoogleFonts.cairo(
-                                    fontWeight: FontWeight.w600,
+                                  style: Theme.of(context).textTheme.headline6?.copyWith(
+
+                                    fontWeight: FontWeight.bold,
+
                                     color: Colors.grey,
-                                    fontSize: 14.sp,
+
                                   ),
                                 ),
                               ],
@@ -118,10 +128,12 @@ class _EventsScreenState extends State<EventsScreen>
                               children: [
                                 Text(
                                   "200 K ",
-                                  style: GoogleFonts.cairo(
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black,
-                                    fontSize: 14.sp,
+                                  style: Theme.of(context).textTheme.headline6?.copyWith(
+
+                                    fontWeight: FontWeight.bold,
+
+
+
                                   ),
                                 ),
                                 SizedBox(
@@ -129,10 +141,12 @@ class _EventsScreenState extends State<EventsScreen>
                                 ),
                                 Text(
                                   "زيارة",
-                                  style: GoogleFonts.cairo(
-                                    fontWeight: FontWeight.w600,
+                                  style: Theme.of(context).textTheme.headline6?.copyWith(
+
+                                    fontWeight: FontWeight.bold,
+
                                     color: Colors.red,
-                                    fontSize: 14.sp,
+
                                   ),
                                 ),
                                 SizedBox(
@@ -140,10 +154,12 @@ class _EventsScreenState extends State<EventsScreen>
                                 ),
                                 Text(
                                   "30%",
-                                  style: GoogleFonts.cairo(
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.grey,
-                                    fontSize: 14.sp,
+                                  style: Theme.of(context).textTheme.headline6?.copyWith(
+
+                                    fontWeight: FontWeight.bold,
+
+                                     color: Colors.grey,
+
                                   ),
                                 ),
                               ],

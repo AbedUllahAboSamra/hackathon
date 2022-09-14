@@ -49,8 +49,8 @@ class Events extends StatelessWidget {
                 flex: 1,
                 child: Container(
                   height: double.infinity,
-                  child: Image.asset(
-                    'images/$image',
+                  child: Image.network(
+                    image,
                     color: Colors.grey.withOpacity(0.8),
                     colorBlendMode: BlendMode.modulate,
                     fit: BoxFit.cover,

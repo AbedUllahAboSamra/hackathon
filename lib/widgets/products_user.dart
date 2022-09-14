@@ -69,7 +69,7 @@ class _prodect_cardState extends State<prodect_card> {
                     children: [
                       Text(
                         widget.title,
-                        style: GoogleFonts.cairo(
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                           fontSize: 15.sp,
@@ -79,7 +79,7 @@ class _prodect_cardState extends State<prodect_card> {
                         children: [
                           Text(
                             " حجز ",
-                            style: GoogleFonts.cairo(
+                            style:  Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w500,
                               color: Colors.grey,
                               fontSize: 12.sp,
@@ -87,7 +87,7 @@ class _prodect_cardState extends State<prodect_card> {
                           ),
                           Text(
                             widget.Reservation,
-                            style: GoogleFonts.cairo(
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w500,
                               color: Colors.blue,
                               fontSize: 13.sp,
@@ -95,7 +95,7 @@ class _prodect_cardState extends State<prodect_card> {
                           ),
                           Text(
                             " | ",
-                            style: GoogleFonts.cairo(
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w500,
                               color: Colors.grey,
                               fontSize: 13.sp,
@@ -103,7 +103,7 @@ class _prodect_cardState extends State<prodect_card> {
                           ),
                           Text(
                             " تذكرة متبقية ",
-                            style: GoogleFonts.cairo(
+                            style:Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w500,
                               color: Colors.grey,
                               fontSize: 12.sp,
@@ -111,7 +111,7 @@ class _prodect_cardState extends State<prodect_card> {
                           ),
                           Text(
                             widget.ticket_available,
-                            style: GoogleFonts.cairo(
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w500,
                               color: Colors.red,
                               fontSize: 13.sp,
@@ -121,7 +121,7 @@ class _prodect_cardState extends State<prodect_card> {
                       ),
                       Text(
                         "تاريخ الفعاليات : " + widget.data,
-                        style: GoogleFonts.cairo(
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
                           fontWeight: FontWeight.w500,
                           color: Colors.grey,
                           fontSize: 13.sp,
@@ -143,20 +143,13 @@ class _prodect_cardState extends State<prodect_card> {
                     children: [
                       IconButton(
                         onPressed: () {},
-                        color: Colors.blue,
+                        color: Theme.of(context).cardColor,
                         icon: Icon(
                           Icons.edit,
                         ),
                       ),
 
-                      // SwitchListTile(
-                      //   contentPadding: EdgeInsets.zero,
-                      //   title: Text(""),
-                      //   value: _notifications,
-                      //   onChanged: (bool value) {
-                      //     setState(() => _notifications = value);
-                      //   },
-                      // )
+
                     ],
                   ),
                 ],

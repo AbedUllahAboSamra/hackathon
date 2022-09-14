@@ -8,7 +8,7 @@ mixin Helpers {
       SnackBar(
         content: Text(
           message,
-          style: GoogleFonts.cairo(),
+          style: Theme.of(context).textTheme.bodyText2,
         ),
         backgroundColor: error ? Colors.red.shade700 : Colors.blue.shade300,
         duration: const Duration(seconds: 3),
@@ -21,7 +21,7 @@ mixin Helpers {
       SnackBar(
         content: Text(
           code,
-          style: GoogleFonts.cairo(),
+          style: Theme.of(context).textTheme.bodyText2,
         ),
         backgroundColor:  Colors.blue.shade300,
         duration: const Duration(seconds: 3),

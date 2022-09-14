@@ -61,25 +61,23 @@ class _TazakerScreenState extends State<TazakerScreen>
                     children: [
                       Text(
                         "اجمالي التذاكر",
-                        style: GoogleFonts.cairo(
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          fontSize: 14.sp,
+
                         ),
                       ),
                       Row(
                         children: [
                           Text(
                             "100K ",
-                            style: GoogleFonts.cairo(
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                              fontSize: 14.sp,
+
                             ),
                           ),
                           Text(
                             "تذكرة ",
-                            style: GoogleFonts.cairo(
+                            style:Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: Color(0xFF909090),
                               fontSize: 10.sp,
@@ -106,21 +104,17 @@ class _TazakerScreenState extends State<TazakerScreen>
                         children: [
                           Text(
                             "200 K ",
-                            style: GoogleFonts.cairo(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                              fontSize: 14.sp,
-                            ),
+                            style: Theme.of(context).textTheme.headline6 ,
                           ),
                           SizedBox(
                             width: 5.w,
                           ),
                           Text(
                             "حجز",
-                            style: GoogleFonts.cairo(
+                            style:Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: Colors.blue,
-                              fontSize: 14.sp,
+
                             ),
                           ),
                           SizedBox(
@@ -128,10 +122,10 @@ class _TazakerScreenState extends State<TazakerScreen>
                           ),
                           Text(
                             "70%",
-                            style: GoogleFonts.cairo(
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: Colors.grey,
-                              fontSize: 14.sp,
+
                             ),
                           ),
                         ],
@@ -140,21 +134,17 @@ class _TazakerScreenState extends State<TazakerScreen>
                         children: [
                           Text(
                             "200 K ",
-                            style: GoogleFonts.cairo(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                              fontSize: 14.sp,
-                            ),
+                            style: Theme.of(context).textTheme.headline6 ,
                           ),
                           SizedBox(
                             width: 5.w,
                           ),
                           Text(
                             "زيارة",
-                            style: GoogleFonts.cairo(
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: Colors.red,
-                              fontSize: 14.sp,
+
                             ),
                           ),
                           SizedBox(
@@ -162,10 +152,9 @@ class _TazakerScreenState extends State<TazakerScreen>
                           ),
                           Text(
                             "30%",
-                            style: GoogleFonts.cairo(
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: Colors.grey,
-                              fontSize: 14.sp,
                             ),
                           ),
                         ],
@@ -206,15 +195,15 @@ class _TazakerScreenState extends State<TazakerScreen>
                         tabs: [
                           Text(
                             'نشطة ',
-                            style: GoogleFonts.cairo(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
                             'مكتملة',
-                            style: GoogleFonts.cairo(fontSize: 14.sp),
+                            style: Theme.of(context).textTheme.headline6,
                           ),
                           Text(
                             'ملغاه',
-                            style: GoogleFonts.cairo(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ],
                       ),

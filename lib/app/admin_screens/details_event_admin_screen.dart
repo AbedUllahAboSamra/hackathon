@@ -15,11 +15,8 @@ class DetailsEventAdmin extends StatefulWidget {
 class _DetailsEventAdminState extends State<DetailsEventAdmin> {
   var isCollapse = false;
   var currentImage = 1;
-
   var imagesUrl = ['images/assets/boarding1.png'];
-
   var ticketPrice = 20;
-
   var numberOfTicketsAvailable = 200;
 
   @override
@@ -65,7 +62,8 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                   height: 25.h,
                   width: 25.h,
                   decoration: BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
+                      color: Colors.white,
+                      shape: BoxShape.circle),
                   child: Center(
                     child: IconButton(
                         padding: EdgeInsets.zero,
@@ -86,7 +84,8 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                   height: 25.h,
                   width: 25.h,
                   decoration: BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
+                      color: Colors.white,
+                      shape: BoxShape.circle),
                   child: Center(
                     child: IconButton(
                         padding: EdgeInsets.zero,
@@ -105,55 +104,9 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                 SizedBox(
                   width: 16.w,
                 )
-                //
-                //       Container(
-                //         height: 30.h,
-                //         width: 30.h,
-                //         margin: EdgeInsets.symmetric(horizontal: 20.w),
-                //         decoration: BoxDecoration(
-                //             color: MediaQuery.of(context).platformBrightness ==
-                //                 Brightness.light
-                //                 ? Color(0xFFF5F5F5)
-                //                 : Colors.black87,
-                //             borderRadius: BorderRadius.circular(5555.r)),
-                //         child: InkWell(
-                //             onTap: () {
-                //               Navigator.pop(context);
-                //             },
-                //             child: Icon(
-                //               Icons.delete,
-                //               color: MediaQuery.of(context).platformBrightness ==
-                //                   Brightness.light
-                //                   ? Colors.grey[800]
-                //                   : Colors.white,
-                //             )),
-                //       ),
-                //       Container(
-                //
-                //         height: 30.h,
-                //         width: 30.h,
-                //
-                //
-                //         margin: EdgeInsets.symmetric(horizontal: 20.w),
-                //         decoration: BoxDecoration(
-                //             color: Colors.white,
-                //             borderRadius: BorderRadius.circular(50.r)
-                // ),
-                //         child: InkWell(
-                //             onTap: () {
-                //               Navigator.pop(context);
-                //             },
-                //             child: Icon(
-                //               Icons.edit,
-                //               color:Color(0xFF063BFA)
-                //             )),
-                //
-                //       ),
               ],
               backgroundColor:
-                  MediaQuery.of(context).platformBrightness == Brightness.light
-                      ? Color(0xFFF5F5F5)
-                      : Colors.black87,
+                  Theme.of(context).scaffoldBackgroundColor,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
                   alignment: Alignment.bottomCenter,
@@ -215,10 +168,7 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                           topLeft: Radius.circular(50.r),
                           topRight: Radius.circular(50.r),
                         ),
-                        color: MediaQuery.of(context).platformBrightness ==
-                                Brightness.light
-                            ? Color(0xFFF5F5F5)
-                            : Colors.white,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                       ),
                     ),
                   ],
@@ -433,10 +383,12 @@ class _DetailsEventAdminState extends State<DetailsEventAdmin> {
                           Icons.edit,
                           color: Color(0xFF063BFA),
                         ),
-                        onTap: () {
-                          Navigator.pushNamed(context, '/');
-                        }),
-                  ],
+                      onTap: () {
+                        Get.to(() {
+                          return AddOrUpdateEventScreen();
+                        });
+                      },
+                    )],
                 ),
                 Container(
                   child: ListView.builder(
