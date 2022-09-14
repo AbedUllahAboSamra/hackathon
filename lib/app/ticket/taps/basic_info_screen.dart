@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/Get/FirebaseController.dart';
 
 import '../../../widgets/adding_row.dart';
 import '../../admin_screens/AddChartEvint.dart';
+import '../../admin_screens/home_admin_Screen.dart';
 
 class AddEventScreen extends StatefulWidget {
   const AddEventScreen({Key? key}) : super(key: key);
@@ -25,7 +28,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
   var eventtickitFinishDataController = TextEditingController();
   var eventWoryController = TextEditingController();
   final Color customColor = Colors.blue;
-
+var controller = Get.put<FirebaseController>(FirebaseController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -197,12 +200,31 @@ class _AddEventScreenState extends State<AddEventScreen> {
             SizedBox(height: 30.h,),
             ElevatedButton(
             onPressed: (){
+       FirebaseFirestore.instance.collection('Falias')
+           .add({
+         'faliaDescrebtion': eventWoryController.text,
+         'location':"غزة",
+         'name': eventNameController.text,
+         'numberOfTickets': 50,
+         'ticketPrice':90,
+         'type': "أحدث الفعاليات  فعاليات الثقافة أشهر الفعاليات",
+         'imagesUrl': ["https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2019/05/08/5253196-1867233831.jpg",
+           "https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2019/05/08/5253196-1867233831.jpg",
+           "https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2019/05/08/5253196-1867233831.jpg",
+           "https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2019/05/08/5253196-1867233831.jpg"
+         ],
 
-      Get.to(AddChartEvint(numberOfTickit: 10, tickitPrice: 100, nameCompny: '', name: '',
 
-      ));
+       }).then((value){
+         controller.getFaliasFromFirebase();
+        Future.delayed(Duration(seconds: 2),
+        () {
+          Get.to(BTNScreen());
+        },
+        );
+       });
 
-      }, child: Text('التالي'), style: ElevatedButton.styleFrom(
+      }, child: Text('اضافة'), style: ElevatedButton.styleFrom(
         minimumSize: Size(double.infinity, 50.h),
       ),)
       ],
