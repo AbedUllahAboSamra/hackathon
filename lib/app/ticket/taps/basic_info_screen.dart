@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
 
@@ -202,21 +201,20 @@ var controller = Get.put<FirebaseController>(FirebaseController());
             onPressed: (){
        FirebaseFirestore.instance.collection('Falias')
            .add({
+         'aboutCompany': 'مركز القطان للثقافة',
+         'companyName': 'مركز القطان ',
          'faliaDescrebtion': eventWoryController.text,
-         'location':"غزة",
-         'name': eventNameController.text,
-         'numberOfTickets': 50,
-         'ticketPrice':90,
-         'type': "أحدث الفعاليات  فعاليات الثقافة أشهر الفعاليات",
          'imagesUrl': ["https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2019/05/08/5253196-1867233831.jpg",
            "https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2019/05/08/5253196-1867233831.jpg",
            "https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2019/05/08/5253196-1867233831.jpg",
            "https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2019/05/08/5253196-1867233831.jpg"
          ],
-
-
+         'location':"غزة",
+         'name': eventNameController.text,
+         'numberOfTickets': 50,
+         'ticketPrice':90,
+         'type': "أحدث الفعاليات  فعاليات الثقافة أشهر الفعاليات",
        }).then((value){
-         controller.getFaliasFromFirebase();
         Future.delayed(Duration(seconds: 2),
         () {
           Get.to(BTNScreen());

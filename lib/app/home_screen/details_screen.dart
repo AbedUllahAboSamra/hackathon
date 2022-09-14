@@ -10,9 +10,9 @@ import 'package:path/path.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../Get/reservations_get_controller.dart';
+import '../../datebase/prefs/prefs.dart';
 import '../../model/api_response.dart';
 import '../../model/reservations.dart';
-import '../../prefs/prefs.dart';
 
 class DetailsScreen extends StatefulWidget {
   late FaliaModel falia;

@@ -1,29 +1,25 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
- import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/app/admin_screens/event_screen_edit.dart';
 import 'package:hackathon_project/app/admin_screens/home_admin_Screen.dart';
- import 'package:hackathon_project/prefs/prefs.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
- import 'package:flutter_gen/gen_l10n/app_localizations.dart';
- import 'app/payment_cards/new_payments.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'app/core/launch_screen.dart';
+import 'app/onboarding/onboarding_screen.dart';
+import 'app/payment_cards/new_payments.dart';
 import 'app/payment_cards/pay_screen.dart';
 import 'app/payment_cards/payments.dart';
 import 'app/praymary_screen/account_screen.dart';
 import 'app/auth/create_aprofile_screen.dart';
 import 'app/auth/login_screen.dart';
 import 'app/auth/otp.dart';
-import 'app/auth/register_screen.dart';
 import 'app/bottom_navigation_screen.dart';
-import 'app/home_screen/details_screen.dart';
 import 'app/ticket/taps/basic_info_screen.dart';
-import 'core/launch_screen.dart';
 import 'datebase/db_controller.dart';
-import 'onboarding/onboarding_screen.dart';
+import 'datebase/prefs/prefs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,21 +75,21 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.grey[400], size: 22),
             textTheme: TextTheme(
-              headline1: GoogleFonts.averageSans(
-                  fontSize: 24.sp, color: Colors.white),
-              headline2: GoogleFonts.averageSans(
-                  fontSize: 22.sp, color: Colors.white),
-              headline3: GoogleFonts.averageSans(
-                  fontSize: 20.sp, color: Colors.white),
-              headline4: GoogleFonts.averageSans(
-                  fontSize: 18.sp, color: Colors.white),
-              headline5: GoogleFonts.averageSans(
-                  fontSize: 16.sp, color: Colors.white),
-              headline6: GoogleFonts.averageSans(
-                  fontSize: 14.sp, color: Colors.white),
+              headline1:
+                  GoogleFonts.averageSans(fontSize: 24.sp, color: Colors.white),
+              headline2:
+                  GoogleFonts.averageSans(fontSize: 22.sp, color: Colors.white),
+              headline3:
+                  GoogleFonts.averageSans(fontSize: 20.sp, color: Colors.white),
+              headline4:
+                  GoogleFonts.averageSans(fontSize: 18.sp, color: Colors.white),
+              headline5:
+                  GoogleFonts.averageSans(fontSize: 16.sp, color: Colors.white),
+              headline6:
+                  GoogleFonts.averageSans(fontSize: 14.sp, color: Colors.white),
               bodyText2: GoogleFonts.averageSans(color: Colors.white),
-              bodyText1: GoogleFonts.averageSans(
-                  color: Colors.white, fontSize: 15.sp),
+              bodyText1:
+                  GoogleFonts.averageSans(color: Colors.white, fontSize: 15.sp),
             ),
             inputDecorationTheme: InputDecorationTheme(
               hintStyle: GoogleFonts.averageSans(
@@ -103,11 +99,9 @@ class MyApp extends StatelessWidget {
               border: InputBorder.none,
             ),
             cardColor: Color(0xff2c38b0),
-
-
           ),
-
-themeMode: ThemeMode.light,
+          title: 'ويقو',
+          themeMode: ThemeMode.light,
           debugShowCheckedModeBanner: false,
           //********************* LOCALIZATION START *********************
           localizationsDelegates: const [
@@ -117,29 +111,25 @@ themeMode: ThemeMode.light,
             GlobalWidgetsLocalizations.delegate,
           ],
 
-          supportedLocales: const [
-            Locale('ar'),
-            Locale('en'),
-          ],
           locale: Locale('ar'),
           initialRoute: '/launch_screen',
           routes: {
             '/launch_screen': (context) => const LaunchScreen(),
-             '/register_screen': (context) => const RegisterScreen(),
-             '/login_screen': (context) => const LoginScreen(),
-             '/create_screen': (context) => const CreateAprofileScreen(),
+            '/login_screen': (context) => const LoginScreen(),
+            '/create_screen': (context) => const CreateAprofileScreen(),
             '/on_boarding_screen': (context) => const OnboardingScreen(),
-            '/btn_navigation_screen': (context) => const BottomNavigationScreen(),
+            '/btn_navigation_screen': (context) =>
+                const BottomNavigationScreen(),
             '/otp_screen': (context) => const OTP(),
-             '/acount_screen': (context) =>  AccountScreen(),
-             '/payments_screen': (context) => const Payments(),
+            '/acount_screen': (context) => AccountScreen(),
+            '/payments_screen': (context) => const Payments(),
             '/pay_screen': (context) => const PayScreen(),
             '/newpay_screen': (context) => const NewPaymentsScreen(),
             '/add_event': (context) => const AddEventScreen(),
-            '/event_screen': (context) =>  EventsScreen(),
+            '/event_screen': (context) => EventsScreen(),
             '/home_admin_screen': (context) => const BTNScreen(),
           },
- navigatorKey: Get.key,
+          navigatorKey: Get.key,
         );
       },
     );

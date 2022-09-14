@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../prefs/prefs.dart';
-import '../widgets/default_button.dart';
-import '../widgets/on_boarding_content.dart';
+import '../../datebase/prefs/prefs.dart';
+import '../../widgets/default_button.dart';
+import '../../widgets/on_boarding_content.dart';
+
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);

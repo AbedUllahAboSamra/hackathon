@@ -41,7 +41,10 @@ class _ReservationScreenState extends State<ReservationScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('حجوزاتي '),
+        title: Text('حجوزاتي ',style: GoogleFonts.cairo(color: Colors.black),),
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        elevation: 0,
         leading: Icon(color: Colors.transparent,Icons.arrow_forward_ios),
       ),
       body: Column(

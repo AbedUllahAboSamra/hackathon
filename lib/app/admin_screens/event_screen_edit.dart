@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/app/ticket/taps/basic_info_screen.dart';
-
-import '../../widgets/events.dart';
 import '../taps/first_tab_screen.dart';
 import '../taps/second_tab_screen.dart';
 
@@ -36,12 +34,13 @@ class _EventsScreenState extends State<EventsScreen>
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(title: Text("فعاليات"),
+      appBar: AppBar(title: Text("فعاليات",style: GoogleFonts.cairo(color: Colors.black),),
         leading: Icon(color: Colors.transparent,Icons.arrow_forward_ios),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: [
-
           IconButton(color: Colors.black,icon: Icon(Icons.add),onPressed: (){
-            // Navigator.pushNamed(context, '/add_event');
             Get.to((){
               return AddEventScreen();
             });
@@ -52,7 +51,6 @@ class _EventsScreenState extends State<EventsScreen>
         padding:  EdgeInsets.symmetric(horizontal: 20.w ,vertical: 20.h),
         child: Column(
           children: [
-
             Container(
               height: 84.h,
               padding: EdgeInsets.all(10),
@@ -171,7 +169,7 @@ class _EventsScreenState extends State<EventsScreen>
               ),
             ),
             SizedBox(height: 22.h,),
-            Divider(  ),
+            Divider(),
 
             Expanded(
               child: Container(

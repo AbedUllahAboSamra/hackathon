@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/app/admin_screens/Tickets.dart';
 import 'package:hackathon_project/app/admin_screens/event_screen_edit.dart';
 
-import '../../model/ui_model/bn_screen.dart';
+import '../../model/ui_model/screen_model.dart';
 import '../btn_screens/HomeAdminScreen.dart';
 import '../praymary_screen/account_screen.dart';
 import '../taps/first_tab_screen.dart';
@@ -22,8 +22,8 @@ class _BTNScreenState extends State<BTNScreen> with SingleTickerProviderStateMix
 
   final List<BnScreen> _screens = <BnScreen>[
       BnScreen(title: 'أهلا وسهلا', widget: HomeAdminScreen()),
-    const BnScreen(title: 'الفعاليات', widget: EventsScreen()),
-    const BnScreen(title: 'تذاكري', widget: TazakerScreen()),
+     BnScreen(title: 'الفعاليات', widget: EventsScreen()),
+     BnScreen(title: 'تذاكري', widget: TazakerScreen()),
      BnScreen(title: 'الاعدادات', widget: AccountScreen(isAdmin:true)),
   ];
 

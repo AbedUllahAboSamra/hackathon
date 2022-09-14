@@ -1,7 +1,7 @@
 
 
 import '../../model/reservations.dart';
-import '../../prefs/prefs.dart';
+import '../prefs/prefs.dart';
 import 'db_operations.dart';
 
 class ReservationsDbController extends DbOperations<Reservations> {

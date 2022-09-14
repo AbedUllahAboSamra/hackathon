@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../model/ui_model/reservations.dart';
 
 class CompleteScreen extends StatelessWidget {
   CompleteScreen({Key? key}) : super(key: key);

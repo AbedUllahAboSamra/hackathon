@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_project/Get/FirebaseController.dart';
 
-import '../prefs/prefs.dart';
+import '../../datebase/prefs/prefs.dart';
+
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({Key? key}) : super(key: key);
@@ -33,24 +34,16 @@ class _LaunchScreenState extends State<LaunchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+        body: Container(
+        alignment: Alignment.centerLeft,
+         child:  Stack(
+           alignment: Alignment.centerRight,
+            children: [
+              Image.asset('images/wegoLogo.png',width: 300,height: 300,),
+              Text('ويجو',style: GoogleFonts.cairo(color: Colors.black,fontSize: 35),),
 
-        fit: StackFit.expand,
-        alignment: AlignmentDirectional.center,
-        children: [
-          Image(
-              image: AssetImage('images/launch1.png'),
-              fit: BoxFit.cover,
-              alignment: AlignmentDirectional.center),
-          Container(
-            alignment: AlignmentDirectional.center,
-
-            child: Image(
-                image: AssetImage('images/logo.png'),
-                fit: BoxFit.contain,
-                alignment: AlignmentDirectional.center),),
-        ],
-      ),
-    );
+            ],
+          )
+    ),);
   }
 }

@@ -31,12 +31,10 @@ class _TqafaWidgetState extends State<TqafaWidget> {
                    child: Container(
                      width: double.infinity,
                      clipBehavior: Clip.antiAlias,
-
                      child: Row(
                        children: [
                          Expanded(
                            flex: 1,
-
                            child: Container(
                              height: 110.h,
                              clipBehavior: Clip.hardEdge,
@@ -44,7 +42,6 @@ class _TqafaWidgetState extends State<TqafaWidget> {
                                borderRadius: BorderRadius.circular(7.r)
                              ),
                              child: Image.network(
-
                                  widget.array[index].imagesUrl![0],
                                  color: Colors.grey.withOpacity(0.8),
                                  colorBlendMode: BlendMode.modulate,
@@ -62,8 +59,6 @@ class _TqafaWidgetState extends State<TqafaWidget> {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                crossAxisAlignment: CrossAxisAlignment.start,
                                children: [
-
-
                                  Text(
                                    widget.array[index].name,
                                    style: GoogleFonts.cairo(
@@ -92,14 +87,12 @@ class _TqafaWidgetState extends State<TqafaWidget> {
                                    ],
                                  ),
                                  Row(
-                                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                                    children: [
                                      Icon(Icons.location_on_outlined),
                                      Text(
                                        widget.array[index].location.split(' ')[0],
                                        style: GoogleFonts.cairo(
-                                           color: Color(0xFF120007), fontSize: 14.sp),
+                                           color: Color(0xFF120007), fontSize: 12.sp),
                                      ),
                                      SizedBox(
                                        width: 105.w,
